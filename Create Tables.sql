@@ -1,93 +1,61 @@
-
-/* TDA'S */
-CREATE OR REPLACE TYPE covid_data AS OBJECT (
-    STATIC FUNCTION numero_infectados (id_pais NUMBER) RETURN NUMBER,
-    STATIC FUNCTION numero_fallecidos (id_pais NUMBER) RETURN NUMBER,
-    STATIC FUNCTION numero_recuperados (id_pais NUMBER) RETURN NUMBER,
-    STATIC FUNCTION porcentaje_infectados (pob NUMBER, infec NUMBER) RETURN NUMBER,
-    STATIC FUNCTION porcentaje_fallecidos (pob NUMBER, infec NUMBER, fall NUMBER) RETURN NUMBER,
-    STATIC FUNCTION porcentaje_recuperados (pob NUMBER, infec NUMBER, recup NUMBER) RETURN NUMBER
-);
-
-CREATE OR REPLACE TYPE persona AS OBJECT (
-    img     BLOB,
-    nom1    VARCHAR(15) NOT NULL,
-    nom2    VARCHAR(15),
-    ape1    VARCHAR(15) NOT NULL,
-    ape2    VARCHAR(15) NOT NULL,
-    fec_nac DATE NOT NULL,
-    fec_mue DATE,
-    genero  VARCHAR(2) NOT NULL,
-    STATIC FUNCTION edad (fec_nac DATE) RETURN NUMBER,
-    STATIC FUNCTION size_of_img (img BLOB) RETURN NUMBER
-);
-
-CREATE OR REPLACE TYPE historia AS OBJECT (
-    fec_i DATE NOT NULL,
-    fec_f DATE,
-    STATIC FUNCTION comprobar_fechas (fec_i DATE, fec_f DATE) RETURN NUMBER
-);
-
 /*  Create Table */
 CREATE TABLE patologias (
     id       NUMBER PRIMARY KEY,
-    nom      VARCHAR(20) NOT NULL
+    nom      VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE sintomas (
     id       NUMBER PRIMARY KEY,
-    nom      VARCHAR(20) NOT NULL
+    nom      VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE proveedores (
     id      NUMBER PRIMARY KEY,
-    nom     VARCHAR(20) NOT NULL,
+    nom     VARCHAR(100) NOT NULL,
     img     BLOB
 );
 
 CREATE TABLE aerolineas (
     id      NUMBER PRIMARY KEY,
-    nom     VARCHAR(20) NOT NULL,
+    nom     VARCHAR(100) NOT NULL,
     img     BLOB
-);
-
-CREATE TABLE modelos (
-    id      NUMBER PRIMARY KEY,
-    nom     VARCHAR(20) NOT NULL,
-    tipo    VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE insumos (
     id       NUMBER PRIMARY KEY,
-    nom      VARCHAR(20) NOT NULL
+    nom      VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE paises (
     id       NUMBER PRIMARY KEY,
-    nom      VARCHAR(20) NOT NULL
+    nom      VARCHAR(100) NOT NULL,
+    bandera BLOB
 );
 
 CREATE TABLE estados (
     id        NUMBER PRIMARY KEY,
-    nom       VARCHAR(20) NOT NULL,
-    id_pais   NUMBER NOT NULL
+    nom       VARCHAR(100) NOT NULL,
+    id_pais   NUMBER NOT NULL,
+    poblacion number NOT NULL,
+    data covid_data
 );
 
 CREATE TABLE ciudades (
     id          NUMBER PRIMARY KEY,
-    nom         VARCHAR(20) NOT NULL,
+    nom         VARCHAR(100) NOT NULL,
     id_estado   NUMBER NOT NULL
 );
 
 CREATE TABLE urbanizaciones (
     id          NUMBER PRIMARY KEY,
-    nom         VARCHAR(20) NOT NULL,
+    nom         VARCHAR(100) NOT NULL,
     id_ciudad   NUMBER NOT NULL
 );
 
 CREATE TABLE calles (
     id      NUMBER PRIMARY KEY,
     nom     VARCHAR(20) NOT NULL,
+    num     NUMBER NOT NULL,
     id_urb  NUMBER NOT NULL
 );
 
@@ -96,55 +64,63 @@ CREATE TABLE personas(
     pers persona
 );
 
-CREATE TABLE recinto_salud(
+CREATE TABLE recintos_salud(
     id NUMBER PRIMARY KEY,
     nom VARCHAR(100) NOT NULL,
-    tipo VARCHAR(20) NOT NULL,
-    n_camas NUMBER NOTNULL,
+    tipo VARCHAR(50) NOT NULL,
+    n_camas NUMBER NOT NULL,
     data covid_data,
     id_calle NUMBER NOT NULL,
 );
 
 CREATE TABLE historico_cierre_fronteras(
+    id NUMBER PRIMARY KEY,
     hist historia,
     id_pais NUMBER NOT NULL
 );
 
+CREATE TABLE modelos (
+    id      NUMBER PRIMARY KEY,
+    nom     VARCHAR(50) NOT NULL,
+    tipo    VARCHAR(50) NOT NULL
+);
+
 CREATE TABLE historico_modelos(
+    id NUMBER PRIMARY KEY, 
     hist historia,
     id_estado NUMBER NOT NULL,
     id_modelo NUMBER NOT NULL
 );
 
 CREATE TABLE historico_ayuda_humanitaria(
+    id NUMBER PRIMARY KEY,
     hist historia,
     dinero NUMBER,
-    id_pais1 NUMBER NOT NULL,
-    id_pais2 NUMBER NOT NULL
+    id_pais_1 NUMBER NOT NULL,
+    id_pais_2 NUMBER NOT NULL
 );
 
 CREATE TABLE historico_viajes(
+    id NUMBER PRIMARY KEY,
     hist historia,
-    n_vuelo NUMBER NOT NULL, /*  <-- creo que esto deberia se primary key*/
+    n_vuelo NUMBER NOT NULL,
     id_aero NUMBER NOT NULL,
-    id_pais1 NUMBER NOT NULL,
-    id_pais2 NUMBER NOT NULL
+    id_estado_1 NUMBER NOT NULL,
+    id_estado_2 NUMBER NOT NULL
 );
 
 CREATE TABLE historico_tratamiento(
+    id NUMBER PRIMARY KEY,
     hist historia,
     id_persona NUMBER NOT NULL,
-    id_rec_salud NUMBER NOT NULL,
-    PRIMARY KEY (id_persona,id_rec_salud)
+    id_rec_salud NUMBER NOT NULL
 );
 
 CREATE TABLE A_I(
     cant NUMBER NOT NULL,
     id_insumo NUMBER NOT NULL,
-    /* como que falta una fecha aqui */
-    id_pais1 NUMBER NOT NULL,
-    id_pais2 NUMBER NOT NULL,
-    PRIMARY KEY (id_pais1,id_pais2/*, fecha*/ )
+    id_ayuda NUMBER NOT NULL,
+    PRIMARY KEY (id_insumo,id_ayuda)
 );
 
 CREATE TABLE H_I (
@@ -161,22 +137,18 @@ CREATE TABLE E_P (
 );
 
 CREATE TABLE C_HV (
+    id_viaje NUMBER NOT NULL,
     id_ciudad NUMBER NOT NULL,
-    id_aero NUMBER NOT NULL,
-    id_pais1 NUMBER NOT NULL,
-    id_pais2 NUMBER NOT NULL,
-    PRIMARY KEY (id_ciudad,id_aero,id_pais1,id_pais2)
+    PRIMARY KEY (id_viaje, id_ciudad)
 );
 
 CREATE TABLE P_HV (
+    id_viaje NUMBER NOT NULL,
     id_persona NUMBER NOT NULL,
-    id_aero NUMBER NOT NULL,
-    id_pais1 NUMBER NOT NULL,
-    id_pais2 NUMBER NOT NULL,
-    PRIMARY KEY (id_persona,id_aero,id_pais1,id_pais2)
+    PRIMARY KEY (id_viaje, id_persona)
 );
 
-CREATE TABLE P_Pat (
+CREATE TABLE P_PAT (
     id_persona NUMBER NOT NULL,
     id_patologia NUMBER NOT NULL,
     PRIMARY KEY (id_persona,id_patologia)
@@ -188,24 +160,22 @@ CREATE TABLE P_S (
     PRIMARY KEY (id_persona,id_sintoma)
 );
 
-CREATE TABLE P_Prov (
+CREATE TABLE P_PROV (
     id_persona NUMBER NOT NULL,
     id_proveedor NUMBER NOT NULL,
     v_sub NUMBER NOT NULL,
     v_des NUMBER NOT NULL,
-    h_dia_inter NUMBER NOT NULL,
+    h_int NUMBER NOT NULL,
     PRIMARY KEY (id_persona,id_proveedor)
 );
 
-CREATE TABLE infectados_covi19 (
-    id NUMBER NOT NULL,
+CREATE TABLE infectados_covid (
+    id NUMBER PRIMARY KEY,
+    hist historia,
+    estado VARCHAR(5) NOT NULL,
     id_persona NUMBER NOT NULL,
-    fec_i DATE NOT NULL,
-    fec_f DATE,
-    estado VARCHAR(2),
-    id_estado NUMBER,
-    id_rec_salud NUMBER,
-    PRIMARY KEY (id,id_persona)
+    id_hist_trat NUMBER NOT NULL,
+    id_estado NUMBER NOT NULL
 );
 
 /* Sequences */
