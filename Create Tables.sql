@@ -179,18 +179,23 @@ CREATE TABLE infectados_covid (
 );
 
 /* Sequences */
-CREATE SEQUENCE patologias_seq;
-CREATE SEQUENCE sintomas_seq;
-CREATE SEQUENCE proveedores_seq;
-CREATE SEQUENCE aerolineas_seq;
-CREATE SEQUENCE modelos_seq;
-CREATE SEQUENCE insumos_seq;
-CREATE SEQUENCE paises_seq;
-CREATE SEQUENCE estados_seq;
-CREATE SEQUENCE ciudades_seq;
-CREATE SEQUENCE urbanizaciones_seq;
-CREATE SEQUENCE calles_seq;
-CREATE SEQUENCE persona_seq;
+CREATE SEQUENCE id_patologia_seq;
+CREATE SEQUENCE id_sintoma_seq;
+CREATE SEQUENCE id_proveedor_seq;
+CREATE SEQUENCE id_aerolinea_seq;
+CREATE SEQUENCE id_insumo_seq;
+CREATE SEQUENCE id_pais_seq;
+CREATE SEQUENCE id_estado_seq;
+CREATE SEQUENCE id_ciudad_seq;
+CREATE SEQUENCE id_urbanizacion_seq;
+CREATE SEQUENCE id_calle_seq;
+CREATE SEQUENCE id_persona_seq;
+CREATE SEQUENCE id_recinto_salud_seq;
+CREATE SEQUENCE id_hist_cierre_seq;
+CREATE SEQUENCE id_hist_modelo_seq;
+CREATE SEQUENCE id_hist_viajes_seq;
+CREATE SEQUENCE id_hist_tratamiento_seq;
+CREATE SEQUENCE id_infectado_seq;
 
 /* Constaint foreing keys */
 ALTER TABLE estados ADD CONSTRAINT estado_pais_fk FOREIGN KEY (id_pais) REFERENCES paises(id);
