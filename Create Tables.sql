@@ -60,7 +60,7 @@ CREATE TABLE calles (
 );
 
 CREATE TABLE personas(
-    id  PRIMARY KEY,
+    id NUMBER PRIMARY KEY,
     pers persona
 );
 
