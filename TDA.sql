@@ -91,16 +91,16 @@ END;
 CREATE OR REPLACE TYPE historia AS OBJECT (
     fec_i DATE ,  --NOT NULL
     fec_f DATE,
-    STATIC FUNCTION comprobar_fechas (fec_i DATE, fec_f DATE) RETURN boolean;
+    STATIC FUNCTION comprobar_fechas (fec_i DATE, fec_f DATE) RETURN integer;
 );
 CREATE OR REPLACE TYPE BODY historia AS
-MEMBER FUNCTION comprobar_fechas (fec_i IN date,fec_f IN date) return boolean
+MEMBER FUNCTION comprobar_fechas (fec_i IN date,fec_f IN date) return integer
 IS res number(4);
 BEGIN
     IF fec_i>fec_f THEN
         RAISE_APPLICATION_ERROR(-20001, 'Fecha de inicio no puede ser superior a la fecha final');
-        return FALSE;
+        return 0;
     ELSE 
-        return TRUE;
+        return 1;
     END IF;
 END;
