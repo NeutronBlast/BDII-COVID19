@@ -62,16 +62,6 @@ BEGIN
     return ROUND(fallecidos*100/total_casos,2); 
 END;
 
-CREATE OR REPLACE TYPE BODY covid_data AS MEMBER FUNCTION porcentaje_infectados RETURN number
-IS resultado number;
-BEGIN
-    IF infectados > poblacion THEN
-        RAISE_APPLICATION_ERROR(-20001, 'Numero de infectados no puede ser mayor a la poblacion');
-    ELSE
-        resultado := ROUND((infectados*100)/poblacion,2);
-        return (resultado);
-    END IF;
-END;
 --Los not null en objetos se verifican con un check en el create table
 CREATE OR REPLACE TYPE persona AS OBJECT (
     img     BLOB,
