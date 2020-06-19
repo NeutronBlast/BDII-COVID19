@@ -8,6 +8,7 @@ CREATE OR REPLACE TYPE covid_data AS OBJECT (
     STATIC FUNCTION porcentaje_fallecidos (pob NUMBER, infec NUMBER, fall NUMBER) RETURN NUMBER,
     STATIC FUNCTION porcentaje_recuperados (pob NUMBER, infec NUMBER, recup NUMBER) RETURN NUMBER
 );
+/
 --Los not null en objetos se verifican con un check en el create table
 CREATE OR REPLACE TYPE persona AS OBJECT (
     img     BLOB,
@@ -21,7 +22,7 @@ CREATE OR REPLACE TYPE persona AS OBJECT (
     STATIC FUNCTION edad (fec_nac DATE) RETURN NUMBER,
     STATIC FUNCTION size_of_img (img BLOB) RETURN NUMBER
 );
-
+/
 CREATE OR REPLACE TYPE historia AS OBJECT (
     fec_i DATE ,  --NOT NULL
     fec_f DATE,
