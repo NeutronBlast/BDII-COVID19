@@ -76,8 +76,8 @@ BEGIN
                 SELECT p.id
                 INTO is_infected
                 FROM PERSONAS p 
-                JOIN historico_viajes h ON h.id_estado_2 = id_estado AND h.hist.fecha_i BETWEEN fecha_i AND fecha_f AND h.hist.fecha_f >= fecha_f
-                JOIN P_HV ON p.id_viaje = h.id
+                JOIN historico_viajes h ON h.id_estado_2 = id_estado AND h.hist.fec_i BETWEEN fecha_i AND fecha_f AND h.hist.fec_f >= fecha_f
+                JOIN P_HV phv ON phv.id_viaje = h.id
                 WHERE NOT EXISTS (SELECT * FROM INFECTADOS_COVID i WHERE i.id_persona = p.id AND i.hist.fec_f IS NOT NULL AND ROWNUM = 1);
 
                 IF is_infected <> NULL THEN
