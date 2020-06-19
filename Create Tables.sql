@@ -69,8 +69,8 @@ CREATE TABLE recintos_salud(
     nom VARCHAR(100) NOT NULL,
     tipo VARCHAR(50) NOT NULL,
     n_camas NUMBER NOT NULL,
-    data covid_data,
-    id_calle NUMBER NOT NULL,
+    datos covid_data,
+    id_calle NUMBER NOT NULL
 );
 
 CREATE TABLE historico_cierre_fronteras(

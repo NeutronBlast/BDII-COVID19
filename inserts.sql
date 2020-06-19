@@ -114,13 +114,23 @@ INSERT INTO paises VALUES (id_pais_seq.nextval, 'Mexico', EMPTY_BLOB());
 INSERT INTO paises VALUES (id_pais_seq.nextval, 'Reino Unido', EMPTY_BLOB());
 INSERT INTO paises VALUES (id_pais_seq.nextval, 'Venezuela', EMPTY_BLOB());
 
-/* TABLE estados (
-    id        NUMBER PRIMARY KEY,
-    nom       VARCHAR(100) NOT NULL,
-    id_pais   NUMBER NOT NULL,
-    data covid_data
-);
-*/
+/* TABLE estados */
+INSERT INTO estados VALUES (id_estado_seq.nextval, 'Berlin', (SELECT id FROM paises WHERE nom = 'Alemania'), covid_data());
+INSERT INTO estados VALUES (id_estado_seq.nextval, 'Hesse', (SELECT id FROM paises WHERE nom = 'Alemania'), covid_data());
+INSERT INTO estados VALUES (id_estado_seq.nextval, 'Bremen', (SELECT id FROM paises WHERE nom = 'Alemania'), covid_data());
+INSERT INTO estados VALUES (id_estado_seq.nextval, 'Hubei', (SELECT id FROM paises WHERE nom = 'China'), covid_data());
+INSERT INTO estados VALUES (id_estado_seq.nextval, 'Sichuan', (SELECT id FROM paises WHERE nom = 'China'), covid_data());
+INSERT INTO estados VALUES (id_estado_seq.nextval, 'Anhui', (SELECT id FROM paises WHERE nom = 'China'), covid_data());
+INSERT INTO estados VALUES (id_estado_seq.nextval, 'California', (SELECT id FROM paises WHERE nom = 'Estados Unidos'), covid_data());
+INSERT INTO estados VALUES (id_estado_seq.nextval, 'Florida', (SELECT id FROM paises WHERE nom = 'Estados Unidos'), covid_data());
+INSERT INTO estados VALUES (id_estado_seq.nextval, 'Louisiana', (SELECT id FROM paises WHERE nom = 'Estados Unidos'), covid_data());
+INSERT INTO estados VALUES (id_estado_seq.nextval, 'Barcelona', (SELECT id FROM paises WHERE nom = 'España'), covid_data());
+INSERT INTO estados VALUES (id_estado_seq.nextval, 'Granada', (SELECT id FROM paises WHERE nom = 'España'), covid_data());
+INSERT INTO estados VALUES (id_estado_seq.nextval, 'Zaragoza', (SELECT id FROM paises WHERE nom = 'España'), covid_data());
+INSERT INTO estados VALUES (id_estado_seq.nextval, 'Distrito Capital', (SELECT id FROM paises WHERE nom = 'Venezuela'), covid_data());
+INSERT INTO estados VALUES (id_estado_seq.nextval, 'Lara', (SELECT id FROM paises WHERE nom = 'Venezuela'), covid_data());
+INSERT INTO estados VALUES (id_estado_seq.nextval, 'Zulia', (SELECT id FROM paises WHERE nom = 'Venezuela'), covid_data());
+
 
 /* TABLE ciudades (
     id          NUMBER PRIMARY KEY,
@@ -128,6 +138,8 @@ INSERT INTO paises VALUES (id_pais_seq.nextval, 'Venezuela', EMPTY_BLOB());
     id_estado   NUMBER NOT NULL
 );
 */
+INSERT INTO ciudades VALUES (id_ciudad_seq.nextval, 'Caracas', (SELECT e.id FROM paises p JOIN estados e ON p.id = e.id_pais WHERE p.nom = 'Venezuela' AND e.nom = 'Distrito Capital'));
+INSERT INTO CIUDADES VALUES (id_ciudad_seq.nextval, 'New Orleans', (SELECT e.id FROM ESTADOS e JOIN paises p ON p.id = e.id_pais WHERE e.nom = 'Louisiana' AND p.nom = 'Estados Unidos'));
 
 /* TABLE urbanizaciones (
     id          NUMBER PRIMARY KEY,
