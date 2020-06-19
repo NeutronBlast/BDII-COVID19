@@ -119,6 +119,86 @@ JOIN estados e ON e.id = c.id_estado
 JOIN paises p ON p.id = e.id_pais
 WHERE u.nom = 'Tulane' AND c.nom = 'New Orleans' AND e.nom = 'Louisiana' AND p.nom = 'Estados Unidos'
 ));
+
+INSERT INTO CALLES VALUES (id_calle_seq.nextval, 'Ulitsa Prostornaya', 66, 
+(SELECT u.id FROM URBANIZACIONES u
+JOIN ciudades c ON c.id = u.id_ciudad
+JOIN estados e ON e.id = c.id_estado 
+JOIN paises p ON p.id = e.id_pais
+WHERE u.nom = 'Karasun' AND c.nom = 'Krasnodar' AND e.nom = 'Kuban' AND p.nom = 'Rusia'
+));
+
+INSERT INTO CALLES VALUES (id_calle_seq.nextval, 'Montazhnaya St', 74, 
+(SELECT u.id FROM URBANIZACIONES u
+JOIN ciudades c ON c.id = u.id_ciudad
+JOIN estados e ON e.id = c.id_estado 
+JOIN paises p ON p.id = e.id_pais
+WHERE u.nom = 'Karasun' AND c.nom = 'Krasnodar' AND e.nom = 'Kuban' AND p.nom = 'Rusia'
+));
+
+INSERT INTO CALLES VALUES (id_calle_seq.nextval, 'Avtomyoka', 144, 
+(SELECT u.id FROM URBANIZACIONES u
+JOIN ciudades c ON c.id = u.id_ciudad
+JOIN estados e ON e.id = c.id_estado 
+JOIN paises p ON p.id = e.id_pais
+WHERE u.nom = 'Karasun' AND c.nom = 'Krasnodar' AND e.nom = 'Kuban' AND p.nom = 'Rusia'
+));
+
+INSERT INTO CALLES VALUES (id_calle_seq.nextval, 'Uralsib Atm', 111, 
+(SELECT u.id FROM URBANIZACIONES u
+JOIN ciudades c ON c.id = u.id_ciudad
+JOIN estados e ON e.id = c.id_estado 
+JOIN paises p ON p.id = e.id_pais
+WHERE u.nom = 'Karasun' AND c.nom = 'Krasnodar' AND e.nom = 'Kuban' AND p.nom = 'Rusia'
+));
+
+INSERT INTO CALLES VALUES (id_calle_seq.nextval, 'Prostornaya', 91, 
+(SELECT u.id FROM URBANIZACIONES u
+JOIN ciudades c ON c.id = u.id_ciudad
+JOIN estados e ON e.id = c.id_estado 
+JOIN paises p ON p.id = e.id_pais
+WHERE u.nom = 'Karasun' AND c.nom = 'Krasnodar' AND e.nom = 'Kuban' AND p.nom = 'Rusia'
+));
+
+INSERT INTO CALLES VALUES (id_calle_seq.nextval, 'Gibdd', 5, 
+(SELECT u.id FROM URBANIZACIONES u
+JOIN ciudades c ON c.id = u.id_ciudad
+JOIN estados e ON e.id = c.id_estado 
+JOIN paises p ON p.id = e.id_pais
+WHERE u.nom = 'Karasun' AND c.nom = 'Krasnodar' AND e.nom = 'Kuban' AND p.nom = 'Rusia'
+));
+
+INSERT INTO CALLES VALUES (id_calle_seq.nextval, 'Sormovkly Proyezd', 56, 
+(SELECT u.id FROM URBANIZACIONES u
+JOIN ciudades c ON c.id = u.id_ciudad
+JOIN estados e ON e.id = c.id_estado 
+JOIN paises p ON p.id = e.id_pais
+WHERE u.nom = 'Karasun' AND c.nom = 'Krasnodar' AND e.nom = 'Kuban' AND p.nom = 'Rusia'
+));
+
+INSERT INTO CALLES VALUES (id_calle_seq.nextval, 'Prodolnaya Ulitsa', 43, 
+(SELECT u.id FROM URBANIZACIONES u
+JOIN ciudades c ON c.id = u.id_ciudad
+JOIN estados e ON e.id = c.id_estado 
+JOIN paises p ON p.id = e.id_pais
+WHERE u.nom = 'Karasun' AND c.nom = 'Krasnodar' AND e.nom = 'Kuban' AND p.nom = 'Rusia'
+));
+
+INSERT INTO CALLES VALUES (id_calle_seq.nextval, 'Zarechnyy Proyezd', 26, 
+(SELECT u.id FROM URBANIZACIONES u
+JOIN ciudades c ON c.id = u.id_ciudad
+JOIN estados e ON e.id = c.id_estado 
+JOIN paises p ON p.id = e.id_pais
+WHERE u.nom = 'Karasun' AND c.nom = 'Krasnodar' AND e.nom = 'Kuban' AND p.nom = 'Rusia'
+));
+
+INSERT INTO CALLES VALUES (id_calle_seq.nextval, 'Tonirovka', 8, 
+(SELECT u.id FROM URBANIZACIONES u
+JOIN ciudades c ON c.id = u.id_ciudad
+JOIN estados e ON e.id = c.id_estado 
+JOIN paises p ON p.id = e.id_pais
+WHERE u.nom = 'Karasun' AND c.nom = 'Krasnodar' AND e.nom = 'Kuban' AND p.nom = 'Rusia'
+));
 -------------------------------------- PEOPLE -----------------------------------------------------
 
 INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Frank', null, 'Hesse', 'R', '01/08/1999', null, 'M'),1);
@@ -153,8 +233,50 @@ INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'King
 INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Cassie', null, 'Kench', 'A', '01/09/1999', null, 'F'), 10);
 INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Ethan', null, 'Hartmann', 'A', '05/10/1997', '19/06/2020', 'M'), 10);
 
+
+INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Kendrick', null, 'Lamar', 'A', '10/10/1987', null, 'M'), 11);
+INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Amanda', null, 'Grewell', 'V', '11/01/1997', null, 'F'), 14);
+INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Kasia', 'Gabrielle', 'Hernandez', 'A', '01/05/1957', null, 'F'), 19);
+INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Monica', null, 'Lewinski', 'A', '01/05/1987', null, 'F'), 15);
+INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Jack', null, 'Russell', 'A', '01/08/1997', null, 'M'), 12);
+INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Jonathan', null, 'Davis', 'A', '07/08/1998', null, 'M'), 11);
+INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Nikki', null, 'Melendez', 'A', '02/11/1996', null, 'F'), 17);
+INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Sierra', null, 'Tchvaloski', 'A', '08/01/1999', null, 'F'), 18);
+INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Matthew', null, 'Lawrence', 'A', '08/08/1997', null, 'M'), 11);
+INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Tucker', null, 'Carlson', 'A', '08/07/1990', null, 'M'), 17);
+INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Carson', null, 'Jones', 'A', '17/05/1992', null, 'M'), 20);
+INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Maria', null, 'Pandemia', 'A', '08/01/1990', null, 'F'), 14);
+INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Covid', 'Antonio', 'Fernandez', 'A', '08/10/1987', null, 'M'), 12);
+INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Edward', null, 'Rahme', 'A', '07/11/1998', null, 'M'), 13);
+INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Elliott', null, 'Schneider', 'A', '07/11/1999', null, 'M'), 16);
+INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Jamie', null, 'Leigh', 'A', '25/07/1977', null, 'F'), 11);
+INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Josip', null, 'Meyer', 'A', '17/11/1979', null, 'M'), 12);
+INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Daniela', null, 'Frobel', 'A', '21/05/1978', null, 'F'), 16);
+INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Kim', null, 'Hopkins', 'A', '01/11/1998', null, 'F'), 13);
+INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Susana', null, 'Martinez', 'A', '20/11/1995', null, 'F'), 14);
+INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Luciano', null, 'Salvatore', 'A', '17/02/1998', null, 'M'), 18);
+INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Maggie', null, 'Guzman', 'A', '30/10/1986', null, 'M'), 20);
+INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Kiara', null, 'Lavetic', 'A', '18/10/1987', null, 'F'), 15);
+INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Christine', null, 'Janson', 'A', '01/05/1987', null, 'F'), 17);
+INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Layla', null, 'Morgan', 'A', '05/10/1987', null, 'F'), 17);
+INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Sarah', null, 'Lynn', 'A', '01/01/1998', null, 'M'), 11);
+INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Patrick', null, 'Lucumber', 'A', '18/04/1998', null, 'M'), 15);
+INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Nick', null, 'Marsh', 'A', '05/11/1998', null, 'M'), 14);
+INSERT INTO PERSONAS VALUES (id_persona_seq.nextval, persona(EMPTY_BLOB(), 'Karen', null, 'Camacho', 'A', '11/08/1991', null, 'F'), 19);
+
 -------------------------------------- INFECTED -----------------------------------------------------
 INSERT INTO INFECTADOS_COVID VALUES (id_infectado_seq.nextval, historia('19-06-2020', null), 'I', 1, null, 1);
 INSERT INTO INFECTADOS_COVID VALUES (id_infectado_seq.nextval, historia('19-06-2020', null), 'I', 5, null, 1);
 INSERT INTO INFECTADOS_COVID VALUES (id_infectado_seq.nextval, historia('19-06-2020', null), 'I', 10, null, 1);
 INSERT INTO INFECTADOS_COVID VALUES (id_infectado_seq.nextval, historia('10-06-2020', null), 'M', 31, null, 1);
+
+-------------------------------------- AIRPLANES -----------------------------------------------------
+INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'Aeroflot', EMPTY_BLOB());
+
+-------------------------------------- TRAVELS -----------------------------------------------------
+INSERT INTO historico_viajes VALUES (id_hist_viajes_seq.nextval, historia('19-06-2020', '19-07-2020'), 1, 1, 2, 1);
+
+-------------------------------------- P_HV -----------------------------------------------------
+INSERT INTO P_HV VALUES (1, 40);
+INSERT INTO P_HV VALUES (1, 41);
+INSERT INTO P_HV VALUES (1, 42);
