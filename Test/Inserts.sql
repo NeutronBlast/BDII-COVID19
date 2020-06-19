@@ -2,24 +2,41 @@
 
 -------------------------------------- COUNTRIES -----------------------------------------------------
 INSERT INTO PAISES VALUES (id_pais_seq.nextval, 'Estados Unidos', EMPTY_BLOB());
+INSERT INTO PAISES VALUES (id_pais_seq.nextval, 'Rusia', EMPTY_BLOB());
 
 -------------------------------------- STATES -----------------------------------------------------
 
 INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Louisiana', (SELECT id FROM PAISES WHERE nom = 'Estados Unidos'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Kuban', (SELECT id FROM PAISES WHERE nom = 'Rusia'), covid_data(1000));
 
 -------------------------------------- CITIES -----------------------------------------------------
+
 INSERT INTO CIUDADES VALUES (id_ciudad_seq.nextval, 'New Orleans', 
 (SELECT e.id FROM ESTADOS e 
 JOIN paises p ON p.id = e.id_pais
 WHERE e.nom = 'Louisiana' AND p.nom = 'Estados Unidos'
 ));
 
+INSERT INTO CIUDADES VALUES (id_ciudad_seq.nextval, 'Krasnodar', 
+(SELECT e.id FROM ESTADOS e 
+JOIN paises p ON p.id = e.id_pais
+WHERE e.nom = 'Kuban' AND p.nom = 'Rusia'
+));
+
 -------------------------------------- URBANIZACION -----------------------------------------------------
+
 INSERT INTO URBANIZACIONES VALUES (id_urbanizacion_seq.nextval, 'Tulane', 
 (SELECT c.id FROM CIUDADES c
 JOIN estados e ON e.id = c.id_estado 
 JOIN paises p ON p.id = e.id_pais
 WHERE c.nom = 'New Orleans' AND e.nom = 'Louisiana' AND p.nom = 'Estados Unidos'
+));
+
+INSERT INTO URBANIZACIONES VALUES (id_urbanizacion_seq.nextval, 'Karasun', 
+(SELECT c.id FROM CIUDADES c
+JOIN estados e ON e.id = c.id_estado 
+JOIN paises p ON p.id = e.id_pais
+WHERE c.nom = 'Krasnodar' AND e.nom = 'Kuban' AND p.nom = 'Rusia'
 ));
 
 -------------------------------------- CALLES -----------------------------------------------------
