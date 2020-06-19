@@ -4,11 +4,6 @@ CREATE TABLE aerolineas (
     img     BLOB
 );
 
-CREATE TABLE insumos (
-    id       NUMBER PRIMARY KEY,
-    nom      VARCHAR(100) NOT NULL
-);
-
 CREATE TABLE paises (
     id       NUMBER PRIMARY KEY,
     nom      VARCHAR(100) NOT NULL,
@@ -54,6 +49,15 @@ CREATE TABLE historico_viajes(
     id_aero NUMBER NOT NULL,
     id_estado_1 NUMBER NOT NULL,
     id_estado_2 NUMBER NOT NULL
+);
+
+CREATE TABLE infectados_covid (
+    id NUMBER PRIMARY KEY,
+    hist historia,
+    estado VARCHAR(5) NOT NULL,
+    id_persona NUMBER NOT NULL,
+    id_hist_trat NUMBER,
+    id_estado NUMBER NOT NULL
 );
 
 CREATE TABLE P_HV (
