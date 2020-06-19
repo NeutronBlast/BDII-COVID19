@@ -36,7 +36,6 @@ CREATE TABLE estados (
     id        NUMBER PRIMARY KEY,
     nom       VARCHAR(100) NOT NULL,
     id_pais   NUMBER NOT NULL,
-    poblacion number NOT NULL,
     data covid_data
 );
 
@@ -61,7 +60,8 @@ CREATE TABLE calles (
 
 CREATE TABLE personas(
     id NUMBER PRIMARY KEY,
-    pers persona
+    pers persona,
+    id_calle NUMBER NOT NULL
 );
 
 CREATE TABLE recintos_salud(
@@ -174,7 +174,7 @@ CREATE TABLE infectados_covid (
     hist historia,
     estado VARCHAR(5) NOT NULL,
     id_persona NUMBER NOT NULL,
-    id_hist_trat NUMBER NOT NULL,
+    id_hist_trat NUMBER,
     id_estado NUMBER NOT NULL
 );
 
@@ -202,6 +202,7 @@ ALTER TABLE estados ADD CONSTRAINT estado_pais_fk FOREIGN KEY (id_pais) REFERENC
 ALTER TABLE ciudades ADD CONSTRAINT ciudad_estado_fk FOREIGN KEY (id_estado) REFERENCES estados(id);
 ALTER TABLE urbanizaciones ADD CONSTRAINT urbanizacion_ciudad_fk FOREIGN KEY (id_ciudad) REFERENCES ciudades(id);
 ALTER TABLE calles ADD CONSTRAINT calles_urbanizacion_fk FOREIGN KEY (id_urb) REFERENCES urbanizaciones(id);
+ALTER TABLE personas ADD CONSTRAINT personas_calles_fk FOREIGN KEY (id_calle) REFERENCES calles(id);
 ALTER TABLE historico_cierre_fronteras ADD CONSTRAINT hist_cierre_pais_fk FOREIGN KEY (id_pais) REFERENCES paises(id);
 ALTER TABLE historico_modelos ADD CONSTRAINT hist_mod_estado_fk FOREIGN KEY (id_estado) REFERENCES estados(id);
 ALTER TABLE historico_modelos ADD CONSTRAINT hist_mod_mod_fk FOREIGN KEY (id_modelo) REFERENCES modelos(id);

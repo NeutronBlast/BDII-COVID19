@@ -1,5 +1,6 @@
 /* TDA'S */
 CREATE OR REPLACE TYPE covid_data AS OBJECT (
+    poblacion number, -- NOT NULL
     STATIC FUNCTION numero_infectados (id_pais NUMBER) RETURN NUMBER,
     STATIC FUNCTION numero_fallecidos (id_pais NUMBER) RETURN NUMBER,
     STATIC FUNCTION numero_recuperados (id_pais NUMBER) RETURN NUMBER,
@@ -7,7 +8,7 @@ CREATE OR REPLACE TYPE covid_data AS OBJECT (
     STATIC FUNCTION porcentaje_fallecidos (pob NUMBER, infec NUMBER, fall NUMBER) RETURN NUMBER,
     STATIC FUNCTION porcentaje_recuperados (pob NUMBER, infec NUMBER, recup NUMBER) RETURN NUMBER
 );
---Los not null en objetos se verivican con un check en el create table
+--Los not null en objetos se verifican con un check en el create table
 CREATE OR REPLACE TYPE persona AS OBJECT (
     img     BLOB,
     nom1    VARCHAR(15) , --NOT NULL
