@@ -13,6 +13,8 @@ poblacion number;
 total_people number;
 random_person number;
 is_infected number; 
+cont number; -- Contador para loop interno de infectar personas con coronita
+cont_externo; -- Contador de loop externo para saber por cuantos infectados infectare mas gente por coronita
 BEGIN
     -- Cadena de infeccion para libre movilidad
     IF id_modelo = 1 THEN
@@ -23,19 +25,14 @@ BEGIN
         WHERE i.estado = 'I'
         INTO num_infectados;
 
+
         --Poblacion en el estado
         SELECT e.data.poblacion FROM estados e WHERE e.id = id_estado
         INTO poblacion e;
         
-        --Este sera el rango maximo para hacer el random
-        IF num_infectados*3 >= poblacion THEN
-            max_random_infected:=poblacion;
-        ELSE
-            max_random_infected:=num_infectados*3;
-        END IF;
-
+        LOOP
         --El numero random que salga sera el numero de personas que seran infectadas de covid-19
-        max_random_infected := DBMS_RANDOM.value(0,max_random_infected);
+        max_random_infected := DBMS_RANDOM.value(0,3);
 
         --Seleccionar el numero total de personas en el estado asi tengo todos los ids disponibles para el random
         SELECT COUNT(*) FROM PERSONAS p
@@ -47,7 +44,7 @@ BEGIN
         --Inicializar para evitar error en el LOOP
         is_infected:= 1;
 
-        --Infectar con coronita
+        --Infectar con coronita de 0 a 3 personas
         LOOP
         random_person:= DBMS_RANDOM.value(1, total_people);
 
@@ -65,11 +62,20 @@ BEGIN
         AND i.historia.fecha_f IS NOT NULL) AND p.id = random_person
         INTO is_infected; 
 
-        EXIT WHEN is_infected = NULL;
-        END LOOP;
+        --No se hace loop hasta que haya un infectable por si acaso toda la gente del estado se llegara a infectar
 
+        IF is_infected = NULL THEN
         INSERT INTO infectados_covid (i.id_infectado_seq.nextval, i.historia((SELECT SYSDATE FROM DUAL),
         null), 'I', random_person, null, id_estado);
+        END IF;
+
+        cont:=cont+1;
+        EXIT WHEN cont > max_random_infected
+        END LOOP;
+
+        cont_externo:=cont_externo+1
+        EXIT WHEN cont_externo = num_infectados;
+
     END IF;
 
     -- Cadena de infeccion para cuarentena
