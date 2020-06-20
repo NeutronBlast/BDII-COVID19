@@ -275,8 +275,12 @@ INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'Aeroflot', EMPTY_BLOB(
 
 -------------------------------------- TRAVELS -----------------------------------------------------
 INSERT INTO historico_viajes VALUES (id_hist_viajes_seq.nextval, historia('19-06-2020', '19-07-2020'), 1, 1, 2, 1);
+INSERT INTO historico_viajes VALUES (id_hist_viajes_seq.nextval, historia('19-06-2020', '19-07-2020'), 2, 1, 1, 2);
+INSERT INTO historico_viajes VALUES (id_hist_viajes_seq.nextval, historia('19-06-2019', '19-07-2019'), 3, 1, 2, 1);
 
 -------------------------------------- P_HV -----------------------------------------------------
 INSERT INTO P_HV VALUES (1, 40);
 INSERT INTO P_HV VALUES (1, 41);
 INSERT INTO P_HV VALUES (1, 42);
+INSERT INTO P_HV VALUES (2, 11);
+INSERT INTO P_HV VALUES (3, 43);
