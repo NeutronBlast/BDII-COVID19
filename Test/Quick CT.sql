@@ -60,10 +60,21 @@ CREATE TABLE infectados_covid (
     id_estado NUMBER NOT NULL
 );
 
+CREATE TABLE sintomas (
+    id       NUMBER PRIMARY KEY,
+    nom      VARCHAR(50) NOT NULL
+);
+
 CREATE TABLE P_HV (
     id_viaje NUMBER NOT NULL,
     id_persona NUMBER NOT NULL,
     PRIMARY KEY (id_viaje, id_persona)
+);
+
+CREATE TABLE P_S (
+    id_persona NUMBER NOT NULL,
+    id_sintoma NUMBER NOT NULL,
+    fec_i DATE
 );
 
 /* Sequences */
@@ -76,3 +87,4 @@ CREATE SEQUENCE id_calle_seq;
 CREATE SEQUENCE id_persona_seq;
 CREATE SEQUENCE id_hist_viajes_seq;
 CREATE SEQUENCE id_infectado_seq;
+CREATE SEQUENCE id_sintoma_seq;

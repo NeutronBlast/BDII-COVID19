@@ -156,7 +156,7 @@ CREATE TABLE P_PAT (
 CREATE TABLE P_S (
     id_persona NUMBER NOT NULL,
     id_sintoma NUMBER NOT NULL,
-    PRIMARY KEY (id_persona,id_sintoma)
+    fec_i DATE
 );
 
 CREATE TABLE P_PROV (

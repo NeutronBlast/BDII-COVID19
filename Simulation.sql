@@ -20,7 +20,12 @@ max_random_infected number;
 poblacion number;
 total_people number;
 random_person number;
+random_interval number;
+random_ns number; -- Numero de sintomas que se pondran
+random_s number; -- Sintoma aleatorio
+s_exists number; -- Verifica si el sintoma ya existe o no
 is_infected number; 
+cont_s number; -- Contador para loop interno de insertar sintomas
 cont number; -- Contador para loop interno de infectar personas con coronita
 cont_externo number; -- Contador de loop externo para saber por cuantos infectados infectare mas gente por coronita
 BEGIN
@@ -92,6 +97,8 @@ BEGIN
                 WHEN NO_DATA_FOUND THEN is_infected := NULL;
             END;
 
+            random_interval := TRUNC(DBMS_RANDOM.value(0,11)); -- Intervalo de infeccion
+
             --No se hace loop hasta que haya un infectable por si acaso toda la gente del estado se llegara a infectar
             --Si la persona seleccionada no se puede infectar trataremos de infectar a un viajero
             IF is_infected <> 0 THEN
@@ -121,14 +128,53 @@ BEGIN
                     WHEN NO_DATA_FOUND THEN is_infected := NULL;
                 END;
                     IF is_infected <> NULL THEN
-                        INSERT INTO infectados_covid VALUES (id_infectado_seq.nextval, historia((SELECT (SYSDATE + cont_externo) FROM DUAL),
+                    -- Por cada infectado por coronita insertamos un numero aleatorio de sintomas
+                        INSERT INTO infectados_covid VALUES (id_infectado_seq.nextval, historia((SELECT (SYSDATE + cont_externo + random_interval) FROM DUAL),
                         null), 'I', random_person, null, in_estado);
+                        cont_s:= 0;
+                        random_ns:= TRUNC(DBMS_RANDOM.value(1,5));                        
+                        -- Insertar sintomas
+                        LOOP
+                        random_s:= TRUNC(DBMS_RANDOM.value(0,19));
+                        SELECT COUNT (*)
+                        INTO s_exists
+                        FROM P_S p
+                        WHERE p.id_persona = random_person AND p.id_sintoma = random_s AND TO_CHAR(p.fec_i, 'DD-MM-YYYY') = TO_DATE((SELECT (SYSDATE + cont_externo) FROM DUAL));
+
+                        DBMS_OUTPUT.PUT_LINE('Sintoma : ' || random_s || ' En persona: ' || random_person || ' Existe? ' || s_exists);
+                        -- Si no esta repetido, insertar
+                        IF s_exists = 0 THEN
+                        INSERT INTO P_S VALUES (random_person, random_s, (SELECT (SYSDATE + cont_externo) FROM DUAL));
+                        cont_s:=cont_s+1;
+                        END IF;
+
+                        EXIT WHEN cont_s > random_ns;
+                        END LOOP;
                     END IF;
 
                 END IF; 
             ELSE
-                INSERT INTO infectados_covid VALUES (id_infectado_seq.nextval, historia((SELECT (SYSDATE + cont_externo) FROM DUAL),
+                INSERT INTO infectados_covid VALUES (id_infectado_seq.nextval, historia((SELECT (SYSDATE + cont_externo + random_interval) FROM DUAL),
                 null), 'I', random_person, null, in_estado);
+
+                cont_s:= 0;
+                random_ns:= TRUNC(DBMS_RANDOM.value(1,5));                        
+                -- Insertar sintomas
+                LOOP
+                    random_s:= TRUNC(DBMS_RANDOM.value(0,19));
+                    SELECT COUNT (*)
+                    INTO s_exists
+                    FROM P_S p
+                    WHERE p.id_persona = random_person AND p.id_sintoma = random_s AND TO_CHAR(p.fec_i, 'DD-MM-YYYY') = TO_DATE((SELECT (SYSDATE + cont_externo) FROM DUAL));
+
+                    -- Si no esta repetido, insertar
+                    IF s_exists = 0 THEN
+                    INSERT INTO P_S VALUES (random_person, random_s, (SELECT (SYSDATE + cont_externo) FROM DUAL));
+                    cont_s:=cont_s+1;
+                    END IF;
+
+                    EXIT WHEN cont_s > random_ns;
+                    END LOOP;
             END IF;
 
             cont:=cont+1;

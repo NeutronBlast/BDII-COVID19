@@ -284,3 +284,25 @@ INSERT INTO P_HV VALUES (1, 41);
 INSERT INTO P_HV VALUES (1, 42);
 INSERT INTO P_HV VALUES (2, 11);
 INSERT INTO P_HV VALUES (3, 43);
+
+-------------------------------------- SYMPTOMS -----------------------------------------------------
+INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Cansancio');
+INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Conjuntivitis');
+INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Diarrea');
+INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Dificultad para despertarse o permanecer despierto');
+INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Dificultad respiratoria');
+INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Dolor de garganta');
+INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Dolor muscular');
+INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Dolor o presíon en el pecho');
+INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Erupciones cutáneas');
+INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Escalofríos');
+INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Fiebre');
+INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Incapacidad para hablar');
+INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Molestias y dolores');
+INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Nauseas o vómitos');
+INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Perdida de color en las manos');
+INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Perdida del sentido del gusto');
+INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Perdida del sentido del olfato');
+INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Tos seca');
+
+
