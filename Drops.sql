@@ -1,5 +1,5 @@
 /* Procedures */
-DROP PROCEDURE CADENA_INFECCION_LM;
+DROP PROCEDURE CADENA_INFECCION;
 
 /* Sequences */
 DROP SEQUENCE id_aerolinea_seq;
