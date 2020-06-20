@@ -77,6 +77,13 @@ CREATE TABLE P_S (
     fec_i DATE
 );
 
+CREATE TABLE historico_tratamiento(
+    id NUMBER PRIMARY KEY,
+    hist historia,
+    id_persona NUMBER NOT NULL,
+    id_rec_salud NUMBER NOT NULL
+);
+
 /* Sequences */
 CREATE SEQUENCE id_aerolinea_seq;
 CREATE SEQUENCE id_pais_seq;
@@ -88,3 +95,4 @@ CREATE SEQUENCE id_persona_seq;
 CREATE SEQUENCE id_hist_viajes_seq;
 CREATE SEQUENCE id_infectado_seq;
 CREATE SEQUENCE id_sintoma_seq;
+CREATE SEQUENCE id_hist_tratamiento_seq;
