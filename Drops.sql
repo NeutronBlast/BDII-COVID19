@@ -13,12 +13,14 @@ DROP SEQUENCE id_hist_viajes_seq;
 DROP SEQUENCE id_infectado_seq;
 DROP SEQUENCE id_sintoma_seq;
 DROP SEQUENCE id_hist_tratamiento_seq;
+DROP SEQUENCE id_recinto_salud_seq;
 
 /* Tables */
 DROP TABLE historico_tratamiento;
 DROP TABLE historico_viajes;
 DROP TABLE P_S;
 DROP TABLE P_HV;
+DROP TABLE recintos_salud;
 DROP TABLE infectados_covid;
 DROP TABLE calles;
 DROP TABLE urbanizaciones;

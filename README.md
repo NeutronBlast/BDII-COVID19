@@ -6,3 +6,4 @@
 2. **Create Tables:** Tablas con constraints
 3. **Inserts:** 16 o más inserts por tabla
 4. **TDA Bodies:** Bodies dependientes de tablas creadas
+5. **Simulation/Infection Chain**: Correspondiente a las infecciones por COVID-19
