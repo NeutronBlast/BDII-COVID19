@@ -108,7 +108,7 @@ INSERT INTO paises VALUES (id_pais_seq.nextval, 'Argentina', EMPTY_BLOB());
 INSERT INTO paises VALUES (id_pais_seq.nextval, 'Brasil', EMPTY_BLOB());
 INSERT INTO paises VALUES (id_pais_seq.nextval, 'China', EMPTY_BLOB());
 INSERT INTO paises VALUES (id_pais_seq.nextval, 'España', EMPTY_BLOB());
-INSERT INTO paises VALUES (id_pais_seq.nextval, 'Estados Unidos', EMPTY_BLOB());
+INSERT INTO paises VALUES (id_pais_seq.nextval, 'Escocia', EMPTY_BLOB());
 INSERT INTO paises VALUES (id_pais_seq.nextval, 'Francia', EMPTY_BLOB());
 INSERT INTO paises VALUES (id_pais_seq.nextval, 'Mexico', EMPTY_BLOB());
 INSERT INTO paises VALUES (id_pais_seq.nextval, 'Reino Unido', EMPTY_BLOB());

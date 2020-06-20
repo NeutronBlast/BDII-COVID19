@@ -99,25 +99,19 @@ BEGIN
 
                 IF is_infected <> 0 THEN
                 -- Seleccionar viajero al azar para infectar
-                BEGIN
+
                 SELECT p.id
                 INTO random_person
                 FROM personas p
                 JOIN historico_viajes h ON h.id_estado_2 = 1
                 JOIN P_HV phv ON phv.id_persona = p.id AND phv.id_viaje = h.id
                 WHERE NOT EXISTS (
-                SELECT id FROM infectados_covid i WHERE id_persona = p.id AND i.hist.fec_f IS NULL
+                SELECT id FROM infectados_covid i WHERE id_persona = p.id AND i.hist.fec_f IS NOT NULL
                 ) AND h.hist.fec_i BETWEEN fecha_i AND fecha_f AND ROWNUM = 1
                 ORDER BY DBMS_RANDOM.RANDOM;
 
-                EXCEPTION 
-                    WHEN NO_DATA_FOUND THEN is_infected := NULL;
-                END;
-                    IF is_infected <> NULL THEN
-                        INSERT INTO infectados_covid VALUES (id_infectado_seq.nextval, historia((SELECT (SYSDATE + cont_externo) FROM DUAL),
-                        null), 'I', random_person, null, in_estado);
-                    END IF;
-
+                INSERT INTO infectados_covid VALUES (id_infectado_seq.nextval, historia((SELECT (SYSDATE + cont_externo) FROM DUAL),
+                null), 'I', random_person, null, in_estado);
                 END IF; 
             ELSE
                 INSERT INTO infectados_covid VALUES (id_infectado_seq.nextval, historia((SELECT (SYSDATE + cont_externo) FROM DUAL),
