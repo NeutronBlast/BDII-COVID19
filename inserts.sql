@@ -29,7 +29,7 @@ INSERT INTO patologias VALUES (id_patologia_seq.nextval, 'Vasculitis');
 INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Cansancio');
 INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Conjuntivitis');
 INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Diarrea');
-INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'dificultad para despertarse o permanecer despierto');
+INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Dificultad para despertarse o permanecer despierto');
 INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Dificultad respiratoria');
 INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Dolor de garganta');
 INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Dolor muscular');
