@@ -1,4 +1,9 @@
 /* Inserts */
+/*Para las imagenes debemos establecer las rutas*/
+CREATE  DIRECTORY DIR_BANDERAS AS 'C:\img_proyecto\flags';
+CREATE  DIRECTORY DIR_PROV 'C:\img_proyecto\prov';
+CREATE  DIRECTORY DIR_PEOPLE AS 'C:\img_proyecto\people';
+CREATE  DIRECTORY DIR_AIRLINES AS 'C:\img_proyecto\airlines';
 
 /* TABLE patologias */
 INSERT INTO patologias VALUES (id_patologia_seq.nextval, 'Asma');
@@ -45,39 +50,170 @@ INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Perdida del sentido del gu
 INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Perdida del sentido del olfato');
 INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Tos seca');
 
-/* TABLE proveedores */
-INSERT INTO proveedores VALUES (id_proveedor_seq.nextval, 'AOL', EMPTY_BLOB());
-INSERT INTO proveedores VALUES (id_proveedor_seq.nextval, 'AT&.T', EMPTY_BLOB());
-INSERT INTO proveedores VALUES (id_proveedor_seq.nextval, 'CANTV', EMPTY_BLOB());
-INSERT INTO proveedores VALUES (id_proveedor_seq.nextval, 'Claro', EMPTY_BLOB());
-INSERT INTO proveedores VALUES (id_proveedor_seq.nextval, 'Clearwire', EMPTY_BLOB());
-INSERT INTO proveedores VALUES (id_proveedor_seq.nextval, 'Entel', EMPTY_BLOB());
-INSERT INTO proveedores VALUES (id_proveedor_seq.nextval, 'Movistar', EMPTY_BLOB());
-INSERT INTO proveedores VALUES (id_proveedor_seq.nextval, 'Orange', EMPTY_BLOB());
-INSERT INTO proveedores VALUES (id_proveedor_seq.nextval, 'Singapur Telecomunicaciones', EMPTY_BLOB());
-INSERT INTO proveedores VALUES (id_proveedor_seq.nextval, 'Speedy', EMPTY_BLOB());
-INSERT INTO proveedores VALUES (id_proveedor_seq.nextval, 'Starlink', EMPTY_BLOB());
-INSERT INTO proveedores VALUES (id_proveedor_seq.nextval, 'Telmex', EMPTY_BLOB());
-INSERT INTO proveedores VALUES (id_proveedor_seq.nextval, 'UUnet', EMPTY_BLOB());
-INSERT INTO proveedores VALUES (id_proveedor_seq.nextval, 'Verizon', EMPTY_BLOB());
-INSERT INTO proveedores VALUES (id_proveedor_seq.nextval, 'VTR', EMPTY_BLOB());
+/* TABLE proveedores 
+   Hay que hacerlo con un bloque anonimo para que se inserten las imagenes*/
+DECLARE 
+  v_blob BLOB;
+  v_bfile BFILE;
+BEGIN
+    INSERT INTO proveedores VALUES (id_proveedor_seq.nextval, 'AOL', EMPTY_BLOB()) RETURNING img INTO v_blob;
+    v_bfile := BFILENAME('DIR_PROV', 'aol.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO proveedores VALUES (id_proveedor_seq.nextval, 'AT&.T', EMPTY_BLOB()) RETURNING img INTO v_blob;
+    v_bfile := BFILENAME('DIR_PROV', 'atyt.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO proveedores VALUES (id_proveedor_seq.nextval, 'CANTV', EMPTY_BLOB()) RETURNING img INTO v_blob;
+    v_bfile := BFILENAME('DIR_PROV', 'cantv.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO proveedores VALUES (id_proveedor_seq.nextval, 'Claro', EMPTY_BLOB()) RETURNING img INTO v_blob;
+    v_bfile := BFILENAME('DIR_PROV', 'claro.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO proveedores VALUES (id_proveedor_seq.nextval, 'Clearwire', EMPTY_BLOB()) RETURNING img INTO v_blob;
+    v_bfile := BFILENAME('DIR_PROV', 'clearwire.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO proveedores VALUES (id_proveedor_seq.nextval, 'Entel', EMPTY_BLOB()) RETURNING img INTO v_blob;
+    v_bfile := BFILENAME('DIR_PROV', 'entel.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO proveedores VALUES (id_proveedor_seq.nextval, 'Movistar', EMPTY_BLOB()) RETURNING img INTO v_blob;
+    v_bfile := BFILENAME('DIR_PROV', 'movistar.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO proveedores VALUES (id_proveedor_seq.nextval, 'Orange', EMPTY_BLOB()) RETURNING img INTO v_blob;
+    v_bfile := BFILENAME('DIR_PROV', 'orange.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO proveedores VALUES (id_proveedor_seq.nextval, 'Singapur Telecomunicaciones', EMPTY_BLOB()) RETURNING img INTO v_blob;
+    v_bfile := BFILENAME('DIR_PROV', 'singtel.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO proveedores VALUES (id_proveedor_seq.nextval, 'Speedy', EMPTY_BLOB()) RETURNING img INTO v_blob;
+    v_bfile := BFILENAME('DIR_PROV', 'speedy.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO proveedores VALUES (id_proveedor_seq.nextval, 'Starlink', EMPTY_BLOB()) RETURNING img INTO v_blob;
+    v_bfile := BFILENAME('DIR_PROV', 'starlink.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO proveedores VALUES (id_proveedor_seq.nextval, 'Telmex', EMPTY_BLOB()) RETURNING img INTO v_blob;
+    v_bfile := BFILENAME('DIR_PROV', 'telmex.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO proveedores VALUES (id_proveedor_seq.nextval, 'UUnet', EMPTY_BLOB()) RETURNING img INTO v_blob;
+    v_bfile := BFILENAME('DIR_PROV', 'uunet.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO proveedores VALUES (id_proveedor_seq.nextval, 'Verizon', EMPTY_BLOB()) RETURNING img INTO v_blob;
+    v_bfile := BFILENAME('DIR_PROV', 'verizon.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO proveedores VALUES (id_proveedor_seq.nextval, 'VTR', EMPTY_BLOB()) RETURNING img INTO v_blob;
+    v_bfile := BFILENAME('DIR_PROV', 'vtr.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+END;
 
 /* TABLE aerolineas */
-INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'Allegiant Air', EMPTY_BLOB());
-INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'Air France', EMPTY_BLOB());
-INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'American Airlines', EMPTY_BLOB());
-INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'Avianca', EMPTY_BLOB());
-INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'Avior Airlines', EMPTY_BLOB());
-INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'Conviasa', EMPTY_BLOB());
-INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'Grupo Lufthansa', EMPTY_BLOB());
-INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'Delta Air Lines', EMPTY_BLOB());
-INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'Estelar', EMPTY_BLOB());
-INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'Frointer Airlines', EMPTY_BLOB());
-INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'Laser Airlines', EMPTY_BLOB());
-INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'Pegasus Airlines', EMPTY_BLOB());
-INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'Ryanair', EMPTY_BLOB());
-INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'Santa Barbara AirLines', EMPTY_BLOB());
-INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'Sky Airline', EMPTY_BLOB());
+DECLARE 
+  v_blob BLOB;
+  v_bfile BFILE;
+BEGIN
+    INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'Allegiant Air', EMPTY_BLOB()) RETURNING img INTO v_blob;
+    v_bfile := BFILENAME('DIR_AIRLINES', 'allegiant.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'Air France', EMPTY_BLOB()) RETURNING img INTO v_blob;
+    v_bfile := BFILENAME('DIR_AIRLINES', 'airfrance.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'American Airlines', EMPTY_BLOB()) RETURNING img INTO v_blob;
+    v_bfile := BFILENAME('DIR_AIRLINES', 'american_airlines.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'Avianca', EMPTY_BLOB()) RETURNING img INTO v_blob;
+    v_bfile := BFILENAME('DIR_AIRLINES', 'avianca.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'Avior Airlines', EMPTY_BLOB()) RETURNING img INTO v_blob;
+    v_bfile := BFILENAME('DIR_AIRLINES', 'avior.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'Conviasa', EMPTY_BLOB()) RETURNING img INTO v_blob;
+    v_bfile := BFILENAME('DIR_AIRLINES', 'conviasa.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'Grupo Lufthansa', EMPTY_BLOB()) RETURNING img INTO v_blob;
+    v_bfile := BFILENAME('DIR_AIRLINES', 'lufthansa.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'Delta Air Lines', EMPTY_BLOB()) RETURNING img INTO v_blob;
+    v_bfile := BFILENAME('DIR_AIRLINES', 'delta.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'Estelar', EMPTY_BLOB()) RETURNING img INTO v_blob;
+    v_bfile := BFILENAME('DIR_AIRLINES', 'estelar.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'Frointer Airlines', EMPTY_BLOB()) RETURNING img INTO v_blob;
+    v_bfile := BFILENAME('DIR_AIRLINES', 'frontier.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'Laser Airlines', EMPTY_BLOB()) RETURNING img INTO v_blob;
+    v_bfile := BFILENAME('DIR_AIRLINES', 'laser.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'Pegasus Airlines', EMPTY_BLOB()) RETURNING img INTO v_blob;
+    v_bfile := BFILENAME('DIR_AIRLINES', 'pegasus.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'Ryanair', EMPTY_BLOB()) RETURNING img INTO v_blob;
+    v_bfile := BFILENAME('DIR_AIRLINES', 'ryanair.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'Santa Barbara AirLines', EMPTY_BLOB()) RETURNING img INTO v_blob;
+    v_bfile := BFILENAME('DIR_AIRLINES', 'santa_barbara.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO aerolineas VALUES (id_aerolinea_seq.nextval, 'Sky Airline', EMPTY_BLOB()) RETURNING img INTO v_blob;
+    v_bfile := BFILENAME('DIR_AIRLINES', 'sky.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+END;
 
 /* TABLE insumos */
 INSERT INTO insumos VALUES (id_insumo_seq.nextval, 'Agua destilada');
@@ -102,17 +238,68 @@ INSERT INTO insumos VALUES (id_insumo_seq.nextval, 'Termometro');
 INSERT INTO insumos VALUES (id_insumo_seq.nextval, 'Venda Elastica');
 INSERT INTO insumos VALUES (id_insumo_seq.nextval, 'Yodo');
 
-/* TABLE paises */
-INSERT INTO paises VALUES (id_pais_seq.nextval, 'Alemania', EMPTY_BLOB());
-INSERT INTO paises VALUES (id_pais_seq.nextval, 'Argentina', EMPTY_BLOB());
-INSERT INTO paises VALUES (id_pais_seq.nextval, 'Brasil', EMPTY_BLOB());
-INSERT INTO paises VALUES (id_pais_seq.nextval, 'China', EMPTY_BLOB());
-INSERT INTO paises VALUES (id_pais_seq.nextval, 'España', EMPTY_BLOB());
-INSERT INTO paises VALUES (id_pais_seq.nextval, 'Escocia', EMPTY_BLOB());
-INSERT INTO paises VALUES (id_pais_seq.nextval, 'Francia', EMPTY_BLOB());
-INSERT INTO paises VALUES (id_pais_seq.nextval, 'Mexico', EMPTY_BLOB());
-INSERT INTO paises VALUES (id_pais_seq.nextval, 'Reino Unido', EMPTY_BLOB());
-INSERT INTO paises VALUES (id_pais_seq.nextval, 'Venezuela', EMPTY_BLOB());
+/* TABLE paises  
+   Hay que hacerlo con un bloque anonimo para que se inserten las imagenes*/
+DECLARE 
+  v_blob BLOB;
+  v_bfile BFILE;
+BEGIN
+    INSERT INTO paises VALUES (id_pais_seq.nextval, 'Alemania', EMPTY_BLOB()) RETURNING bandera INTO v_blob;
+    v_bfile := BFILENAME('DIR_BANDERAS', 'de.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO paises VALUES (id_pais_seq.nextval, 'Argentina', EMPTY_BLOB()) RETURNING bandera INTO v_blob;
+    v_bfile := BFILENAME('DIR_BANDERAS', 'ar.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO paises VALUES (id_pais_seq.nextval, 'Brasil', EMPTY_BLOB()) RETURNING bandera INTO v_blob;
+    v_bfile := BFILENAME('DIR_BANDERAS', 'br.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO paises VALUES (id_pais_seq.nextval, 'China', EMPTY_BLOB()) RETURNING bandera INTO v_blob;
+    v_bfile := BFILENAME('DIR_BANDERAS', 'cn.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile))
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO paises VALUES (id_pais_seq.nextval, 'España', EMPTY_BLOB()) RETURNING bandera INTO v_blob;
+    v_bfile := BFILENAME('DIR_BANDERAS', 'es.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO paises VALUES (id_pais_seq.nextval, 'Estados Unidos', EMPTY_BLOB()) RETURNING bandera INTO v_blob;
+    v_bfile := BFILENAME('DIR_BANDERAS', 'us.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO paises VALUES (id_pais_seq.nextval, 'Francia', EMPTY_BLOB()) RETURNING bandera INTO v_blob;
+    v_bfile := BFILENAME('DIR_BANDERAS', 'fr.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO paises VALUES (id_pais_seq.nextval, 'Mexico', EMPTY_BLOB()) RETURNING bandera INTO v_blob;
+    v_bfile := BFILENAME('DIR_BANDERAS', 'mx.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO paises VALUES (id_pais_seq.nextval, 'Reino Unido', EMPTY_BLOB()) RETURNING bandera INTO v_blob;
+    v_bfile := BFILENAME('DIR_BANDERAS', 'gb.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO paises VALUES (id_pais_seq.nextval, 'Venezuela', EMPTY_BLOB()) RETURNING bandera INTO v_blob;
+    v_bfile := BFILENAME('DIR_BANDERAS', 've.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+    INSERT INTO paises VALUES (id_pais_seq.nextval, 'Escocia',EMPTY_BLOB()) RETURNING bandera INTO v_blob;
+    v_bfile := BFILENAME('DIR_BANDERAS', 'gb-sct.png');
+    DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
+    DBMS_LOB.CLOSE(v_bfile);
+END;
 
 /* TABLE estados */
 INSERT INTO estados VALUES (id_estado_seq.nextval, 'Berlin', (SELECT id FROM paises WHERE nom = 'Alemania'), covid_data(3769000));
@@ -238,6 +425,7 @@ INSERT INTO recintos_salud VALUES (id_recinto_salud_seq.nextval,'Hospital Genera
     id_pais NUMBER NOT NULL
 );
 */
+INSERT INTO historico_cierre_fronteras VALUES (id_hist_cierre_seq.nextval,,)
 
 /* TABLE modelos */
 INSERT INTO modelos VALUES (1,'Libre Movilidad');
