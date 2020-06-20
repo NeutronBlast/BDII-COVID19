@@ -69,8 +69,8 @@ CREATE TABLE recintos_salud(
     nom VARCHAR(100) NOT NULL,
     tipo VARCHAR(50) NOT NULL,
     n_camas NUMBER NOT NULL,
-    data covid_data,
-    id_calle NUMBER NOT NULL,
+    datos covid_data,
+    id_calle NUMBER NOT NULL
 );
 
 CREATE TABLE historico_cierre_fronteras(
@@ -82,7 +82,6 @@ CREATE TABLE historico_cierre_fronteras(
 CREATE TABLE modelos (
     id      NUMBER PRIMARY KEY,
     nom     VARCHAR(50) NOT NULL,
-    tipo    VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE historico_modelos(
@@ -213,7 +212,7 @@ ALTER TABLE historico_viajes ADD CONSTRAINT hist_via_pasi1_fk FOREIGN KEY (id_es
 ALTER TABLE historico_viajes ADD CONSTRAINT hist_via_pais2_fk FOREIGN KEY (id_estado_2) REFERENCES estados(id);
 ALTER TABLE recintos_salud ADD CONSTRAINT reci_sal_calle_fk FOREIGN KEY (id_calle) REFERENCES calles(id);
 ALTER TABLE historico_tratamiento ADD CONSTRAINT hist_trat_pers_fk FOREIGN KEY (id_persona) REFERENCES personas(id);
-ALTER TABLE historico_tratamiento ADD CONSTRAINT hist_trat_rec_salud_fk FOREIGN KEY (id_rec_salud) REFERENCES recinto_salud(id);
+ALTER TABLE historico_tratamiento ADD CONSTRAINT hist_trat_rec_salud_fk FOREIGN KEY (id_rec_salud) REFERENCES recintos_salud(id);
 ALTER TABLE A_I ADD CONSTRAINT ai_insumo_fk FOREIGN KEY (id_insumo) REFERENCES insumos(id);
 ALTER TABLE A_I ADD CONSTRAINT ai_ayuda_fk FOREIGN KEY (id_ayuda) REFERENCES historico_ayuda_humanitaria(id);
 ALTER TABLE H_I ADD CONSTRAINT hi_insumo_fk FOREIGN KEY (id_insumo) REFERENCES insumos(id);
