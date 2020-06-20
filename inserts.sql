@@ -1,7 +1,7 @@
 /* Inserts */
 /*Para las imagenes debemos establecer las rutas*/
 CREATE  DIRECTORY DIR_BANDERAS AS 'C:\img_proyecto\flags';
-CREATE  DIRECTORY DIR_PROV 'C:\img_proyecto\prov';
+CREATE  DIRECTORY DIR_PROV AS 'C:\img_proyecto\prov';
 CREATE  DIRECTORY DIR_PEOPLE AS 'C:\img_proyecto\people';
 CREATE  DIRECTORY DIR_AIRLINES AS 'C:\img_proyecto\airlines';
 
