@@ -5,7 +5,14 @@
 --  4. Se registraran los infectados en la tabla infectados-covid
 --  5. Modelo 1 = Libre movilidad
 --  6. Modelo 2 = Cuarentena
-create or replace PROCEDURE CADENA_INFECCION_LM (in_estado number, fecha_i date, fecha_f date)
+-- De acuerdo al modelo la cadena de infeccion ira de la siguiente forma:
+--  1. Si es modelo de libre movilidad cada persona infectada con covid-19 infectara entre 0 y 3 personas mas (random)
+--  2. Si es modelo de cuarentena una de cada 16 personas tendra 1/16 de probabilidad de ser infectado de covid-19
+--  3. El modelo dejara de iterar cuando se llegue a la fecha fin
+--  4. Se registraran los infectados en la tabla infectados-covid
+--  5. Modelo 1 = Libre movilidad
+--  6. Modelo 2 = Cuarentena
+create or replace PROCEDURE CADENA_INFECCION (in_modelo number, in_estado number, fecha_i date, fecha_f date)
 IS
 i number; -- Numero de dias que voy a iterar
 num_infectados number;
@@ -52,7 +59,11 @@ BEGIN
 
 
         --El numero random que salga sera el numero de personas que seran infectadas de covid-19
+
+        IF in_modelo = 1 THEN --Libre movilidad
         max_random_infected := TRUNC(DBMS_RANDOM.value(0,4));
+        ELSE max_random_infected := TRUNC(DBMS_RANDOM.value(0,1)); -- Cuarentena
+        END IF;
 
         --Inicializar para evitar error en el LOOP interno
         is_infected:= 1;
@@ -60,8 +71,6 @@ BEGIN
         --Infectar con coronita de 0 a 3 personas
         LOOP
             random_person:= TRUNC(DBMS_RANDOM.value(1, total_people));
-
-        --DBMS_OUTPUT.PUT_LINE('Infectados en estado'|| num_infectados ||' Personas que infectare '||max_random_infected ||' Persona al azar' || random_person);
 
             --Verificar si la persona es infectable
             --Para que una persona sea infectable debe ocurrir lo siguiente
@@ -82,8 +91,6 @@ BEGIN
             EXCEPTION 
                 WHEN NO_DATA_FOUND THEN is_infected := NULL;
             END;
-            --DBMS_OUTPUT.PUT_LINE('La persona '|| random_person ||' Se encuentra infectada? '||is_infected);
-
 
             --No se hace loop hasta que haya un infectable por si acaso toda la gente del estado se llegara a infectar
             --Si la persona seleccionada no se puede infectar trataremos de infectar a un viajero
@@ -129,7 +136,6 @@ BEGIN
         END LOOP;
 
         cont_externo:=cont_externo+1;
-        DBMS_OUTPUT.PUT_LINE('contador externo '|| cont_externo);
 
         EXIT WHEN cont_externo = i OR num_infectados = total_people;
         END LOOP;
