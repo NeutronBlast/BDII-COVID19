@@ -191,20 +191,14 @@ BEGIN
         END LOOP;
 END;
 
--- Se saca el 15% del total de infectados con round
--- Se coloca un rango de (0, 15%) y cada dia que pase ese numero aleatorio ira al hospital (ciclico)
--- Lo mismo aplica para las muertes pero en vez de 15% sera 5%
+-- Aqui se decide quien va al hospital y quien muere
 
 CREATE OR REPLACE PROCEDURE DESTINO (in_estado number, fecha_i date, fecha_f date) IS 
 i number; -- Iterador
 num_infectados number; -- Numero de infectados en el estado
-ftp number; -- 15%
-fp number; -- 5%
-hospital_victims number;
-death_victims number;
+hospital_victim number; -- 15% chance;
+death_victim number; -- 5% chance;
 cont_externo number;
-cont_h number; -- Contador para personas que requeriran atencion
-cont_m number; -- Contador para personas que se van a morir
 random_person number;
 is_killable number;
 is_in_hospital number;
@@ -219,25 +213,10 @@ BEGIN
     INTO i
     FROM dual;
 
-    --15% Infectados en el estado
-    SELECT ROUND(COUNT(*)*0.15)
-    INTO ftp
-    FROM INFECTADOS_COVID i
-    JOIN estados e ON e.id = in_estado 
-    WHERE i.estado = 'I';
-
-    --5% Infectados en el estado
-    SELECT ROUND(COUNT(*)*0.05)
-    INTO fp
-    FROM INFECTADOS_COVID i
-    JOIN estados e ON e.id = in_estado 
-    WHERE i.estado = 'I';
-
     LOOP
-    hospital_victims:= ROUND(DBMS_RANDOM.value(0,ftp));
-    cont_h:=0;
-        LOOP
-        
+    hospital_victim:= DBMS_RANDOM.value(0,1); 
+
+        IF hospital_victim < 0.30 THEN
         -- La persona debe ser hospitalizable, para que esto ocurra se debe cumplir lo siguiente:
         -- 1. La persona seleccionada no debe estar en el hospital ya
         -- 2. No puede estar muerta
@@ -269,8 +248,10 @@ BEGIN
             INTO hospital_id
             FROM (SELECT r.id FROM recintos_salud r 
             JOIN calles c ON c.id = r.id_calle
-            JOIN estados e ON e.id = c.id_estado
-            WHERE e.id = in_estado AND r.n_camas < (
+            JOIN urbanizaciones u ON u.id = c.id_urb
+            JOIN ciudades ci ON ci.id = u.id_ciudad
+            JOIN estados e ON e.id = ci.id_estado
+            WHERE e.id = in_estado AND r.n_camas > (
                 SELECT COUNT(*) FROM historico_tratamiento h WHERE h.hist.fec_f IS NOT NULL AND h.id_rec_salud = r.id 
             )
             ORDER BY DBMS_RANDOM.VALUE)
@@ -281,22 +262,18 @@ BEGIN
             INTO infection_date
             FROM INFECTADOS_COVID i
             WHERE i.id_persona = random_person;
-            
+
             hospital_date_interval:= TRUNC(DBMS_RANDOM.VALUE(5,21));
-            
+
             INSERT INTO historico_tratamiento VALUES (id_hist_tratamiento_seq.nextval, historia(infection_date + hospital_date_interval, null), random_person, hospital_id); 
         END IF;
-        cont_h:=cont_h+1;
-        EXIT WHEN cont_h = hospital_victims;
-        END LOOP;
+        END IF; -- 15% chance
 
         -- Kill
-        death_victims:= ROUND(DBMS_RANDOM.value(0,fp));
-        cont_m:=0;
+        death_victim:= DBMS_RANDOM.value(0,1);
 
-        IF death_victims > 0 THEN
-        LOOP
-        
+        IF death_victim < 0.1 THEN
+
         -- La persona debe ser asesinable, para que esto ocurra se debe cumplir lo siguiente:
         -- 1. La persona seleccionada puede o no estar en el hospital ya
         -- 2. No puede estar muerta
@@ -328,30 +305,42 @@ BEGIN
             WHERE h.hist.fec_f IS NULL AND h.id_persona = random_person;
 
         --Seleccionar fecha donde fue hospitalizado
+            IF is_in_hospital <> 0 THEN
             SELECT i.hist.fec_i
             INTO hospital_date
             FROM historico_tratamiento i
             WHERE i.id_persona = random_person AND i.hist.fec_f IS NULL;
-            
+
             hospital_date_interval:= TRUNC(DBMS_RANDOM.VALUE(5,21));
 
         -- Actualizar estatus
-            UPDATE historico_tratamiento SET hist.fec_f = hist.fec_i + hospital_date_interval
-            WHERE id_persona = random_person AND hist.fec_f IS NULL;
+            UPDATE historico_tratamiento h SET h.hist.fec_f = h.hist.fec_i + hospital_date_interval
+            WHERE h.id_persona = random_person AND h.hist.fec_f IS NULL;
 
             UPDATE infectados_covid SET estado = 'M' WHERE id_persona = random_person;
 
-            UPDATE personas SET pers.fec_m = hospital_date + hospital_date_interval
+            UPDATE personas p SET p.pers.fec_mue = hospital_date + hospital_date_interval
             WHERE id = random_person;
+            ELSE 
+            -- Seleccionar fecha de infeccion
+                SELECT i.hist.fec_i
+                INTO hospital_date
+                FROM infectados_covid i
+                WHERE i.id_persona = random_person AND i.hist.fec_f IS NULL;
+                
+                hospital_date_interval:= TRUNC(DBMS_RANDOM.VALUE(5,21));
 
-        END IF;
-        cont_m:=cont_m+1;
-        EXIT WHEN cont_m = death_victims;
-        END LOOP;
+            -- Actualizar estatus
+                UPDATE infectados_covid SET estado = 'M' WHERE id_persona = random_person;
 
-    END IF; -- Si no hay muertos no iterar
+                UPDATE personas p SET p.pers.fec_mue = hospital_date + hospital_date_interval
+                WHERE id = random_person;
+            END IF; -- If de si fue hospitalizado antes o no
+        END IF; -- If del 5% chance
+
+    END IF; -- No se que es esto
     cont_externo:=cont_externo+1;
-    EXIT WHEN cont_externo = i 
+    EXIT WHEN cont_externo = i;
     END LOOP;
 END;
 

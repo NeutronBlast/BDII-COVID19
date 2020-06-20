@@ -305,4 +305,14 @@ INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Perdida del sentido del gu
 INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Perdida del sentido del olfato');
 INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Tos seca');
 
-
+-------------------------------------- HOSPITALS -----------------------------------------------------
+INSERT INTO recintos_salud VALUES (id_recinto_salud_seq.nextval,'Hospital Medical Center','Pub', 1, 1);
+INSERT INTO recintos_salud VALUES (id_recinto_salud_seq.nextval,'Health University Hospital','Priv', 1 ,2);
+INSERT INTO recintos_salud VALUES (id_recinto_salud_seq.nextval,'Childens and Women Hospital','Pub', 20, 3);
+INSERT INTO recintos_salud VALUES (id_recinto_salud_seq.nextval,'Hospital Johns Hopkins','Pub', 5, 4);
+INSERT INTO recintos_salud VALUES (id_recinto_salud_seq.nextval,'Jackson Memorial Hospital','Pub', 7, 5);
+INSERT INTO recintos_salud VALUES (id_recinto_salud_seq.nextval,'Hospital General New Orleans','Pub', 1500, 6);
+INSERT INTO recintos_salud VALUES (id_recinto_salud_seq.nextval,'Pediatric Rheumatology Program','Priv', 210, 7);
+INSERT INTO recintos_salud VALUES (id_recinto_salud_seq.nextval,'Robert Wood Johnson Universty Hospital','Pub', 790, 8);
+INSERT INTO recintos_salud VALUES (id_recinto_salud_seq.nextval,'Hospital for Special surgery main hospital','Priv', 530, 9);
+INSERT INTO recintos_salud VALUES (id_recinto_salud_seq.nextval,'Nicklaus Childens Hospital','Pub', 650, 10);
