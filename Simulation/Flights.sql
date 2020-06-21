@@ -51,7 +51,7 @@ BEGIN
     IF random_person <> 0 THEN
         travels:= DBMS_RANDOM.VALUE(0,1);
 
-            IF travels < 0.50 THEN
+            IF travels < 0.40 THEN
                 --Seleccionar pais al azar que no tenga frontera cerrada
                 SELECT id 
                 INTO random_country
