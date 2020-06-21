@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE VUELOS (in_estado number, fecha_i date, fecha_f date)
+CREATE OR REPLACE PROCEDURE VUELOS (fecha_i date, fecha_f date)
 IS
 i number; -- Iterador
 cont_externo number; 
@@ -37,15 +37,10 @@ BEGIN
     FROM (SELECT
     p.id FROM
     PERSONAS p
-    JOIN CALLES c ON c.id = p.id_calle
-    JOIN URBANIZACIONES u ON u.id = c.id_urb
-    JOIN CIUDADES ci ON ci.id = u.id_ciudad
-    JOIN ESTADOS e ON e.id = ci.id_estado
     WHERE NOT EXISTS (
     SELECT * FROM P_HV phv 
     JOIN historico_viajes hv ON hv.id = phv.id_viaje
     WHERE phv.id_persona = p.id AND hv.hist.fec_i BETWEEN fecha_i AND fecha_f)
-    AND e.id = in_estado
     ORDER BY DBMS_RANDOM.VALUE)
     WHERE ROWNUM = 1;
     
@@ -54,8 +49,9 @@ BEGIN
     END;
 
     IF random_person <> 0 THEN
-        travels:= DBMS_RANDOM.RANDOM(0,1);
-            IF travels < 0.30 THEN
+        travels:= DBMS_RANDOM.VALUE(0,1);
+
+            IF travels < 0.50 THEN
                 --Seleccionar pais al azar que no tenga frontera cerrada
                 SELECT id 
                 INTO random_country
