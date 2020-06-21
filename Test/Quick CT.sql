@@ -84,6 +84,12 @@ CREATE TABLE historico_tratamiento(
     id_rec_salud NUMBER NOT NULL
 );
 
+CREATE TABLE historico_cierre_fronteras(
+    id NUMBER PRIMARY KEY,
+    hist historia,
+    id_pais NUMBER NOT NULL
+);
+
 CREATE TABLE recintos_salud(
     id NUMBER PRIMARY KEY,
     nom VARCHAR(100) NOT NULL,
@@ -105,4 +111,6 @@ CREATE SEQUENCE id_infectado_seq;
 CREATE SEQUENCE id_sintoma_seq;
 CREATE SEQUENCE id_hist_tratamiento_seq;
 CREATE SEQUENCE id_recinto_salud_seq;
+CREATE SEQUENCE id_hist_cierre_seq;
+
 

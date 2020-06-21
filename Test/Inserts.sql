@@ -3,11 +3,50 @@
 -------------------------------------- COUNTRIES -----------------------------------------------------
 INSERT INTO PAISES VALUES (id_pais_seq.nextval, 'Estados Unidos', EMPTY_BLOB());
 INSERT INTO PAISES VALUES (id_pais_seq.nextval, 'Rusia', EMPTY_BLOB());
+INSERT INTO PAISES VALUES (id_pais_seq.nextval, 'Estonia', EMPTY_BLOB());
+INSERT INTO PAISES VALUES (id_pais_seq.nextval, 'Alemania', EMPTY_BLOB());
+INSERT INTO PAISES VALUES (id_pais_seq.nextval, 'Suecia', EMPTY_BLOB());
+INSERT INTO PAISES VALUES (id_pais_seq.nextval, 'Suiza', EMPTY_BLOB());
 
 -------------------------------------- STATES -----------------------------------------------------
 
 INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Louisiana', (SELECT id FROM PAISES WHERE nom = 'Estados Unidos'), covid_data(1000));
 INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Kuban', (SELECT id FROM PAISES WHERE nom = 'Rusia'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Minnesota', (SELECT id FROM PAISES WHERE nom = 'Estados Unidos'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Wisconsin', (SELECT id FROM PAISES WHERE nom = 'Estados Unidos'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'California', (SELECT id FROM PAISES WHERE nom = 'Estados Unidos'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Washington', (SELECT id FROM PAISES WHERE nom = 'Estados Unidos'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Dakota del Norte', (SELECT id FROM PAISES WHERE nom = 'Estados Unidos'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Dakota del Sur', (SELECT id FROM PAISES WHERE nom = 'Estados Unidos'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Carolina del Norte', (SELECT id FROM PAISES WHERE nom = 'Estados Unidos'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Carolina del Sur', (SELECT id FROM PAISES WHERE nom = 'Estados Unidos'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Arkansas', (SELECT id FROM PAISES WHERE nom = 'Estados Unidos'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Kansas', (SELECT id FROM PAISES WHERE nom = 'Estados Unidos'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Texas', (SELECT id FROM PAISES WHERE nom = 'Estados Unidos'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Massachussetts', (SELECT id FROM PAISES WHERE nom = 'Estados Unidos'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Delaware', (SELECT id FROM PAISES WHERE nom = 'Estados Unidos'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Vermont', (SELECT id FROM PAISES WHERE nom = 'Estados Unidos'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Oregon', (SELECT id FROM PAISES WHERE nom = 'Estados Unidos'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Idaho', (SELECT id FROM PAISES WHERE nom = 'Estados Unidos'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Maine', (SELECT id FROM PAISES WHERE nom = 'Estados Unidos'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Tennesse', (SELECT id FROM PAISES WHERE nom = 'Estados Unidos'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Kentucky', (SELECT id FROM PAISES WHERE nom = 'Estados Unidos'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Mississippi', (SELECT id FROM PAISES WHERE nom = 'Estados Unidos'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Virginia del Oeste', (SELECT id FROM PAISES WHERE nom = 'Estados Unidos'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Virginia', (SELECT id FROM PAISES WHERE nom = 'Estados Unidos'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Colorado', (SELECT id FROM PAISES WHERE nom = 'Estados Unidos'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Montana', (SELECT id FROM PAISES WHERE nom = 'Estados Unidos'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Hawaii', (SELECT id FROM PAISES WHERE nom = 'Estados Unidos'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Alaska', (SELECT id FROM PAISES WHERE nom = 'Estados Unidos'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Tallin', (SELECT id FROM PAISES WHERE nom = 'Estonia'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Baviera', (SELECT id FROM PAISES WHERE nom = 'Alemania'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Hannover', (SELECT id FROM PAISES WHERE nom = 'Alemania'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Berlin', (SELECT id FROM PAISES WHERE nom = 'Alemania'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Frankfurt', (SELECT id FROM PAISES WHERE nom = 'Alemania'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Hamburgo', (SELECT id FROM PAISES WHERE nom = 'Alemania'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Dusseldorf', (SELECT id FROM PAISES WHERE nom = 'Alemania'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Estocolmo', (SELECT id FROM PAISES WHERE nom = 'Suecia'), covid_data(1000));
+INSERT INTO ESTADOS VALUES (id_estado_seq.nextval, 'Zurich', (SELECT id FROM PAISES WHERE nom = 'Suiza'), covid_data(1000));
 
 -------------------------------------- CITIES -----------------------------------------------------
 
@@ -284,6 +323,10 @@ INSERT INTO P_HV VALUES (1, 41);
 INSERT INTO P_HV VALUES (1, 42);
 INSERT INTO P_HV VALUES (2, 11);
 INSERT INTO P_HV VALUES (3, 43);
+
+-------------------------------------- BORDERS -----------------------------------------------------
+INSERT INTO historico_cierre_fronteras VALUES (id_hist_cierre_seq.nextval, historia('19-06-2020', '19-08-2020'), 3);
+INSERT INTO historico_cierre_fronteras VALUES (id_hist_cierre_seq.nextval, historia('19-06-2020', '19-08-2020'), 4);
 
 -------------------------------------- SYMPTOMS -----------------------------------------------------
 INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Cansancio');
