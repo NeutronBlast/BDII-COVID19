@@ -195,6 +195,7 @@ CREATE SEQUENCE id_hist_modelo_seq;
 CREATE SEQUENCE id_hist_viajes_seq;
 CREATE SEQUENCE id_hist_tratamiento_seq;
 CREATE SEQUENCE id_infectado_seq;
+CREATE SEQUENCE id_hist_ayuda_seq;
 
 /* Constaint foreing keys */
 ALTER TABLE estados ADD CONSTRAINT estado_pais_fk FOREIGN KEY (id_pais) REFERENCES paises(id);

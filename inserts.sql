@@ -133,7 +133,8 @@ BEGIN
     DBMS_LOB.CLOSE(v_bfile);
 END;
 
-/* TABLE aerolineas */
+/* TABLE aerolineas
+   Hay que hacerlo con un bloque anonimo para que se inserten las imagenes*/
 DECLARE 
   v_blob BLOB;
   v_bfile BFILE;
@@ -369,7 +370,8 @@ INSERT INTO CALLES VALUES (id_calle_seq.nextval, 'State Street', 86527, (SELECT 
 INSERT INTO CALLES VALUES (id_calle_seq.nextval, 'S. Rick', 68548, (SELECT u.id FROM URBANIZACIONES u JOIN ciudades c ON c.id = u.id_ciudad JOIN estados e ON e.id = c.id_estado JOIN paises p ON p.id = e.id_pais WHERE u.nom = 'Charlottenburg' AND c.nom = 'Berlin' AND e.nom = 'Berlin' AND p.nom = 'Alemania'));
 INSERT INTO CALLES VALUES (id_calle_seq.nextval, 'M. Smith', 11547, (SELECT u.id FROM URBANIZACIONES u JOIN ciudades c ON c.id = u.id_ciudad JOIN estados e ON e.id = c.id_estado JOIN paises p ON p.id = e.id_pais WHERE u.nom = 'Kreuzberg' AND c.nom = 'Berlin' AND e.nom = 'Berlin' AND p.nom = 'Alemania'));
 
-/* TABLE personas */
+/* TABLE personas
+    Hay que hacerlo con un bloque anonimo para que se inserten las imagenes*/
 DECLARE 
   v_blob BLOB;
   v_bfile BFILE;
@@ -548,13 +550,22 @@ INSERT INTO recintos_salud VALUES (id_recinto_salud_seq.nextval,'Stanford Medici
 INSERT INTO recintos_salud VALUES (id_recinto_salud_seq.nextval,'Virginia Mason Hospital','Pub', 610, covid_data(298),14);
 INSERT INTO recintos_salud VALUES (id_recinto_salud_seq.nextval,'Hospital General Fresno','Pub', 1250, covid_data(945),15);
 
-/* TABLE historico_cierre_fronteras(
-    id NUMBER PRIMARY KEY,
-    hist historia,
-    id_pais NUMBER NOT NULL
-);
-*/
-INSERT INTO historico_cierre_fronteras VALUES (id_hist_cierre_seq.nextval,,)
+/* TABLE historico_cierre_fronteras */
+INSERT INTO historico_cierre_fronteras VALUES (id_hist_cierre_seq.nextval,historia('15/03/2020','13/05/2020'),1);
+INSERT INTO historico_cierre_fronteras VALUES (id_hist_cierre_seq.nextval,historia('25/03/2020','30/05/2020'),2);
+INSERT INTO historico_cierre_fronteras VALUES (id_hist_cierre_seq.nextval,historia('13/03/2020','13/04/2020'),3);
+INSERT INTO historico_cierre_fronteras VALUES (id_hist_cierre_seq.nextval,historia('05/04/2020',null),4);
+INSERT INTO historico_cierre_fronteras VALUES (id_hist_cierre_seq.nextval,historia('15/03/2020','15/04/2020'),5);
+INSERT INTO historico_cierre_fronteras VALUES (id_hist_cierre_seq.nextval,historia('21/04/2020','21/05/2020'),5);
+INSERT INTO historico_cierre_fronteras VALUES (id_hist_cierre_seq.nextval,historia('01/06/2020',null),5);
+INSERT INTO historico_cierre_fronteras VALUES (id_hist_cierre_seq.nextval,historia('13/03/2020','07/05/2020'),6);
+INSERT INTO historico_cierre_fronteras VALUES (id_hist_cierre_seq.nextval,historia('25/05/2020','25/06/2020'),6);
+INSERT INTO historico_cierre_fronteras VALUES (id_hist_cierre_seq.nextval,historia('07/04/2020','07/05/2020'),7);
+INSERT INTO historico_cierre_fronteras VALUES (id_hist_cierre_seq.nextval,historia('25/03/2020',NULL),8);
+INSERT INTO historico_cierre_fronteras VALUES (id_hist_cierre_seq.nextval,historia('10/04/2020','25/05/2020'),9);
+INSERT INTO historico_cierre_fronteras VALUES (id_hist_cierre_seq.nextval,historia('15/03/2020','15/04/2020'),10);
+INSERT INTO historico_cierre_fronteras VALUES (id_hist_cierre_seq.nextval,historia('21/04/2020','21/05/2020'),10);
+INSERT INTO historico_cierre_fronteras VALUES (id_hist_cierre_seq.nextval,historia('01/06/2020',null),10);
 
 /* TABLE modelos */
 INSERT INTO modelos VALUES (1,'Libre Movilidad');
@@ -562,106 +573,230 @@ INSERT INTO modelos VALUES (2,'Cuarentena');
 INSERT INTO modelos VALUES (3,'Movilidad Reducida 1-4');
 INSERT INTO modelos VALUES (4,'Movilidad Reducida 1-8');
 
-/* TABLE historico_modelos(
-    id NUMBER PRIMARY KEY, 
-    hist historia,
-    id_estado NUMBER NOT NULL,
-    id_modelo NUMBER NOT NULL
-);
-*/
+/* TABLE historico_modelos */
+INSERT INTO historico_modelos VALUES (id_hist_modelo_seq.nextval,historia('01/03/2020',null),1,1); 
+INSERT INTO historico_modelos VALUES (id_hist_modelo_seq.nextval,historia('28/05/2020',null),2,2); 
+INSERT INTO historico_modelos VALUES (id_hist_modelo_seq.nextval,historia('01/06/2020',null),3,3); 
+INSERT INTO historico_modelos VALUES (id_hist_modelo_seq.nextval,historia('14/02/2020',null),4,1); 
+INSERT INTO historico_modelos VALUES (id_hist_modelo_seq.nextval,historia('21/06/2020',null),5,2); 
+INSERT INTO historico_modelos VALUES (id_hist_modelo_seq.nextval,historia('11/07/2020',null),6,1); 
+INSERT INTO historico_modelos VALUES (id_hist_modelo_seq.nextval,historia('09/06/2020',null),7,1); 
+INSERT INTO historico_modelos VALUES (id_hist_modelo_seq.nextval,historia('29/03/2020',null),8,1); 
+INSERT INTO historico_modelos VALUES (id_hist_modelo_seq.nextval,historia('12/04/2020','01/06/2020'),9,1); 
+INSERT INTO historico_modelos VALUES (id_hist_modelo_seq.nextval,historia('01/06/2020',null),9,2); 
+INSERT INTO historico_modelos VALUES (id_hist_modelo_seq.nextval,historia('05/04/2020',null),11,1); 
+INSERT INTO historico_modelos VALUES (id_hist_modelo_seq.nextval,historia('08/05/2020',null),12,2); 
+INSERT INTO historico_modelos VALUES (id_hist_modelo_seq.nextval,historia('12/04/2020',null),13,4); 
+INSERT INTO historico_modelos VALUES (id_hist_modelo_seq.nextval,historia('15/03/2020',null),14,1); 
+INSERT INTO historico_modelos VALUES (id_hist_modelo_seq.nextval,historia('27/03/2020',null),15,4); 
 
-/* TABLE historico_ayuda_humanitaria(
-    id NUMBER PRIMARY KEY,
-    hist historia,
-    dinero NUMBER,
-    id_pais_1 NUMBER NOT NULL,
-    id_pais_2 NUMBER NOT NULL
-);
-*/
+/* TABLE historico_ayuda_humanitaria */
+INSERT INTO historico_ayuda_humanitaria VALUES (id_hist_ayuda_seq.nextval,historia('28/02/2020',null),100000,1,10);
+INSERT INTO historico_ayuda_humanitaria VALUES (id_hist_ayuda_seq.nextval,historia('27/03/2020',null),50000,1,10);
+INSERT INTO historico_ayuda_humanitaria VALUES (id_hist_ayuda_seq.nextval,historia('21/04/2020',null),120000,1,10);
+INSERT INTO historico_ayuda_humanitaria VALUES (id_hist_ayuda_seq.nextval,historia('06/03/2020',null),300000,1,10);
+INSERT INTO historico_ayuda_humanitaria VALUES (id_hist_ayuda_seq.nextval,historia('19/05/2020',null),1000000,1,10);
+INSERT INTO historico_ayuda_humanitaria VALUES (id_hist_ayuda_seq.nextval,historia('27/06/2020',null),1200000,1,10);
+INSERT INTO historico_ayuda_humanitaria VALUES (id_hist_ayuda_seq.nextval,historia('14/05/2020',null),50000,1,10);
+INSERT INTO historico_ayuda_humanitaria VALUES (id_hist_ayuda_seq.nextval,historia('27/04/2020',null),650000,1,10);
+INSERT INTO historico_ayuda_humanitaria VALUES (id_hist_ayuda_seq.nextval,historia('04/06/2020',null),125000,1,10);
+INSERT INTO historico_ayuda_humanitaria VALUES (id_hist_ayuda_seq.nextval,historia('15/03/2020',null),25000,1,10);
+INSERT INTO historico_ayuda_humanitaria VALUES (id_hist_ayuda_seq.nextval,historia('27/04/2020',null),10000,1,10);
+INSERT INTO historico_ayuda_humanitaria VALUES (id_hist_ayuda_seq.nextval,historia('07/03/2020',null),800000,1,10);
+INSERT INTO historico_ayuda_humanitaria VALUES (id_hist_ayuda_seq.nextval,historia('09/04/2020',null),1000000,1,10);
+INSERT INTO historico_ayuda_humanitaria VALUES (id_hist_ayuda_seq.nextval,historia('17/03/2020',null),750000,1,10);
+INSERT INTO historico_ayuda_humanitaria VALUES (id_hist_ayuda_seq.nextval,historia('24/04/2020',null),70000,1,10);
 
-/* TABLE historico_viajes(
-    id NUMBER PRIMARY KEY,
-    hist historia,
-    n_vuelo NUMBER NOT NULL,
-    id_aero NUMBER NOT NULL,
-    id_estado_1 NUMBER NOT NULL,
-    id_estado_2 NUMBER NOT NULL
-);
-*/
+/* TABLE historico_viajes */
+INSERT INTO historico_viajes VALUES (id_hist_viajes_seq.nextval,historia('23/04/2020','23/04/2020'),953842,1,6,5);
+INSERT INTO historico_viajes VALUES (id_hist_viajes_seq.nextval,historia('15/06/2020','15/06/2020'),598426,1,11,2);
+INSERT INTO historico_viajes VALUES (id_hist_viajes_seq.nextval,historia('28/02/2020','01/03/2020'),984265,3,1,5);
+INSERT INTO historico_viajes VALUES (id_hist_viajes_seq.nextval,historia('23/05/2020','23/05/2020'),584637,3,6,14);
+INSERT INTO historico_viajes VALUES (id_hist_viajes_seq.nextval,historia('07/02/2020','07/02/2020'),125487,2,3,5);
+INSERT INTO historico_viajes VALUES (id_hist_viajes_seq.nextval,historia('07/03/2020','08/03/2020'),965447,2,7,15);
+INSERT INTO historico_viajes VALUES (id_hist_viajes_seq.nextval,historia('14/01/2020','14/01/2020'),487556,5,10,6);
+INSERT INTO historico_viajes VALUES (id_hist_viajes_seq.nextval,historia('11/05/2020','11/05/2020'),695844,6,7,12);
+INSERT INTO historico_viajes VALUES (id_hist_viajes_seq.nextval,historia('09/04/2020','09/04/2020'),112254,8,8,3);
+INSERT INTO historico_viajes VALUES (id_hist_viajes_seq.nextval,historia('13/04/2020','13/04/2020'),458962,9,12,8);
+INSERT INTO historico_viajes VALUES (id_hist_viajes_seq.nextval,historia('28/04/2020','28/04/2020'),156687,10,7,8);
+INSERT INTO historico_viajes VALUES (id_hist_viajes_seq.nextval,historia('27/05/2020','27/05/2020'),336584,12,4,7);
+INSERT INTO historico_viajes VALUES (id_hist_viajes_seq.nextval,historia('15/04/2020','15/04/2020'),944526,12,12,4);
+INSERT INTO historico_viajes VALUES (id_hist_viajes_seq.nextval,historia('20/02/2020','20/02/2020'),452147,14,15,1);
+INSERT INTO historico_viajes VALUES (id_hist_viajes_seq.nextval,historia('01/03/2020','01/03/2020'),568465,5,1,5);
 
-/* TABLE historico_tratamiento(
-    id NUMBER PRIMARY KEY,
-    hist historia,
-    id_persona NUMBER NOT NULL,
-    id_rec_salud NUMBER NOT NULL
-);
-*/
+/* TABLE historico_tratamiento */
+INSERT INTO historico_tratamiento VALUES (id_hist_tratamiento_seq.nextval,historia('12/03/2020','21/04/2020'),1,1);
+INSERT INTO historico_tratamiento VALUES (id_hist_tratamiento_seq.nextval,historia('30/04/2020','25/05/2020'),2,1);
+INSERT INTO historico_tratamiento VALUES (id_hist_tratamiento_seq.nextval,historia('04/06/2020','10/07/2020'),4,3);
+INSERT INTO historico_tratamiento VALUES (id_hist_tratamiento_seq.nextval,historia('16/05/2020',null),7,3);
+INSERT INTO historico_tratamiento VALUES (id_hist_tratamiento_seq.nextval,historia('28/03/2020',null),9,5);
+INSERT INTO historico_tratamiento VALUES (id_hist_tratamiento_seq.nextval,historia('15/02/2020','11/04/2020'),11,5);
+INSERT INTO historico_tratamiento VALUES (id_hist_tratamiento_seq.nextval,historia('07/04/2020','10/05/2020'),13,6);
+INSERT INTO historico_tratamiento VALUES (id_hist_tratamiento_seq.nextval,historia('09/04/2020',null),14,7);
+INSERT INTO historico_tratamiento VALUES (id_hist_tratamiento_seq.nextval,historia('19/06/2020','01/07/2020'),16,7);
+INSERT INTO historico_tratamiento VALUES (id_hist_tratamiento_seq.nextval,historia('05/05/2020','20/06/2020'),17,7);
+INSERT INTO historico_tratamiento VALUES (id_hist_tratamiento_seq.nextval,historia('07/06/2020',null),19,10);
+INSERT INTO historico_tratamiento VALUES (id_hist_tratamiento_seq.nextval,historia('17/04/2020','28/05/2020'),20,10);
+INSERT INTO historico_tratamiento VALUES (id_hist_tratamiento_seq.nextval,historia('28/03/2020',null),24,9);
+INSERT INTO historico_tratamiento VALUES (id_hist_tratamiento_seq.nextval,historia('24/02/2020','01/04/2020'),27,9);
+INSERT INTO historico_tratamiento VALUES (id_hist_tratamiento_seq.nextval,historia('20/04/2020',null),26,8);
 
-/* TABLE A_I(
-    cant NUMBER NOT NULL,
-    id_insumo NUMBER NOT NULL,
-    id_ayuda NUMBER NOT NULL,
-    PRIMARY KEY (id_insumo,id_ayuda)
-);
-*/
+/* TABLE A_I */
+INSERT INTO A_I VALUES (120,1,1);
+INSERT INTO A_I VALUES (100,2,1);
+INSERT INTO A_I VALUES (210,3,1);
+INSERT INTO A_I VALUES (150,4,1);
+INSERT INTO A_I VALUES (250,1,2);
+INSERT INTO A_I VALUES (100,2,2);
+INSERT INTO A_I VALUES (350,5,2);
+INSERT INTO A_I VALUES (90,6,2);
+INSERT INTO A_I VALUES (80,7,3);
+INSERT INTO A_I VALUES (250,10,3);
+INSERT INTO A_I VALUES (190,11,4);
+INSERT INTO A_I VALUES (300,12,4);
+INSERT INTO A_I VALUES (410,10,4);
+INSERT INTO A_I VALUES (140,7,7);
+INSERT INTO A_I VALUES (210,8,7);
 
-/* TABLE H_I (
-    cant NUMBER NOT NULL,
-    id_insumo NUMBER NOT NULL,
-    id_rec_salud NUMBER NOT NULL,
-    PRIMARY KEY (id_insumo,id_rec_salud)
-);
-*/
+/* TABLE H_I */
+INSERT INTO H_I VALUES (120,1,11);
+INSERT INTO H_I VALUES (100,2,11);
+INSERT INTO H_I VALUES (210,3,11);
+INSERT INTO H_I VALUES (150,4,11);
+INSERT INTO H_I VALUES (250,1,2);
+INSERT INTO H_I VALUES (100,2,2);
+INSERT INTO H_I VALUES (350,5,2);
+INSERT INTO H_I VALUES (90,6,2);
+INSERT INTO H_I VALUES (80,7,3);
+INSERT INTO H_I VALUES (250,10,3);
+INSERT INTO H_I VALUES (190,11,5);
+INSERT INTO H_I VALUES (300,12,5);
+INSERT INTO H_I VALUES (410,10,5);
+INSERT INTO H_I VALUES (140,7,8);
+INSERT INTO H_I VALUES (210,8,8);
 
-/* TABLE E_P (
-    id_estado NUMBER NOT NULL,
-    id_proveedor NUMBER NOT NULL,
-    PRIMARY KEY (id_estado,id_proveedor)
-);
-*/
+/* TABLE E_P */
+INSERT INTO E_P VALUES (1,1);
+INSERT INTO E_P VALUES (2,1);
+INSERT INTO E_P VALUES (3,2);
+INSERT INTO E_P VALUES (4,2);
+INSERT INTO E_P VALUES (5,3);
+INSERT INTO E_P VALUES (6,3);
+INSERT INTO E_P VALUES (7,6);
+INSERT INTO E_P VALUES (8,11);
+INSERT INTO E_P VALUES (9,10);
+INSERT INTO E_P VALUES (10,10);
+INSERT INTO E_P VALUES (11,15);
+INSERT INTO E_P VALUES (12,15);
+INSERT INTO E_P VALUES (13,7);
+INSERT INTO E_P VALUES (14,7);
+INSERT INTO E_P VALUES (15,8);
 
-/* TABLE C_HV (
-    id_viaje NUMBER NOT NULL,
-    id_ciudad NUMBER NOT NULL,
-    PRIMARY KEY (id_viaje, id_ciudad)
-);
-*/
+/* TABLE C_HV */
+INSERT INTO C_VP VALUES (1,4);
+INSERT INTO C_VP VALUES (1,11);
+INSERT INTO C_VP VALUES (3,4);
+INSERT INTO C_VP VALUES (3,10);
+INSERT INTO C_VP VALUES (5,14);
+INSERT INTO C_VP VALUES (6,5);
+INSERT INTO C_VP VALUES (7,14);
+INSERT INTO C_VP VALUES (7,8);
+INSERT INTO C_VP VALUES (10,14);
+INSERT INTO C_VP VALUES (10,12);
+INSERT INTO C_VP VALUES (11,11);
+INSERT INTO C_VP VALUES (11,5);
+INSERT INTO C_VP VALUES (8,2);
+INSERT INTO C_VP VALUES (2,9);
+INSERT INTO C_VP VALUES (13,15);
 
-/* TABLE P_HV (
-    id_viaje NUMBER NOT NULL,
-    id_persona NUMBER NOT NULL,
-    PRIMARY KEY (id_viaje, id_persona)
-);
-*/
 
-/* TABLE P_PAT (
-    id_persona NUMBER NOT NULL,
-    id_patologia NUMBER NOT NULL,
-    PRIMARY KEY (id_persona,id_patologia)
-);
-*/
+/* TABLE P_HV */
+INSERT INTO P_HV VALUES (1,6);
+INSERT INTO P_HV VALUES (1,8);
+INSERT INTO P_HV VALUES (3,3);
+INSERT INTO P_HV VALUES (3,2);
+INSERT INTO P_HV VALUES (5,9);
+INSERT INTO P_HV VALUES (6,3);
+INSERT INTO P_HV VALUES (7,15);
+INSERT INTO P_HV VALUES (7,13);
+INSERT INTO P_HV VALUES (10,10);
+INSERT INTO P_HV VALUES (10,4);
+INSERT INTO P_HV VALUES (11,13);
+INSERT INTO P_HV VALUES (11,3);
+INSERT INTO P_HV VALUES (8,1);
+INSERT INTO P_HV VALUES (2,2);
+INSERT INTO P_HV VALUES (13,12);
 
-/* TABLE P_S (
-    id_persona NUMBER NOT NULL,
-    id_sintoma NUMBER NOT NULL,
-    PRIMARY KEY (id_persona,id_sintoma)
-);
-*/
+/* TABLE P_PAT */
+INSERT INTO P_PAT VALUES (7,10);
+INSERT INTO P_PAT VALUES (4,13);
+INSERT INTO P_PAT VALUES (7,9);
+INSERT INTO P_PAT VALUES (3,13);
+INSERT INTO P_PAT VALUES (6,12);
+INSERT INTO P_PAT VALUES (2,8);
+INSERT INTO P_PAT VALUES (10,9);
+INSERT INTO P_PAT VALUES (15,11);
+INSERT INTO P_PAT VALUES (10,14);
+INSERT INTO P_PAT VALUES (1,10);
+INSERT INTO P_PAT VALUES (8,4);
+INSERT INTO P_PAT VALUES (15,13);
+INSERT INTO P_PAT VALUES (11,12);
+INSERT INTO P_PAT VALUES (8,6);
+INSERT INTO P_PAT VALUES (1,8);
 
-/* TABLE P_PROV TABLE P_PROV (
-    id_persona NUMBER NOT NULL,
-    id_proveedor NUMBER NOT NULL,
-    v_sub NUMBER NOT NULL,
-    v_des NUMBER NOT NULL,
-    h_int NUMBER NOT NULL,
-    PRIMARY KEY (id_persona,id_proveedor)
-);*/
+/* TABLE P_S */
+INSERT INTO P_S VALUES (11,9);
+INSERT INTO P_S VALUES (4,1);
+INSERT INTO P_S VALUES (2,12);
+INSERT INTO P_S VALUES (4,7);
+INSERT INTO P_S VALUES (12,6);
+INSERT INTO P_S VALUES (15,2);
+INSERT INTO P_S VALUES (6,9);
+INSERT INTO P_S VALUES (15,14);
+INSERT INTO P_S VALUES (6,15);
+INSERT INTO P_S VALUES (10,13);
+INSERT INTO P_S VALUES (1,11);
+INSERT INTO P_S VALUES (9,13);
+INSERT INTO P_S VALUES (5,10);
+INSERT INTO P_S VALUES (9,14);
+INSERT INTO P_S VALUES (8,14);
 
-/* TABLE infectados_covid (
-    id NUMBER PRIMARY KEY,
-    hist historia,
-    estado VARCHAR(5) NOT NULL,
-    id_persona NUMBER NOT NULL,
-    id_hist_trat NUMBER,
-    id_estado NUMBER NOT NULL
-);*/
+/* TABLE P_PROV */
+INSERT INTO P_PROV VALUES (1,8,15.24,5.12,0);
+INSERT INTO P_PROV VALUES (2,9,25.12,15.98,0);
+INSERT INTO P_PROV VALUES (3,7,75.24,50.65,1);
+INSERT INTO P_PROV VALUES (4,5,52.36,30.45,1);
+INSERT INTO P_PROV VALUES (5,8,120.15,60.25,1);
+INSERT INTO P_PROV VALUES (6,15,80.25,50.36,0);
+INSERT INTO P_PROV VALUES (7,7,24.21,14.25,1);
+INSERT INTO P_PROV VALUES (8,4,45.65,20.36,2);
+INSERT INTO P_PROV VALUES (9,12,54.26,26.45,0);
+INSERT INTO P_PROV VALUES (12,9,33.71,10.89,1);
+INSERT INTO P_PROV VALUES (13,2,76.94,41.09,0);
+INSERT INTO P_PROV VALUES (14,5,80.19,45.32,1);
+INSERT INTO P_PROV VALUES (15,9,20.64,9.91,0);
+INSERT INTO P_PROV VALUES (16,3,0.11,0.1,4);
+INSERT INTO P_PROV VALUES (17,8,60.39,30.11,1);
+INSERT INTO P_PROV VALUES (18,11,50.10,25.60,3);
+
+/* TABLE infectados_covid */
+INSERT INTO VALUES (id_infectado_seq.nextval,historia('12/03/2020','21/04/2020'),'I',1,1,5);
+INSERT INTO VALUES (id_infectado_seq.nextval,historia('30/04/2020','25/05/2020'),'I',2,2,11);
+INSERT INTO VALUES (id_infectado_seq.nextval,historia('04/06/2020','10/07/2020'),'M',4,3,5);
+INSERT INTO VALUES (id_infectado_seq.nextval,historia('04/06/2020','10/07/2020'),'C',7,4,6);
+INSERT INTO VALUES (id_infectado_seq.nextval,historia('28/03/2020',null),'I',9,5,8);
+INSERT INTO VALUES (id_infectado_seq.nextval,historia('15/02/2020','11/04/2020'),'M',11,6,12);
+INSERT INTO VALUES (id_infectado_seq.nextval,historia('07/04/2020','10/05/2020'),'C',13,7,10);
+INSERT INTO VALUES (id_infectado_seq.nextval,historia('09/04/2020',null),'I',14,8,1);
+INSERT INTO VALUES (id_infectado_seq.nextval,historia('19/06/2020','01/07/2020'),'I',16,9,3);
+INSERT INTO VALUES (id_infectado_seq.nextval,historia('05/05/2020','20/06/2020'),'C',17,10,13);
+INSERT INTO VALUES (id_infectado_seq.nextval,historia('07/06/2020',null),'I',19,11,15);
+INSERT INTO VALUES (id_infectado_seq.nextval,historia('17/04/2020','28/05/2020'),'C',20,12,5);
+INSERT INTO VALUES (id_infectado_seq.nextval,historia('28/03/2020',null),'I',24,13,6);
+INSERT INTO VALUES (id_infectado_seq.nextval,historia('24/02/2020','01/04/2020'),'M',7,14,10);
+INSERT INTO VALUES (id_infectado_seq.nextval,historia('20/04/2020',null),'I',26,15,8;
+INSERT INTO VALUES (id_infectado_seq.nextval,historia('02/05/2020','30/05/2020'),'I',3,null,1);
+INSERT INTO VALUES (id_infectado_seq.nextval,historia('17/03/2020','21/05/2020'),'C',6,null,8);
+INSERT INTO VALUES (id_infectado_seq.nextval,historia('14/04/2020','24/06/2020'),'C',12,null,5);
+INSERT INTO VALUES (id_infectado_seq.nextval,historia('19/01/2020','27/02/2020'),'M',15,null,6);
+INSERT INTO VALUES (id_infectado_seq.nextval,historia('25/06/2020',null),'I',22,null,13);
