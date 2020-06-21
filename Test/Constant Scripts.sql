@@ -34,7 +34,13 @@ SELECT p.id, p.pers.nom1 || ' ' || p.pers.ape1 as "NOMBRE Y APELLIDO", p.pers.fe
 FROM personas p
 WHERE p.pers.fec_mue IS NOT NULL;
 
+-- Select recoveries
+SELECT p.id, p.pers.nom1 || ' ' || p.pers.ape1 as "NOMBRE Y APELLIDO", i.hist.fec_f 
+FROM personas p
+JOIN INFECTADOS_COVID i ON i.id_persona = p.id
+WHERE i.estado = 'R';
+
 -- Delete
 TRUNCATE TABLE historico_tratamiento;
-UPDATE INFECTADOS_COVID SET estado = 'I' WHERE estado = 'M';
+UPDATE INFECTADOS_COVID i SET i.estado = 'I', i.hist.fec_f = NULL WHERE estado = 'M' OR estado = 'R';
 UPDATE PERSONAS p SET p.pers.fec_mue = null WHERE p.pers.fec_mue IS NOT NULL; 
