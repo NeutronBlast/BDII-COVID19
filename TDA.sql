@@ -21,19 +21,8 @@ CREATE OR REPLACE TYPE persona AS OBJECT (
     MEMBER FUNCTION edad (fec_nac DATE) RETURN NUMBER
     -- MEMBER FUNCTION size_of_img (img BLOB) RETURN NUMBER
 );
-/
-CREATE OR REPLACE TYPE BODY persona AS
-MEMBER FUNCTION edad (fec_nac IN date) return number
-IS res number(4);
-BEGIN
-    IF fec_nac>SYSDATE THEN
-        RAISE_APPLICATION_ERROR(-20001, 'Fecha de nacimiento no puede ser superior a la fecha actual');
-    ELSE 
-        res := MONTHS_BETWEEN(sysdate, fec_nac) / 12;
-        return(res);
-    END IF;
-END;
-END;
+
+
 
 /
 CREATE OR REPLACE TYPE historia AS OBJECT (
@@ -51,6 +40,20 @@ BEGIN
         return 0;
     ELSE 
         return 1;
+    END IF;
+END;
+END;
+
+/
+CREATE OR REPLACE TYPE BODY persona AS
+MEMBER FUNCTION edad (fec_nac IN date) return number
+IS res number(4);
+BEGIN
+    IF fec_nac>SYSDATE THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Fecha de nacimiento no puede ser superior a la fecha actual');
+    ELSE 
+        res := MONTHS_BETWEEN(sysdate, fec_nac) / 12;
+        return(res);
     END IF;
 END;
 END;
