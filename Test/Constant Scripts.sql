@@ -62,3 +62,15 @@ JOIN paises pd ON pd.id = ed.id_pais;
 -- Delete
 TRUNCATE TABLE historico_viajes;
 TRUNCATE TABLE P_HV;
+
+----------------------------------------- FRONTERAS ------------------------------------------------
+SET SERVEROUTPUT ON;
+EXECUTE CONTROL_FRONTERAS ('19/06/2020', '29/06/2020');
+
+-- Select fronteras
+SELECT p.nom, f.hist.fec_i, f.hist.fec_f
+FROM HISTORICO_CIERRE_FRONTERAS f 
+JOIN PAISES p ON p.id = f.id_pais;
+
+-- Delete
+TRUNCATE TABLE historico_cierre_fronteras;
