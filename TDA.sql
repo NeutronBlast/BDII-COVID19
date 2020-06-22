@@ -1,9 +1,9 @@
 /* TDA'S */
 CREATE OR REPLACE TYPE covid_data AS OBJECT (
     poblacion number, -- NOT NULL
-    MEMBER FUNCTION numero_infectados (id_estado NUMBER) RETURN NUMBER,--done
-    MEMBER FUNCTION numero_fallecidos (id_estado NUMBER) RETURN NUMBER,--done
-    MEMBER FUNCTION numero_recuperados (id_estado NUMBER) RETURN NUMBER,--done
+    MEMBER FUNCTION numero_infectados (id_valor NUMBER,parametro varchar2) RETURN NUMBER,--done
+    MEMBER FUNCTION numero_fallecidos (id_valor NUMBER,parametro varchar2) RETURN NUMBER,--done
+    MEMBER FUNCTION numero_recuperados (id_valor NUMBER,parametro varchar2) RETURN NUMBER,--done
     MEMBER FUNCTION porcentaje_infectados (id_estado NUMBER) RETURN NUMBER,--done
     MEMBER FUNCTION porcentaje_fallecidos (id_estado NUMBER) RETURN NUMBER,--done
     MEMBER FUNCTION porcentaje_recuperados (id_estado NUMBER) RETURN NUMBER--done

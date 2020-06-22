@@ -1,46 +1,46 @@
 --numeros infectados
 CREATE OR REPLACE TYPE BODY covid_data AS
-MEMBER FUNCTION numero_infectados(id_valor number, param varchar) RETURN number
+MEMBER FUNCTION numero_infectados(id_valor number, parametro varchar2) RETURN number
 IS resultado number;
 BEGIN
-    IF param = 'E'
+    IF parametro = 'E' THEN
         SELECT COUNT(*) INTO resultado FROM INFECTADOS_COVID A WHERE A.id_estado=id_valor AND A.estado = 'I';
         return resultado; 
-    ELSE IF param = 'RS' condition then
+    ELSE IF parametro = 'RS' then
             SELECT COUNT(*) INTO resultado FROM INFECTADOS_COVID A JOIN historico_tratamiento B ON A.id_hist_trat = B.id  WHERE B.id_rec_salud=id_valor AND A.estado = 'R';
             return resultado;
         ELSE
-            RAISE_APPLICATION_ERROR(-20001, 'Paramtro de seleccion no valido');
+            RAISE_APPLICATION_ERROR(-20001, 'parametroetro de seleccion no valido');
         END IF;
     END IF;
 END;
 --numero fallecidos
-MEMBER FUNCTION numero_fallecidos(id_valor number, param varchar) RETURN number
+MEMBER FUNCTION numero_fallecidos(id_valor number, parametro varchar2) RETURN number
 IS resultado number;
 BEGIN
-    IF param = 'E'
+    IF parametro = 'E' THEN
         SELECT COUNT(*) INTO resultado FROM INFECTADOS_COVID A WHERE A.id_estado=id_valor AND A.estado = 'M';
         return resultado; 
-    ELSE IF param = 'RS' condition then
+    ELSE IF parametro = 'RS' then
             SELECT COUNT(*) INTO resultado FROM INFECTADOS_COVID A JOIN historico_tratamiento B ON A.id_hist_trat = B.id  WHERE B.id_rec_salud=id_valor AND A.estado = 'R';
             return resultado;
         ELSE
-            RAISE_APPLICATION_ERROR(-20001, 'Paramtro de seleccion no valido');
+            RAISE_APPLICATION_ERROR(-20001, 'parametroetro de seleccion no valido');
         END IF;
     END IF;
 END;
 --numero recuperados
-MEMBER FUNCTION numero_recuperados(id_valor number, param varchar) RETURN number
+MEMBER FUNCTION numero_recuperados(id_valor number, parametro varchar2) RETURN number
 IS resultado number;
 BEGIN
-    IF param = 'E'
+    IF parametro = 'E' THEN
         SELECT COUNT(*) INTO resultado FROM INFECTADOS_COVID A WHERE A.id_estado=id_valor AND A.estado = 'R';
         return resultado; 
-    ELSE IF param = 'RS' condition then
+    ELSE IF parametro = 'RS' then
             SELECT COUNT(*) INTO resultado FROM INFECTADOS_COVID A JOIN historico_tratamiento B ON A.id_hist_trat = B.id  WHERE B.id_rec_salud=id_valor AND A.estado = 'R';
             return resultado;
         ELSE
-            RAISE_APPLICATION_ERROR(-20001, 'Paramtro de seleccion no valido');
+            RAISE_APPLICATION_ERROR(-20001, 'parametrotro de seleccion no valido');
         END IF;
     END IF;
 END;
