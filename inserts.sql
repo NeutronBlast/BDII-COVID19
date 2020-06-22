@@ -49,7 +49,7 @@ INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Perdida de color en las ma
 INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Perdida del sentido del gusto');
 INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Perdida del sentido del olfato');
 INSERT INTO sintomas VALUES (id_sintoma_seq.nextval, 'Tos seca');
-
+/
 /* TABLE proveedores 
    Hay que hacerlo con un bloque anonimo para que se inserten las imagenes*/
 DECLARE 
@@ -132,7 +132,7 @@ BEGIN
     DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
     DBMS_LOB.CLOSE(v_bfile);
 END;
-
+/
 /* TABLE aerolineas
    Hay que hacerlo con un bloque anonimo para que se inserten las imagenes*/
 DECLARE 
@@ -215,7 +215,7 @@ BEGIN
     DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
     DBMS_LOB.CLOSE(v_bfile);
 END;
-
+/
 /* TABLE insumos */
 INSERT INTO insumos VALUES (id_insumo_seq.nextval, 'Agua destilada');
 INSERT INTO insumos VALUES (id_insumo_seq.nextval, 'Agua oxigenada');
@@ -238,7 +238,7 @@ INSERT INTO insumos VALUES (id_insumo_seq.nextval, 'Suero Dextrosa');
 INSERT INTO insumos VALUES (id_insumo_seq.nextval, 'Termometro');
 INSERT INTO insumos VALUES (id_insumo_seq.nextval, 'Venda Elastica');
 INSERT INTO insumos VALUES (id_insumo_seq.nextval, 'Yodo');
-
+/
 /* TABLE paises  
    Hay que hacerlo con un bloque anonimo para que se inserten las imagenes*/
 DECLARE 
@@ -263,7 +263,7 @@ BEGIN
     INSERT INTO paises VALUES (id_pais_seq.nextval, 'China', EMPTY_BLOB()) RETURNING bandera INTO v_blob;
     v_bfile := BFILENAME('DIR_BANDERAS', 'cn.png');
     DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
-    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile))
+    DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
     DBMS_LOB.CLOSE(v_bfile);
     INSERT INTO paises VALUES (id_pais_seq.nextval, 'España', EMPTY_BLOB()) RETURNING bandera INTO v_blob;
     v_bfile := BFILENAME('DIR_BANDERAS', 'es.png');
@@ -301,7 +301,7 @@ BEGIN
     DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
     DBMS_LOB.CLOSE(v_bfile);
 END;
-
+/
 /* TABLE estados */
 INSERT INTO estados VALUES (id_estado_seq.nextval, 'Berlin', (SELECT id FROM paises WHERE nom = 'Alemania'), covid_data(3769000));
 INSERT INTO estados VALUES (id_estado_seq.nextval, 'Hesse', (SELECT id FROM paises WHERE nom = 'Alemania'), covid_data(6866000));
@@ -369,7 +369,7 @@ INSERT INTO CALLES VALUES (id_calle_seq.nextval, 'Maiden Lane', 12545, (SELECT u
 INSERT INTO CALLES VALUES (id_calle_seq.nextval, 'State Street', 86527, (SELECT u.id FROM URBANIZACIONES u JOIN ciudades c ON c.id = u.id_ciudad JOIN estados e ON e.id = c.id_estado JOIN paises p ON p.id = e.id_pais WHERE u.nom = 'Parkway' AND c.nom = 'Fresno' AND e.nom = 'California' AND p.nom = 'Estados Unidos'));
 INSERT INTO CALLES VALUES (id_calle_seq.nextval, 'S. Rick', 68548, (SELECT u.id FROM URBANIZACIONES u JOIN ciudades c ON c.id = u.id_ciudad JOIN estados e ON e.id = c.id_estado JOIN paises p ON p.id = e.id_pais WHERE u.nom = 'Charlottenburg' AND c.nom = 'Berlin' AND e.nom = 'Berlin' AND p.nom = 'Alemania'));
 INSERT INTO CALLES VALUES (id_calle_seq.nextval, 'M. Smith', 11547, (SELECT u.id FROM URBANIZACIONES u JOIN ciudades c ON c.id = u.id_ciudad JOIN estados e ON e.id = c.id_estado JOIN paises p ON p.id = e.id_pais WHERE u.nom = 'Kreuzberg' AND c.nom = 'Berlin' AND e.nom = 'Berlin' AND p.nom = 'Alemania'));
-
+/
 /* TABLE personas
     Hay que hacerlo con un bloque anonimo para que se inserten las imagenes*/
 DECLARE 
@@ -532,7 +532,7 @@ BEGIN
     DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, SYS.DBMS_LOB.GETLENGTH(v_bfile));
     DBMS_LOB.CLOSE(v_bfile);
 END;
-
+/
 /* TABLE recintos_salud */
 INSERT INTO recintos_salud VALUES (id_recinto_salud_seq.nextval,'Hospital Medical Center','Pub', 500, covid_data(356),1);
 INSERT INTO recintos_salud VALUES (id_recinto_salud_seq.nextval,'Health University Hospital','Priv', 200, covid_data(110),2);
@@ -780,23 +780,23 @@ INSERT INTO P_PROV VALUES (17,8,60.39,30.11,1);
 INSERT INTO P_PROV VALUES (18,11,50.10,25.60,3);
 
 /* TABLE infectados_covid */
-INSERT INTO VALUES (id_infectado_seq.nextval,historia('12/03/2020','21/04/2020'),'I',1,1,5);
-INSERT INTO VALUES (id_infectado_seq.nextval,historia('30/04/2020','25/05/2020'),'I',2,2,11);
-INSERT INTO VALUES (id_infectado_seq.nextval,historia('04/06/2020','10/07/2020'),'M',4,3,5);
-INSERT INTO VALUES (id_infectado_seq.nextval,historia('04/06/2020','10/07/2020'),'C',7,4,6);
-INSERT INTO VALUES (id_infectado_seq.nextval,historia('28/03/2020',null),'I',9,5,8);
-INSERT INTO VALUES (id_infectado_seq.nextval,historia('15/02/2020','11/04/2020'),'M',11,6,12);
-INSERT INTO VALUES (id_infectado_seq.nextval,historia('07/04/2020','10/05/2020'),'C',13,7,10);
-INSERT INTO VALUES (id_infectado_seq.nextval,historia('09/04/2020',null),'I',14,8,1);
-INSERT INTO VALUES (id_infectado_seq.nextval,historia('19/06/2020','01/07/2020'),'I',16,9,3);
-INSERT INTO VALUES (id_infectado_seq.nextval,historia('05/05/2020','20/06/2020'),'C',17,10,13);
-INSERT INTO VALUES (id_infectado_seq.nextval,historia('07/06/2020',null),'I',19,11,15);
-INSERT INTO VALUES (id_infectado_seq.nextval,historia('17/04/2020','28/05/2020'),'C',20,12,5);
-INSERT INTO VALUES (id_infectado_seq.nextval,historia('28/03/2020',null),'I',24,13,6);
-INSERT INTO VALUES (id_infectado_seq.nextval,historia('24/02/2020','01/04/2020'),'M',7,14,10);
-INSERT INTO VALUES (id_infectado_seq.nextval,historia('20/04/2020',null),'I',26,15,8;
-INSERT INTO VALUES (id_infectado_seq.nextval,historia('02/05/2020','30/05/2020'),'I',3,null,1);
-INSERT INTO VALUES (id_infectado_seq.nextval,historia('17/03/2020','21/05/2020'),'C',6,null,8);
-INSERT INTO VALUES (id_infectado_seq.nextval,historia('14/04/2020','24/06/2020'),'C',12,null,5);
-INSERT INTO VALUES (id_infectado_seq.nextval,historia('19/01/2020','27/02/2020'),'M',15,null,6);
-INSERT INTO VALUES (id_infectado_seq.nextval,historia('25/06/2020',null),'I',22,null,13);
+INSERT INTO INFECTADOS_COVID VALUES (id_infectado_seq.nextval,historia('12/03/2020','21/04/2020'),'I',1,1,5);
+INSERT INTO INFECTADOS_COVID VALUES (id_infectado_seq.nextval,historia('30/04/2020','25/05/2020'),'I',2,2,11);
+INSERT INTO INFECTADOS_COVID VALUES (id_infectado_seq.nextval,historia('04/06/2020','10/07/2020'),'M',4,3,5);
+INSERT INTO INFECTADOS_COVID VALUES (id_infectado_seq.nextval,historia('04/06/2020','10/07/2020'),'C',7,4,6);
+INSERT INTO INFECTADOS_COVID VALUES (id_infectado_seq.nextval,historia('28/03/2020',null),'I',9,5,8);
+INSERT INTO INFECTADOS_COVID VALUES (id_infectado_seq.nextval,historia('15/02/2020','11/04/2020'),'M',11,6,12);
+INSERT INTO INFECTADOS_COVID VALUES (id_infectado_seq.nextval,historia('07/04/2020','10/05/2020'),'C',13,7,10);
+INSERT INTO INFECTADOS_COVID VALUES (id_infectado_seq.nextval,historia('09/04/2020',null),'I',14,8,1);
+INSERT INTO INFECTADOS_COVID VALUES (id_infectado_seq.nextval,historia('19/06/2020','01/07/2020'),'I',16,9,3);
+INSERT INTO INFECTADOS_COVID VALUES (id_infectado_seq.nextval,historia('05/05/2020','20/06/2020'),'C',17,10,13);
+INSERT INTO INFECTADOS_COVID VALUES (id_infectado_seq.nextval,historia('07/06/2020',null),'I',19,11,15);
+INSERT INTO INFECTADOS_COVID VALUES (id_infectado_seq.nextval,historia('17/04/2020','28/05/2020'),'C',20,12,5);
+INSERT INTO INFECTADOS_COVID VALUES (id_infectado_seq.nextval,historia('28/03/2020',null),'I',24,13,6);
+INSERT INTO INFECTADOS_COVID VALUES (id_infectado_seq.nextval,historia('24/02/2020','01/04/2020'),'M',7,14,10);
+INSERT INTO INFECTADOS_COVID VALUES (id_infectado_seq.nextval,historia('20/04/2020',null),'I',26,15,8;
+INSERT INTO INFECTADOS_COVID VALUES (id_infectado_seq.nextval,historia('02/05/2020','30/05/2020'),'I',3,null,1);
+INSERT INTO INFECTADOS_COVID VALUES (id_infectado_seq.nextval,historia('17/03/2020','21/05/2020'),'C',6,null,8);
+INSERT INTO INFECTADOS_COVID VALUES (id_infectado_seq.nextval,historia('14/04/2020','24/06/2020'),'C',12,null,5);
+INSERT INTO INFECTADOS_COVID VALUES (id_infectado_seq.nextval,historia('19/01/2020','27/02/2020'),'M',15,null,6);
+INSERT INTO INFECTADOS_COVID VALUES (id_infectado_seq.nextval,historia('25/06/2020',null),'I',22,null,13);
