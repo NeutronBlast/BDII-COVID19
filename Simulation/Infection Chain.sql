@@ -162,7 +162,7 @@ BEGIN
                 random_ns:= TRUNC(DBMS_RANDOM.value(1,5));                        
                 -- Insertar sintomas
                 LOOP
-                    random_s:= TRUNC(DBMS_RANDOM.value(0,19));
+                    random_s:= TRUNC(DBMS_RANDOM.value(1,19));
                     SELECT COUNT (*)
                     INTO s_exists
                     FROM P_S p
