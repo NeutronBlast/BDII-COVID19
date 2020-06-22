@@ -23,10 +23,10 @@ BEGIN
                 (SELECT p.id
                 FROM PAISES p
                 WHERE NOT EXISTS (
-                    SELECT f.id FROM historico_cierre_fronteras f WHERE f.id_pais = p.id 
-                    AND (f.hist.fec_i BETWEEN fecha_i AND fecha_f OR
-                    f.hist.fec_f BETWEEN fecha_i AND fecha_f)
-                )
+                    SELECT f.id FROM historico_cierre_fronteras f WHERE (f.id_pais = p.id 
+                    AND (((f.hist.fec_i BETWEEN fecha_i AND fecha_f OR
+                    f.hist.fec_f BETWEEN fecha_i AND fecha_f)) OR f.hist.fec_f IS NULL
+                )))
                 ORDER BY DBMS_RANDOM.RANDOM
                 )
                 WHERE ROWNUM = 1;

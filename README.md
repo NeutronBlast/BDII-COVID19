@@ -16,3 +16,5 @@
 5. **Simulation/Infection Chain:** Correspondiente a las infecciones por COVID-19
 6. **Simulation/Borders:** Control de fronteras
 7. **Simulation/Flights:** Vuelos
+8. **Simulation/Hospitals:** Control de insumos
+9. **Simulation/Help:** Ayuda humanitaria

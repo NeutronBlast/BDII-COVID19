@@ -50,9 +50,6 @@ BEGIN
     INTO poblacion
     FROM estados e WHERE e.id = in_estado;
 
-    --DBMS_OUTPUT.PUT_LINE('Iterador'|| i ||' Personas disponibles '||total_people ||' Poblacion estado ' || poblacion);
-
-
     LOOP
         cont:=0;
         --Infectados en el estado
@@ -141,7 +138,7 @@ BEGIN
                         random_ns:= TRUNC(DBMS_RANDOM.value(1,5));                        
                         -- Insertar sintomas
                         LOOP
-                        random_s:= TRUNC(DBMS_RANDOM.value(0,19));
+                        random_s:= TRUNC(DBMS_RANDOM.value(1,18));
                         SELECT COUNT (*)
                         INTO s_exists
                         FROM P_S p
@@ -192,7 +189,7 @@ BEGIN
 END;
 
 -- Aqui se decide quien va al hospital y quien muere
-
+/
 CREATE OR REPLACE PROCEDURE DESTINO (in_estado number, fecha_i date, fecha_f date) IS 
 i number; -- Iterador
 num_infectados number; -- Numero de infectados en el estado
@@ -271,7 +268,8 @@ BEGIN
                 SELECT i.hist.fec_i
                 INTO infection_date
                 FROM INFECTADOS_COVID i
-                WHERE i.id_persona = random_person;
+                WHERE i.id_persona = random_person
+                AND i.hist.fec_f IS NULL;
 
                 hospital_date_interval:= TRUNC(DBMS_RANDOM.VALUE(5,21));
 

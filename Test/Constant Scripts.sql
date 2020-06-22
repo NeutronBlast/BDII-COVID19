@@ -1,7 +1,7 @@
 --Scripts que voy a hacer a cada rato
 -- Infectar
 SET SERVEROUTPUT ON;
-EXECUTE CADENA_INFECCION (1, 1, '19/06/2020', '29/06/2020');
+EXECUTE CADENA_INFECCION (1, 9, '19/06/2020', '29/06/2020');
 
 -- Selects Infectar
 SELECT * FROM INFECTADOS_COVID; 
@@ -21,7 +21,7 @@ TRUNCATE TABLE P_S;
 
 ----------------------------------------- DESTINO ------------------------------------------------
 SET SERVEROUTPUT ON;
-EXECUTE DESTINO (1, '19/06/2020', '29/06/2020');
+EXECUTE DESTINO (9, '19/06/2020', '29/06/2020');
 
 -- Select hospital
 SELECT t.id_persona AS "ID_PERSONA", p.pers.nom1 || ' ' || p.pers.ape1 as "NOMBRE Y APELLIDO", t.hist.fec_i
@@ -70,7 +70,19 @@ EXECUTE CONTROL_FRONTERAS ('19/06/2020', '29/06/2020');
 -- Select fronteras
 SELECT p.nom, f.hist.fec_i, f.hist.fec_f
 FROM HISTORICO_CIERRE_FRONTERAS f 
-JOIN PAISES p ON p.id = f.id_pais;
+JOIN PAISES p ON p.id = f.id_pais
+ORDER BY f.hist.fec_i;
 
 -- Delete
 TRUNCATE TABLE historico_cierre_fronteras;
+
+----------------------------------------- INSUMOS ------------------------------------------------
+SET SERVEROUTPUT ON;
+EXECUTE HOSPITALES ('19/06/2020', '29/06/2020');
+
+-- Select hospitales
+
+SELECT i.id AS "ID_INSUMO", i.nom, r.id AS "ID_REC", r.nom, hi.cant 
+FROM H_I hi
+JOIN recintos_salud r ON r.id = hi.id_rec_salud
+JOIN insumos i ON i.id = hi.id_insumo;
