@@ -30,6 +30,8 @@ DROP SEQUENCE id_hist_viajes_seq;
 DROP SEQUENCE id_hist_tratamiento_seq;
 DROP SEQUENCE id_infectado_seq;
 DROP SEQUENCE id_hist_ayuda_seq;
+DROP SEQUENCE id_p_prov_seq;
+
 
 /* Tables */
 DROP TABLE patologias CASCADE CONSTRAINTS;

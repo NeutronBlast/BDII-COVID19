@@ -160,12 +160,13 @@ CREATE TABLE P_S (
 );
 
 CREATE TABLE P_PROV (
+    id NUMBER PRIMARY KEY,
     id_persona NUMBER NOT NULL,
     id_proveedor NUMBER NOT NULL,
     v_sub NUMBER NOT NULL,
     v_des NUMBER NOT NULL,
     h_int NUMBER NOT NULL,
-    PRIMARY KEY (id_persona,id_proveedor)
+    hist historia
 );
 
 CREATE TABLE infectados_covid (
@@ -196,6 +197,7 @@ CREATE SEQUENCE id_hist_viajes_seq;
 CREATE SEQUENCE id_hist_tratamiento_seq;
 CREATE SEQUENCE id_infectado_seq;
 CREATE SEQUENCE id_hist_ayuda_seq;
+CREATE SEQUENCE id_p_prov_seq;
 
 /* Constaint foreing keys */
 ALTER TABLE estados ADD CONSTRAINT estado_pais_fk FOREIGN KEY (id_pais) REFERENCES paises(id);
