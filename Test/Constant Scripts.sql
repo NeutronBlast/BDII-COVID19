@@ -86,3 +86,17 @@ SELECT i.id AS "ID_INSUMO", i.nom, r.id AS "ID_REC", r.nom, hi.cant
 FROM H_I hi
 JOIN recintos_salud r ON r.id = hi.id_rec_salud
 JOIN insumos i ON i.id = hi.id_insumo;
+
+----------------------------------------- AYUDA ------------------------------------------------
+SET SERVEROUTPUT ON;
+EXECUTE AYUDA_HUMANITARIA ('19/06/2020', '29/06/2020');
+
+-- Select ayudas humanitarias
+SELECT p.nom AS "PAIS ORIGEN", pe.nom AS "PAIS DESTINO", h.hist.fec_i, h.hist.fec_f, h.dinero,
+i.nom as "INSUMO", ai.cant 
+FROM historico_ayuda_humanitaria h
+JOIN PAISES p ON p.id = h.id_pais_1
+JOIN PAISES pe ON pe.id = h.id_pais_2
+JOIN A_I ai ON ai.id_ayuda = h.id 
+JOIN INSUMOS i ON i.id = ai.id_insumo
+ORDER BY h.hist.fec_i;
