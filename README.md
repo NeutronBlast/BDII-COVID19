@@ -18,3 +18,4 @@
 7. **Simulation/Flights:** Vuelos
 8. **Simulation/Hospitals:** Control de insumos
 9. **Simulation/Help:** Ayuda humanitaria
+10. **Simulation/Internet:** Internet
