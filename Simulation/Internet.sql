@@ -32,7 +32,6 @@ BEGIN
     INTO i
     FROM dual;
 
-    LOOP
         IF in_modelo = 2 THEN
         -- Seleccionar registros de la tabla de uso de internet que se ubiquen en el estado especificado
             OPEN pp_values;
@@ -52,25 +51,41 @@ BEGIN
                     ELSIF x < 0.8 AND x >= 0.5 THEN 
                         f_1:=DBMS_RANDOM.VALUE(1,4);
                         horas:=ROUND(f_1/x);
+                        horas:=ROUND(horas/2);
                     ELSIF x < 0.5 AND x >= 0.3 THEN 
                         f_1:=DBMS_RANDOM.VALUE(1,8);
                         horas:=ROUND(f_1/x);
+                        horas:=ROUND(horas/4);
                     ELSE
                         f_1:=DBMS_RANDOM.VALUE(2,12);
                         horas:=ROUND(f_1/x);
+                        horas:=ROUND(horas/8);
                     END IF;
 
-                    new_vs:= pp_reg.v_sub/f_1;
-                    new_vd:= pp_reg.v_des/f_1;
+                    new_vs:= ROUND(pp_reg.v_sub/f_1, 2);
+                    new_vd:= ROUND(pp_reg.v_des/f_1, 2);
 
                     INSERT INTO P_PROV VALUES (id_p_prov_seq.nextval, pp_reg.id_persona, pp_reg.id_proveedor, new_vs, new_vd, horas, historia(fecha_i, fecha_f));
 
                 FETCH pp_values INTO pp_reg;
                 END LOOP;
             CLOSE pp_values;
-            END IF;
-        
-    cont_externo:= cont_externo+1;
-    EXIT WHEN cont_externo = i;
-    END LOOP; 
+
+        ELSIF in_modelo = 1 THEN 
+            -- Seleccionar registros de la tabla de uso de internet que se ubiquen en el estado especificado
+            OPEN pp_values;
+            FETCH pp_values INTO pp_reg;
+            WHILE pp_values%FOUND
+                LOOP
+                    -- Colocar nuevos valores
+                    horas:=ROUND(DBMS_RANDOM.VALUE(1,5));
+                    new_vs:= ROUND(DBMS_RANDOM.VALUE(0,300), 2);
+                    new_vd:= ROUND(DBMS_RANDOM.VALUE(0,500), 2);
+
+                    INSERT INTO P_PROV VALUES (id_p_prov_seq.nextval, pp_reg.id_persona, pp_reg.id_proveedor, new_vs, new_vd, horas, historia(fecha_i, fecha_f));
+
+                FETCH pp_values INTO pp_reg;
+                END LOOP;
+            CLOSE pp_values;
+        END IF;
 END;

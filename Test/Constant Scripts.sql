@@ -103,16 +103,17 @@ JOIN INSUMOS i ON i.id = ai.id_insumo
 ORDER BY h.hist.fec_i;
 
 ----------------------------------------- INTERNET ------------------------------------------------
-
-
--- Select
 SET SERVEROUTPUT ON;
 EXECUTE INTERNET (2, 12, '19/06/2020', '29/06/2020');
 
-SELECT pp.id, pp.hist.fec_i, p.id AS "ID_PERSONA", p.pers.nom1 || ' ' || p.pers.ape1 AS "PERSONA"  FROM P_PROV pp
+-- Select
+SELECT pp.id, pp.hist.fec_i, pp.hist.fec_f, pp.v_sub, pp.v_des, pp.h_int, p.id AS "ID_PERSONA", p.pers.nom1 || ' ' || p.pers.ape1 AS "PERSONA"  FROM P_PROV pp
 JOIN personas p ON p.id = pp.id_persona
 JOIN calles c ON c.id = p.id_calle
 JOIN urbanizaciones u ON u.id = c.id_urb
 JOIN ciudades ci ON ci.id = u.id_ciudad
 JOIN estados e ON e.id = ci.id_estado
-WHERE e.id = 12 ORDER BY pp.hist.fec_i DESC;
+WHERE e.id = 12 AND pp.id>17 ORDER BY pp.hist.fec_i DESC;
+
+-- Delete
+DELETE FROM P_PROV WHERE id > 17;
