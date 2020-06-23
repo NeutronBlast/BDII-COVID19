@@ -7,8 +7,10 @@ horas number;
 f_1 number; -- Factor 1
 f_2 number; -- Factor 2
 uso number; -- ID historico uso
+new_vs number;
+new_vd number;
 CURSOR pp_values IS
-SELECT *
+SELECT id, id_persona, id_proveedor, v_sub, v_des, h_int, hist
         FROM
         (
             SELECT t.*, ROW_NUMBER() OVER (PARTITION BY t.id_persona ORDER BY t.hist.fec_i DESC) rn
@@ -58,7 +60,10 @@ BEGIN
                         horas:=ROUND(f_1/x);
                     END IF;
 
-                    INSERT INTO P_PROV VALUES (id_p_prov_seq.nextval, pp_reg.id_persona, pp_reg.id_proveedor, pp_reg.v_sub/f_2, pp_reg.v_des/f_2, horas, historia(fecha_i, fecha_f));
+                    new_vs:= pp_reg.v_sub/f_1;
+                    new_vd:= pp_reg.v_des/f_1;
+
+                    INSERT INTO P_PROV VALUES (id_p_prov_seq.nextval, pp_reg.id_persona, pp_reg.id_proveedor, new_vs, new_vd, horas, historia(fecha_i, fecha_f));
 
                 FETCH pp_values INTO pp_reg;
                 END LOOP;
