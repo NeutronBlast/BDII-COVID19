@@ -33,3 +33,23 @@ BEGIN
 
     RETURN (v_output);
 END;
+
+-- Poblacion
+
+CREATE OR REPLACE FUNCTION POBLACION_PAIS (in_pais NUMBER) RETURN NUMBER IS
+resultado number;
+BEGIN
+    BEGIN 
+        SELECT 
+        SUM(e.data.poblacion)
+        INTO resultado
+        FROM ESTADOS e
+        WHERE e.id_pais = in_pais;
+
+        EXCEPTION
+            WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.put_line('No se encontro ningun dato'||SQLERRM);
+    END;
+
+    RETURN (resultado);
+END;
