@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reporte 3" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3f6c8ef5-8d7a-44c9-8077-464182e127de">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="covid-19"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#00FF9F">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="ORACLE_REF_CURSOR" class="java.sql.ResultSet"/>
+	<parameter name="FECHA_INICIO" class="java.sql.Date"/>
+	<parameter name="FECHA_FIN" class="java.sql.Date"/>
+	<queryString language="plsql">
+		<![CDATA[{call REPORTE_3($P{ORACLE_REF_CURSOR}, $P{FECHA_INICIO}, $P{FECHA_FIN})}]]>
+	</queryString>
+	<field name="Nª Id" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="Nª Id"/>
+	</field>
+	<field name="Foto" class="java.awt.Image">
+		<property name="com.jaspersoft.studio.field.label" value="Foto"/>
+	</field>
+	<field name="Primer Nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Primer Nombre"/>
+	</field>
+	<field name="Segundo Nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Segundo Nombre"/>
+	</field>
+	<field name="Primer Apellido" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Primer Apellido"/>
+	</field>
+	<field name="Segundo Apellido" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Segundo Apellido"/>
+	</field>
+	<field name="Edad" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="Edad"/>
+	</field>
+	<field name="Pais de residencia" class="java.awt.Image">
+		<property name="com.jaspersoft.studio.field.label" value="Pais de residencia"/>
+	</field>
+	<field name="Pais donde viajo" class="java.awt.Image">
+		<property name="com.jaspersoft.studio.field.label" value="Pais donde viajo"/>
+	</field>
+	<field name="Fecha de inicio del viaje" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Fecha de inicio del viaje"/>
+	</field>
+	<field name="Fecha de fin de viaje" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Fecha de fin de viaje"/>
+	</field>
+	<field name="Lugares donde visito" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Lugares donde visito"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="5" width="800" height="24" forecolor="#004A53" uuid="8717a792-3563-4ac2-bb9e-1bc9f795b322"/>
+				<textElement textAlignment="Center">
+					<font fontName="Franklin Gothic Heavy" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ÚLTIMOS VIAJES]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="710" y="5" width="112" height="23" forecolor="#A7CECD" backcolor="#A7CECD" uuid="5c296fb9-9795-4659-aa6a-b4376642ab37"/>
+			</rectangle>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="60">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement mode="Opaque" x="-10" y="30" width="76" height="30" backcolor="#A7CECD" uuid="c02a55de-143f-40fa-be1b-ee65a8591236">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4711cfcf-0148-4b1b-b56f-46fbcca9cd91"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nª Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="66" y="30" width="66" height="30" backcolor="#A7CECD" uuid="25bc4cd1-67ae-4b53-984e-aef9049024ce">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9730b30b-69c9-4954-b843-8f779cd99369"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Foto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="132" y="30" width="66" height="30" backcolor="#A7CECD" uuid="399e76e5-8042-4851-a751-b54a0b545fcd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="265ffb34-ab81-4366-a25d-040c2b443ab9"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Primer Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="198" y="30" width="66" height="30" backcolor="#A7CECD" uuid="bdaa5264-d663-4c35-834e-e75fc22e6199">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2cf3e2f7-5529-40a9-a007-1bdfa54118aa"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Segundo Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="264" y="30" width="66" height="30" backcolor="#A7CECD" uuid="14874031-5c71-4d13-9a41-17a8a0170d3f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1da13bc2-2c7f-43a3-8c05-ac02dc9b8f16"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Primer Apellido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="330" y="30" width="66" height="30" backcolor="#A7CECD" uuid="9bc9bc94-0694-4aa2-a663-85a71764c226">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c44b6b2f-789d-49fe-90f5-b7b69867b5df"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Segundo Apellido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="396" y="30" width="66" height="30" backcolor="#A7CECD" uuid="9039689c-4431-4d1e-8442-5341587073ef">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b929a557-bd31-4471-8bf7-8f5af27a3235"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Edad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="462" y="30" width="66" height="30" backcolor="#A7CECD" uuid="e0f37330-b962-420b-a07e-d670e0ecc443">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c40cef24-955f-4612-bfab-5f7f743d15d1"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pais de residencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="528" y="30" width="72" height="30" backcolor="#A7CECD" uuid="de043c99-24ef-478d-9bf9-51aa92804c1d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="460d2331-73b5-4f9d-8d13-b3c433d47925"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pais destino]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="600" y="30" width="66" height="30" backcolor="#A7CECD" uuid="60a23833-47e9-45b8-a6f6-b9318914e02d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="22e07bfa-9dc9-4ca1-9b7f-4b73df978675"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Inicio de viaje]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="666" y="30" width="66" height="30" backcolor="#A7CECD" uuid="60f64ae4-4cf8-4ce6-b197-080a685c453a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="594f909a-605b-458b-8187-9dd7f9649bd9"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fin de viaje]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="732" y="30" width="82" height="30" backcolor="#A7CECD" uuid="792fd769-9505-4478-80ac-1482cde94753">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6fc07ad5-7474-46a7-99eb-5eff6170500d"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Visitas]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="60">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField>
+				<reportElement x="-10" y="20" width="76" height="30" uuid="cb371027-3ad4-4cd2-a8da-2072292f0f2e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4711cfcf-0148-4b1b-b56f-46fbcca9cd91"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Nª Id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="132" y="20" width="66" height="30" uuid="07439d36-0711-49de-af9f-aa60325c8710">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="265ffb34-ab81-4366-a25d-040c2b443ab9"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Primer Nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="198" y="20" width="66" height="30" uuid="3ca82ef1-5e6c-4239-b244-90c2ba6ce624">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2cf3e2f7-5529-40a9-a007-1bdfa54118aa"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Segundo Nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="264" y="20" width="66" height="30" uuid="5c0e95df-6ea1-4fc2-982c-75d99dc08c59">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1da13bc2-2c7f-43a3-8c05-ac02dc9b8f16"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Primer Apellido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="330" y="20" width="66" height="30" uuid="3a5dd457-8798-473a-b239-da5b73008359">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c44b6b2f-789d-49fe-90f5-b7b69867b5df"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Segundo Apellido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="396" y="20" width="66" height="30" uuid="0a5bbbf5-eda4-4585-9785-0a38a0f91d53">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b929a557-bd31-4471-8bf7-8f5af27a3235"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Edad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="600" y="20" width="66" height="30" uuid="068dceb2-14f8-4707-a690-63396f5c9dae">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="22e07bfa-9dc9-4ca1-9b7f-4b73df978675"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Fecha de inicio del viaje}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="666" y="20" width="66" height="30" uuid="6cb4f5c2-947f-400c-a9af-23256916e80f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="594f909a-605b-458b-8187-9dd7f9649bd9"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Fecha de fin de viaje}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="732" y="20" width="66" height="30" uuid="2825fb0a-924f-4729-917d-134dd6c268fa">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6fc07ad5-7474-46a7-99eb-5eff6170500d"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Lugares donde visito}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="80" y="20" width="66" height="30" uuid="578aef12-8be9-47c0-828c-d60cfcaea81e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$F{Foto}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="462" y="20" width="66" height="30" uuid="ef2d740e-3cdf-4101-9f87-1dfd2a25c9ad">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$F{Pais de residencia}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="534" y="20" width="66" height="30" uuid="496dc68d-2481-49a5-96db-e3393e428251">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$F{Pais donde viajo}]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="62" splitType="Stretch">
+			<textField>
+				<reportElement mode="Transparent" x="-20" y="20" width="842" height="40" forecolor="#004A53" backcolor="#E68585" uuid="00d826df-82b8-46ac-bb2d-89dcca810dbb"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[
+$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
