@@ -19,4 +19,12 @@
 8. **Simulation/Hospitals:** Control de insumos
 9. **Simulation/Help:** Ayuda humanitaria
 10. **Simulation/Internet:** Internet
-11. **Auxiliars:** Funciones soporte para ciertos reportes
+11. **report_queries/Auxiliars:** Funciones soporte para ciertos reportes
+12. **report_queries/Reports**
+
+# Open Reports in Jasper
+1. Abrir JasperSoft Studio
+2. Abrir cualquier archivo `.jrxml` ubicado en la carpeta `reports_jasper`
+3. Se presiona el boton para el Dataset y se le da a `Read Fields`
+4. Si se cambian los parametros que devuelven imagen por `BLOB` hay que ponerlos otra vez como `java.awt.Image` y darle OK, no hace falta darle a read fields nuevamente
+5. Cliquea en Preview para el reporte y coloca los parametros que se pidan
