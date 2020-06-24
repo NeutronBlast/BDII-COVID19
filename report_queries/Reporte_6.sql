@@ -11,3 +11,4 @@ BEGIN
                 JOIN PAISES p ON e.id_pais = p.id
                 WHERE p.id = num_pais AND i.estado = 'I' AND (i.hist.fec_i BETWEEN FECHA_INICIO AND FECHA_FIN) ORDER BY i.hist.fec_i asc;
 END;
+--
