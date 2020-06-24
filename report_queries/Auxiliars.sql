@@ -53,7 +53,7 @@ BEGIN
 
     RETURN (resultado);
 END;
-
+/
 /* Concatenador de patologias*/
 CREATE OR REPLACE FUNCTION concat_patologia (p_id_pers NUMBER) RETURN VARCHAR2
 AS
@@ -85,7 +85,7 @@ BEGIN
         
     RETURN (v_concat);
 END;
-
+/
 /* Concatenador de Sintomas*/
 CREATE OR REPLACE FUNCTION concat_sintoma (p_id_pers NUMBER) RETURN VARCHAR2
 AS
@@ -117,7 +117,7 @@ BEGIN
 
     RETURN (v_concat);
 END;
-
+/
 /* Concatenador de Fechas de Sintomas*/
 CREATE OR REPLACE FUNCTION concat_fec_sintoma (p_id_pers NUMBER) RETURN VARCHAR2
 AS
@@ -155,7 +155,7 @@ BEGIN
     
     RETURN (v_concat);
 END;
-
+/
 /* ¿Tratado con atencion medica? */
 CREATE OR REPLACE FUNCTION tratado_si_no (p_id_pers NUMBER) RETURN VARCHAR2
 AS
