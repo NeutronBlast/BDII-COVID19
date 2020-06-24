@@ -21,7 +21,7 @@ BEGIN
         AND h.hist.fec_f BETWEEN FECHA_INICIO AND FECHA_FIN
         ORDER BY h.hist.fec_i;
 END;
-
+/
 -- Reporte 4
 CREATE OR REPLACE PROCEDURE REPORTE_4 (ORACLE_REF_CURSOR OUT SYS_REFCURSOR, PAIS IN NUMBER, ESTADO IN NUMBER) IS 
 BEGIN
@@ -36,4 +36,37 @@ BEGIN
     FROM ESTADOS e 
     JOIN PAISES p ON p.id = e.id_pais
     WHERE e.id_pais = PAIS AND e.id = ESTADO;
+END;
+
+/
+
+-- Reporte 5
+CREATE OR REPLACE PROCEDURE REPORTE_5 (ORACLE_REF_CURSOR OUT SYS_REFCURSOR, PAIS IN NUMBER) IS 
+BEGIN
+    OPEN ORACLE_REF_CURSOR FOR 
+        SELECT p.bandera as "Pais", h.hist.fec_i as "Fecha de Inicio", NVL(h.hist.fec_f, to_date('31/12/2020', 'DD-MM-YYYY')) as "Fecha Fin", 
+        'Modelo ' || m.id || ' - ' || m.nom as "Modelo"
+        FROM historico_modelos h 
+        JOIN estados e ON e.id = h.id_estado
+        JOIN paises p ON p.id = e.id_pais
+        JOIN modelos m ON m.id = h.id_modelo
+        WHERE p.id = PAIS
+        ORDER BY h.hist.fec_i;
+END;
+
+/
+
+-- Reporte 6
+CREATE OR REPLACE PROCEDURE REPORTE_6(ORACLE_REF_CURSOR OUT SYS_REFCURSOR, FECHA_INICIO IN DATE, FECHA_FIN IN DATE,num_pais IN NUMBER) IS
+BEGIN
+    OPEN ORACLE_REF_CURSOR FOR
+        SELECT p.nom,p.bandera,(SELECT COUNT(*) FROM infectados_covid a 
+                JOIN ESTADOS e ON a.id_estado = e.id
+                JOIN PAISES p ON e.id_pais = p.id
+                WHERE p.id = num_pais AND a.estado = 'I' AND (a.hist.fec_i BETWEEN FECHA_INICIO AND i.hist.fec_i)) as "infectados",
+                i.hist.fec_i as "Fecha"
+                FROM infectados_covid i 
+                JOIN ESTADOS e ON i.id_estado = e.id
+                JOIN PAISES p ON e.id_pais = p.id
+                WHERE p.id = num_pais AND i.estado = 'I' AND (i.hist.fec_i BETWEEN FECHA_INICIO AND FECHA_FIN) ORDER BY i.hist.fec_i asc;
 END;
