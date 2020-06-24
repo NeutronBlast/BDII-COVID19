@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reporte_6" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="86a307da-ca6c-47de-bf24-0768d88e0701">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PracticaRepo"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="FECHA_INICIO" class="java.sql.Date"/>
+	<parameter name="FECHA_FIN" class="java.sql.Date"/>
+	<parameter name="num_pais" class="java.math.BigDecimal"/>
+	<parameter name="nom_pais" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="bandera" class="java.awt.Image" isForPrompting="false"/>
+	<queryString language="plsql">
+		<![CDATA[{call REPORTE_6 ($P{ORACLE_REF_CURSOR},$P{FECHA_INICIO},$P{FECHA_FIN},$P{num_pais})}]]>
+	</queryString>
+	<field name="NOM" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="NOM"/>
+	</field>
+	<field name="BANDERA" class="java.awt.Image">
+		<property name="com.jaspersoft.studio.field.label" value="BANDERA"/>
+	</field>
+	<field name="infectados" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="infectados"/>
+	</field>
+	<field name="Fecha" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="Fecha"/>
+	</field>
+	<sortField name="Fecha"/>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{Fecha}]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="540" y="29" width="255" height="31" forecolor="#A7CECD" backcolor="#A7CECD" uuid="cb232d4b-ad0f-4b05-9eac-7aeaf8e1bd68"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="30" y="29" width="481" height="31" uuid="0d43daf1-d906-411c-ba4f-9314378627aa"/>
+				<textElement textAlignment="Center">
+					<font size="22"/>
+				</textElement>
+				<text><![CDATA[GRAFICA DE INFECCIONES]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="251" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<rectangle>
+				<reportElement x="281" y="5" width="504" height="240" uuid="49543a9c-cd2e-4b02-977f-8ba8168c1c2d"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="175" y="5" width="106" height="240" uuid="36f51d5f-b59d-420b-9e06-8b15996e278f"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="86" y="4" width="89" height="241" uuid="432b2d0f-4fcf-461d-af69-4865935706c0"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="4" y="5" width="82" height="240" uuid="2aba0bcb-18db-4649-b74e-e387ddeb3822"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="4" y="4" width="781" height="21" backcolor="#A7CECD" uuid="50e98f0d-e5a6-4835-8de8-c580ffb7083f"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="5" y="4" width="80" height="21" uuid="339d6cdc-3bbc-42c2-8e99-9c27fb04b6ef"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pais]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="86" y="4" width="89" height="21" uuid="9ad2adaf-0e54-4f5a-bc9c-d246d50d866a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha inicio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="175" y="4" width="106" height="21" uuid="1cc4a179-b018-44c2-98f2-542b8ff9f207"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Fin]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="281" y="4" width="504" height="21" uuid="7c534532-5947-4eb6-b7c3-a2c3e53bd256"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Grafica]]></text>
+			</staticText>
+			<textField evaluationTime="Auto">
+				<reportElement x="175" y="45" width="106" height="31" uuid="2f656dc2-af36-4ac6-9a42-6ebb63b7b008"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{FECHA_FIN}.toString()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="85" y="45" width="90" height="31" uuid="734e1bbd-c2e1-4a0b-90e4-3cab6009098a"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{FECHA_INICIO}.toString()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="10" y="30" width="70" height="60" uuid="dcdc6d1e-da8f-4014-b9ff-d7890558ba42"/>
+				<imageExpression><![CDATA[$F{BANDERA}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="5" y="85" width="81" height="21" uuid="b2c6beee-0dbc-41a2-96a2-25393a91345a"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{NOM}]]></textFieldExpression>
+			</textField>
+			<lineChart>
+				<chart evaluationTime="Report">
+					<reportElement x="335" y="45" width="411" height="200" uuid="88401cb9-c2ec-44fc-92aa-985fa4bcc42e"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<dataset resetType="Report"/>
+					<categorySeries>
+						<seriesExpression><![CDATA["INFECTADOS"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{Fecha}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{infectados}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<linePlot>
+					<plot/>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</valueAxisFormat>
+				</linePlot>
+			</lineChart>
+		</band>
+	</summary>
+</jasperReport>
