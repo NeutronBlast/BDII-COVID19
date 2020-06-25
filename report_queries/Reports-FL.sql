@@ -1,14 +1,14 @@
 -- Reporte 1
-CREATE OR REPLACE PROCEDURE reporte_1 (ORACLE_REF_CURSOR OUT SYS_REFCURSOR, p_pais NUMBER, p_estado VARCHAR, p_edad NUMBER, p_patologia VARCHAR)
+CREATE OR REPLACE PROCEDURE reporte_1 (ORACLE_REF_CURSOR OUT SYS_REFCURSOR, p_pais NUMBER, p_estado NUMBER, p_edad NUMBER, p_patologia VARCHAR)
 AS
 BEGIN
     OPEN ORACLE_REF_CURSOR FOR 
         SELECT 
         p.pers.img AS "Foto",
         p.pers.nom1 AS "Primer Nombre",
-        p.pers.nom2 AS "Segundo Nombre", 
+        NVL(p.pers.nom2, ' ')  AS "Segundo Nombre", 
         p.pers.ape1 AS "Primer Apellido", 
-        p.pers.ape2 AS "Segundo Apellido",
+        NVL(p.pers.ape2, ' ') AS "Segundo Apellido",
         TO_CHAR(p.pers.fec_nac, 'DD/MM/YYYY') AS "Fecha de Nacimiento",
         pa.bandera AS "Pais",
         p.pers.genero AS "Genero",
@@ -25,17 +25,17 @@ BEGIN
 END;
 /
 -- Reporte 2
-CREATE OR REPLACE PROCEDURE reporte_2 (ORACLE_REF_CURSOR OUT SYS_REFCURSOR, p_pais VARCHAR, p_estado VARCHAR )
+CREATE OR REPLACE PROCEDURE reporte_2 (ORACLE_REF_CURSOR OUT SYS_REFCURSOR, p_pais NUMBER, p_estado NUMBER )
 AS
 BEGIN
     OPEN ORACLE_REF_CURSOR FOR 
         SELECT 
-        p.id AS "nº ID",
+        p.id AS "Nº ID",
         p.pers.img AS "Foto",
         p.pers.nom1 AS "Primer Nombre",
-        p.pers.nom2 AS "Segundo Nombre", 
+        NVL(p.pers.nom2, ' ')  AS "Segundo Nombre", 
         p.pers.ape1 AS "Primer Apellido", 
-        p.pers.ape2 AS "Segundo Apellido",
+        NVL(p.pers.ape2, ' ') AS "Segundo Apellido",
         p.pers.edad(p.pers.fec_nac)AS "Edad",
         pa.bandera AS "Pais",
         p.pers.genero AS "Genero",
