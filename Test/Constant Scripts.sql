@@ -1,7 +1,7 @@
 --Scripts que voy a hacer a cada rato
 -- Infectar
 SET SERVEROUTPUT ON;
-EXECUTE CADENA_INFECCION (1, 12, '19/06/2020', '29/06/2020');
+EXECUTE CADENA_INFECCION (1, 12, '01/07/2020', '11/07/2020');
 
 -- Selects Infectar
 SELECT * FROM INFECTADOS_COVID; 

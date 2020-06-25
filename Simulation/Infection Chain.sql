@@ -186,6 +186,8 @@ BEGIN
 
         EXIT WHEN cont_externo = i OR num_infectados = total_people;
         END LOOP;
+
+        INSERT INTO historico_modelos VALUES (id_hist_modelo_seq.nextval, historia(fecha_i, fecha_f), in_estado, in_modelo);
 END;
 
 -- Aqui se decide quien va al hospital y quien muere

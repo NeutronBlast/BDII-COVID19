@@ -8,7 +8,7 @@
 
  `GRANT ALL PRIVILEGES TO FrankHesse;`
 
-# Script Order
+# Orden de ejecucion de los scripts
 1. **TDA:** Tipos de dato abstractos junto a bodies que no dependen de la creación de alguna tabla
 2. **Create Tables:** Tablas con constraints
 3. **Inserts:** 16 o más inserts por tabla
@@ -22,9 +22,17 @@
 11. **report_queries/Auxiliars:** Funciones soporte para ciertos reportes
 12. **report_queries/Reports**
 
-# Open Reports in Jasper
+# Abrir reportes en Jasper
 1. Abrir JasperSoft Studio
 2. Abrir cualquier archivo `.jrxml` ubicado en la carpeta `reports_jasper`
 3. Se presiona el boton para el Dataset y se le da a `Read Fields`
 4. Si se cambian los parametros que devuelven imagen por `BLOB` hay que ponerlos otra vez como `java.awt.Image` y darle OK, no hace falta darle a read fields nuevamente
 5. Cliquea en Preview para el reporte y coloca los parametros que se pidan
+
+# Parametros recomendados para reportes
+1. (WIP)
+2. (WIP)
+3. (WIP)
+4. (WIP)
+5. (WIP)
+6. (WIP)
