@@ -41,9 +41,6 @@ UPDATE INFECTADOS_COVID i SET i.estado = 'I', i.hist.fec_f = NULL WHERE estado =
 UPDATE PERSONAS p SET p.pers.fec_mue = null WHERE p.pers.fec_mue IS NOT NULL; 
 
 ----------------------------------------- VUELOS ------------------------------------------------
-SET SERVEROUTPUT ON;
-EXECUTE VUELOS ('19/06/2020', '29/06/2020');
-
 -- Select flights
 SELECT p.nom AS "PAIS ORIGEN", e.nom AS "ESTADO ORIGEN", pd.nom AS "PAIS DESTINO", ed.nom as "ESTADO DESTINO", p.id, p.pers.nom1 || ' ' || p.pers.ape1, h.hist.fec_i, h.hist.fec_f 
 FROM P_HV phv
@@ -52,7 +49,8 @@ JOIN historico_viajes h ON h.id = phv.id_viaje
 JOIN estados e ON e.id = h.id_estado_1
 JOIN paises p ON p.id = e.id_pais
 JOIN estados ed ON ed.id = h.id_estado_2
-JOIN paises pd ON pd.id = ed.id_pais;
+JOIN paises pd ON pd.id = ed.id_pais
+ORDER BY h.hist.fec_i;
 
 -- Delete
 TRUNCATE TABLE historico_viajes;

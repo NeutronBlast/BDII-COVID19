@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reporte 2" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="339f272d-2843-4ac0-b926-ab3c697d65ba">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="JBDC Adapter "/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="covid-19"/>
 	<parameter name="NUM_PAIS" class="java.math.BigDecimal"/>
 	<parameter name="NUM_ESTADO" class="java.math.BigDecimal"/>
 	<parameter name="ORACLE_REF_CURSOR" class="java.sql.ResultSet"/>
+	<parameter name="EDAD" class="java.lang.Integer"/>
 	<queryString language="plsql">
-		<![CDATA[{call reporte_2($P{ORACLE_REF_CURSOR}, $P{NUM_PAIS}, $P{NUM_ESTADO})}]]>
+		<![CDATA[{call reporte_2($P{ORACLE_REF_CURSOR}, $P{NUM_PAIS}, $P{NUM_ESTADO}, $P{EDAD})}]]>
 	</queryString>
-	<field name="nº ID" class="java.math.BigDecimal">
-		<property name="com.jaspersoft.studio.field.label" value="nº ID"/>
+	<field name="Nº ID" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="Nº ID"/>
 	</field>
 	<field name="Foto" class="java.awt.Image">
 		<property name="com.jaspersoft.studio.field.label" value="Foto"/>
@@ -209,7 +210,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1a01ef86-f20a-4946-a576-ebeeb178e5a8"/>
 				</reportElement>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{nº ID}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Nº ID}]]></textFieldExpression>
 			</textField>
 			<image>
 				<reportElement x="40" y="0" width="40" height="40" uuid="61d82931-9f0d-4070-b2bc-7682b0fd11f8">
@@ -308,7 +309,7 @@
 	<pageFooter>
 		<band height="40" splitType="Stretch">
 			<textField>
-				<reportElement mode="Transparent" x="-20" y="10" width="840" height="30" forecolor="#004A53" backcolor="#E68585" uuid="8720a8d8-d07c-477a-8b28-74d6d45b732f"/>
+				<reportElement mode="Transparent" x="-20" y="5" width="840" height="30" forecolor="#004A53" backcolor="#E68585" uuid="8720a8d8-d07c-477a-8b28-74d6d45b732f"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>

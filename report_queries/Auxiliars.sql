@@ -31,6 +31,13 @@ BEGIN
     DBMS_OUTPUT.put_line('No se encontro ningun dato'||SQLERRM);
     END;
 
+    IF v_output IS NULL THEN 
+        SELECT e.nom
+        INTO v_output
+        FROM HISTORICO_VIAJES v 
+        JOIN ESTADOS e ON e.id = v.id_estado_2
+        WHERE v.id = viaje;
+    END IF;    
     RETURN (v_output);
 END;
 /

@@ -301,12 +301,11 @@
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="62" splitType="Stretch">
+		<band height="80" splitType="Stretch">
 			<textField>
-				<reportElement mode="Transparent" x="-20" y="20" width="842" height="40" forecolor="#004A53" backcolor="#E68585" uuid="00d826df-82b8-46ac-bb2d-89dcca810dbb"/>
+				<reportElement mode="Transparent" x="-20" y="30" width="842" height="40" forecolor="#004A53" backcolor="#E68585" uuid="00d826df-82b8-46ac-bb2d-89dcca810dbb"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[
-$V{PAGE_NUMBER}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>

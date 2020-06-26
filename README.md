@@ -30,9 +30,22 @@
 5. Cliquea en Preview para el reporte y coloca los parametros que se pidan
 
 # Parametros recomendados para reportes
-1. (WIP)
-2. (WIP)
-3. (WIP)
-4. (WIP)
-5. (WIP)
-6. (WIP)
+1. Personas Infectadas
+    a. Pais = 6, Estado = 12, Edad = 21, Patologia = NO
+    b. Pais = 6, Estado = 12, Edad = 21, Patologia = SI
+    c. Pais = 1, Estado = 1, Edad = 26, Patologia = NO
+    d. Pais = 1, Estado = 1, Edad = 26, Patologia = SI
+2. Personas con sintomas
+    a. Pais = 6, Estado = 12, Edad = 21
+    b. Pais = 1, Estado = 1, Edad = 26
+3. Viajes
+    a. Fecha de Inicio = 01 de Enero de 2020, Fecha Fin = 01 de Junio de 2020
+    b. Fecha Inicio = 19 de Junio de 2020, Fecha Fin = 19 de Septiembre de 2020
+4. Reporte por paises
+    a. Pais = 6, Estado = 12
+    b. Pais = 1, Estado = 1
+5. Reporte por modelos
+    a. Pais = 6
+    b. Pais = 1
+6. Grafica
+    a. Pais = 6, Fecha de Inicio = 30 de Mayo de 2020, Fecha de Fin = 15 de Julio de 2020

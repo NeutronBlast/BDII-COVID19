@@ -63,7 +63,7 @@ BEGIN
 END;
 /
 -- Reporte 2
-CREATE OR REPLACE PROCEDURE reporte_2 (ORACLE_REF_CURSOR OUT SYS_REFCURSOR, p_pais NUMBER, p_estado NUMBER )
+CREATE OR REPLACE PROCEDURE REPORTE_2 (ORACLE_REF_CURSOR OUT SYS_REFCURSOR, p_pais NUMBER, p_estado NUMBER, p_edad NUMBER)
 AS
 BEGIN
     OPEN ORACLE_REF_CURSOR FOR 
@@ -88,7 +88,10 @@ BEGIN
         JOIN urbanizaciones u ON ci.id = u.id_ciudad
         JOIN calles ca ON u.id = ca.id_urb
         JOIN personas p ON ca.id = p.id_calle    
-        WHERE pa.id = p_pais AND e.id = p_estado;
+        WHERE pa.id = p_pais AND e.id = p_estado AND p.pers.edad(p.pers.fec_nac) = p_edad
+        AND EXISTS (
+            SELECT * FROM P_S WHERE id_persona = p.id 
+        );
 END;
 /
 -- Reporte 3
@@ -110,8 +113,8 @@ BEGIN
         JOIN historico_viajes h ON h.id = phv.id_viaje
         JOIN ESTADOS ev ON ev.id = h.id_estado_2
         JOIN PAISES pv ON pv.id = ev.id_pais
-        WHERE h.hist.fec_i BETWEEN FECHA_INICIO AND FECHA_FIN
-        AND h.hist.fec_f BETWEEN FECHA_INICIO AND FECHA_FIN
+        WHERE h.hist.fec_i BETWEEN TO_DATE(TO_CHAR(FECHA_INICIO, 'DD-MM-YYYY'), 'DD-MM-YYYY') AND TO_DATE(TO_CHAR(FECHA_FIN, 'DD-MM-YYYY'), 'DD-MM-YYYY')
+        OR h.hist.fec_f BETWEEN TO_DATE(TO_CHAR(FECHA_INICIO, 'DD-MM-YYYY'), 'DD-MM-YYYY') AND TO_DATE(TO_CHAR(FECHA_FIN, 'DD-MM-YYYY'), 'DD-MM-YYYY')
         ORDER BY h.hist.fec_i;
 END;
 /
@@ -121,11 +124,11 @@ BEGIN
     OPEN ORACLE_REF_CURSOR FOR
     SELECT p.bandera as "Pais", TO_CHAR(POBLACION_PAIS(PAIS)) || ' habitantes' as "Poblacion Pais", e.nom || ' - ' || p.nom as "Estado", e.data.numero_infectados(e.id, 'E') as "Infectados",
     TO_CHAR(ROUND(e.data.numero_infectados(e.id, 'E')*100/
-    POBLACION_PAIS(PAIS), 10)) || '%' as "Porcentaje Infectados",
+    POBLACION_PAIS(PAIS), 4), '0.9999') || '%' as "Porcentaje Infectados",
     e.data.numero_fallecidos(e.id, 'E') as "Fallecidos", TO_CHAR(ROUND(e.data.numero_fallecidos(e.id, 'E')*100/
-    POBLACION_PAIS(PAIS), 10)) || '%' as "Porcentaje Fallecidos", e.data.numero_recuperados(e.id, 'E') as "Recuperados",
+    POBLACION_PAIS(PAIS), 4), '0.9999') || '%' as "Porcentaje Fallecidos", e.data.numero_recuperados(e.id, 'E') as "Recuperados",
     TO_CHAR(ROUND(e.data.numero_recuperados(e.id, 'E')*100/
-    POBLACION_PAIS(PAIS), 10)) || '%' as "Porcentaje Recuperados"
+    POBLACION_PAIS(PAIS), 4), '0.9999') || '%' as "Porcentaje Recuperados"
     FROM ESTADOS e 
     JOIN PAISES p ON p.id = e.id_pais
     WHERE e.id_pais = PAIS AND e.id = ESTADO;
