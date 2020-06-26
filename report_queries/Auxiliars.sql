@@ -55,7 +55,7 @@ BEGIN
 END;
 /
 /* Concatenador de patologias*/
-CREATE OR REPLACE FUNCTION concat_patologia (p_id_pers NUMBER) RETURN VARCHAR2
+CREATE OR REPLACE FUNCTION CONCAT_PATOLOGIA (p_id_pers NUMBER) RETURN VARCHAR2
 AS
     CURSOR v_cursor IS 
         SELECT id_patologia
@@ -70,8 +70,8 @@ BEGIN
         WHILE v_cursor%FOUND 
         LOOP  
             SELECT nom into v_pat FROM patologias WHERE id = v_num_id;
-            IF v_concat IS NOT null THEN
-                v_concat := v_concat || chr(13) || v_pat;
+            IF v_concat IS NOT NULL THEN
+                v_concat := v_concat || ' - ' || v_pat;
             ELSE
                 v_concat := v_pat;
             END IF;
@@ -79,7 +79,7 @@ BEGIN
         END LOOP;
     CLOSE v_cursor;
 
-    IF  v_concat IS null THEN
+    IF v_concat IS NULL THEN
         v_concat := 'N/A';
     END IF;
         
@@ -87,7 +87,7 @@ BEGIN
 END;
 /
 /* Concatenador de Sintomas*/
-CREATE OR REPLACE FUNCTION concat_sintoma (p_id_pers NUMBER) RETURN VARCHAR2
+CREATE OR REPLACE FUNCTION CONCAT_SINTOMA (p_id_pers NUMBER) RETURN VARCHAR2
 AS
     CURSOR v_cursor IS 
         SELECT id_sintoma
@@ -103,7 +103,7 @@ BEGIN
         LOOP  
             SELECT nom into v_sint FROM sintomas WHERE id = v_num_id;
             IF v_concat IS NOT null THEN
-                v_concat := v_concat || chr(13) || v_sint;
+                v_concat := v_concat || ' - ' || v_sint;
             ELSE
                 v_concat := v_sint;
             END IF;

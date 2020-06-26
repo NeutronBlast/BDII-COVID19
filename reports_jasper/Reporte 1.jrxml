@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reporte 1" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e805891c-dfc5-4fb1-9d3f-baa6e08bfe31">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="JBDC Adapter "/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="covid-19"/>
 	<parameter name="NUM_PAIS" class="java.math.BigDecimal"/>
 	<parameter name="NUM_ESTADO" class="java.math.BigDecimal"/>
 	<parameter name="EDAD" class="java.math.BigDecimal"/>
@@ -219,9 +219,9 @@
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="40" splitType="Stretch">
+		<band height="50" splitType="Stretch">
 			<textField>
-				<reportElement mode="Transparent" x="-20" y="10" width="840" height="30" forecolor="#004A53" backcolor="#E68585" uuid="327e7994-b880-48ce-bc39-5016e8c9cd1e"/>
+				<reportElement mode="Transparent" x="-20" y="20" width="840" height="30" forecolor="#004A53" backcolor="#E68585" uuid="327e7994-b880-48ce-bc39-5016e8c9cd1e"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>

@@ -1,28 +1,22 @@
 --Scripts que voy a hacer a cada rato
--- Infectar
-SET SERVEROUTPUT ON;
-EXECUTE CADENA_INFECCION (1, 12, '01/07/2020', '11/07/2020');
 
 -- Selects Infectar
-SELECT * FROM INFECTADOS_COVID; 
 SELECT p.id, p.pers.nom1 || ' ' || p.pers.ape1, i.HIST.FEC_I FROM INFECTADOS_COVID i
 JOIN PERSONAS p ON p.id = i.id_persona
 ORDER BY i.hist.fec_i;
 
+-- Sintomas
 SELECT pe.id, pe.pers.nom1 || ' ' || pe.pers.ape1, p.fec_i, s.id, s.nom FROM P_S p
 JOIN PERSONAS pe ON pe.id = p.id_persona
 JOIN sintomas s ON s.id = p.id_sintoma
 ORDER BY p.fec_i;
 
 -- Delete Infectar
-DELETE FROM INFECTADOS_COVID WHERE ID > 4;
+DELETE FROM INFECTADOS_COVID WHERE ID > 21;
 TRUNCATE TABLE P_S;
 
 
 ----------------------------------------- DESTINO ------------------------------------------------
-SET SERVEROUTPUT ON;
-EXECUTE DESTINO (12, '19/06/2020', '29/06/2020');
-
 -- Select hospital
 SELECT t.id_persona AS "ID_PERSONA", p.pers.nom1 || ' ' || p.pers.ape1 as "NOMBRE Y APELLIDO", t.hist.fec_i
 FROM historico_tratamiento t
