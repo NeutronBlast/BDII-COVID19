@@ -13,12 +13,7 @@
 2. **Create Tables:** Tablas con constraints
 3. **Inserts:** 16 o más inserts por tabla
 4. **TDA Bodies:** Bodies dependientes de tablas creadas
-5. **Simulation/Infection Chain:** Correspondiente a las infecciones por COVID-19
-6. **Simulation/Borders:** Control de fronteras
-7. **Simulation/Flights:** Vuelos
-8. **Simulation/Hospitals:** Control de insumos
-9. **Simulation/Help:** Ayuda humanitaria
-10. **Simulation/Internet:** Internet
+5. **Simulation:** Todos los scripts de la simulación (el orden de compilación no importa)
 11. **report_queries/Auxiliars:** Funciones soporte para ciertos reportes
 12. **report_queries/Reports**
 
