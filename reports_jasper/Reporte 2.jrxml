@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reporte 2" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="339f272d-2843-4ac0-b926-ab3c697d65ba">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="covid-19"/>
-	<parameter name="NUM_PAIS" class="java.math.BigDecimal"/>
-	<parameter name="NUM_ESTADO" class="java.math.BigDecimal"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="JBDC Adapter "/>
+	<parameter name="NUM_PAIS" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="NUM_ESTADO" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
 	<parameter name="ORACLE_REF_CURSOR" class="java.sql.ResultSet"/>
-	<parameter name="EDAD" class="java.lang.Integer"/>
+	<parameter name="EDAD" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
 	<queryString language="plsql">
 		<![CDATA[{call reporte_2($P{ORACLE_REF_CURSOR}, $P{NUM_PAIS}, $P{NUM_ESTADO}, $P{EDAD})}]]>
 	</queryString>
