@@ -11,6 +11,10 @@ random_n_resources number; -- Numero de recursos por donacion (random)
 random_resource number;
 money number;
 help_id number;
+-- Valores output
+pais_da paises.nom%type;
+pais_recibe paises.nom%type;
+insumo insumos.nom%type;
 BEGIN
     -- Numero de iteraciones
     cont_externo:= 0;
@@ -50,24 +54,46 @@ BEGIN
             -- Dar dinero
             money:= TRUNC(DBMS_RANDOM.VALUE(1,10))*100000;
 
-            INSERT INTO historico_ayuda_humanitaria VALUES (id_hist_ayuda_seq.nextval, historia((SELECT (SYSDATE + cont_externo) FROM DUAL), (SELECT (SYSDATE + cont_externo) FROM DUAL)), money, most_travels, receiver);
+            INSERT INTO historico_ayuda_humanitaria VALUES (id_hist_ayuda_seq.nextval, historia(fecha_i + cont_externo, fecha_f + cont_externo), money, most_travels, receiver);
             
             SELECT h.id 
             INTO help_id 
             FROM historico_ayuda_humanitaria h 
-            WHERE h.hist.fec_i = h.hist.fec_f AND h.hist.fec_f = (SELECT (SYSDATE + cont_externo) FROM DUAL)
+            WHERE h.hist.fec_i = fecha_i + cont_externo AND h.hist.fec_f = fecha_f + cont_externo
             AND h.dinero = money AND h.id_pais_1 = most_travels AND h.id_pais_2 = receiver AND ROWNUM = 1;
+
+            SELECT nom INTO pais_da
+            FROM paises
+            WHERE id = most_travels;
+
+            SELECT nom INTO pais_recibe
+            FROM paises
+            WHERE id = receiver;
+
+            DBMS_OUTPUT.PUT_LINE(pais_da || ' envia ayuda humanitaria a ' || pais_recibe || ' de ' ||
+            money || '$');
 
             LOOP
                 SELECT id 
                 INTO random_resource
                 FROM (
                     SELECT i.id FROM insumos i 
+                    WHERE NOT EXISTS (
+                        SELECT * FROM A_I ai WHERE ai.id_insumo = i.id AND ai.id_ayuda = help_id
+                    )
                     ORDER BY DBMS_RANDOM.RANDOM
                     )
                 WHERE ROWNUM =1;
 
+                SELECT nom 
+                INTO insumo 
+                FROM insumos 
+                WHERE id = random_resource;
+
                 random_n_resources:= TRUNC(DBMS_RANDOM.VALUE(1,5))*1000;
+
+                DBMS_OUTPUT.PUT_LINE(' Se envian ' || random_n_resources || ' de ' ||
+                insumo);
 
                 INSERT INTO A_I ai VALUES (random_n_resources, random_resource, help_id);
             

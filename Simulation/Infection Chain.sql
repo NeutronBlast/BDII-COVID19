@@ -11,12 +11,15 @@ i number; -- Numero de dias que voy a iterar
 num_infectados number;
 max_random_infected number;
 random_person number;
-random_interval number;
 random_ns number; -- Numero de sintomas que se pondran
 random_s number; -- Sintoma aleatorio
 cont_s number; -- Contador para loop interno de insertar sintomas
 cont number; -- Contador para loop interno de infectar personas con coronita
 cont_externo number; -- Contador de loop externo para saber por cuantos infectados infectare mas gente por coronita
+-- Valores output
+nombre personas.pers.nom1%type;
+apellido personas.pers.ape1%type;
+fecha_infeccion date;
 BEGIN
     -- Cadena de infeccion para libre movilidad
     cont_externo:= 0;
@@ -65,15 +68,21 @@ BEGIN
                 WHEN NO_DATA_FOUND THEN random_person := 0;
             END;
 
-            random_interval := TRUNC(DBMS_RANDOM.value(0,11)); -- Intervalo de infeccion
-
             --No se hace loop hasta que haya un infectable por si acaso toda la gente del estado se llegara a infectar
             --Si la persona seleccionada no se puede infectar trataremos de infectar a un viajero
-            IF random_person <> 0 THEN                
-                --DBMS_OUTPUT.PUT_LINE('Por aqui: ' || random_person);
+            IF random_person <> 0 THEN
+
+                SELECT p.pers.nom1, p.pers.ape1
+                INTO nombre, apellido
+                FROM personas p
+                WHERE p.id = random_person;
+
+                fecha_infeccion:=fecha_i+cont_externo;
+
+                DBMS_OUTPUT.PUT_LINE('Se infecto: ' || nombre || ' ' || apellido || ' el dia ' || fecha_infeccion );
 
                 -- Por cada infectado por coronita insertamos un numero aleatorio de sintomas
-                INSERT INTO infectados_covid VALUES (id_infectado_seq.nextval, historia(fecha_i + cont_externo + random_interval,
+                INSERT INTO infectados_covid VALUES (id_infectado_seq.nextval, historia(fecha_i,
                 null), 'I', random_person, null, in_estado);
                 
                 cont_s:= 0;
@@ -96,7 +105,7 @@ BEGIN
                     END;
                     -- Si no esta repetido, insertar
                     IF random_s <> 0 THEN
-                    INSERT INTO P_S VALUES (random_person, random_s, fecha_i + cont_externo);
+                        INSERT INTO P_S VALUES (random_person, random_s, fecha_i + cont_externo);
                     cont_s:=cont_s+1;
                     END IF;
 
@@ -131,6 +140,11 @@ infection_date date;
 hospital_date date;
 hospital_date_interval number;
 hospital_id number;
+-- Valores output
+nombre personas.pers.nom1%type;
+apellido personas.pers.ape1%type;
+hospital recintos_salud.nom%type;
+fecha_h date;
 BEGIN
     -- Numero de iteraciones
     cont_externo:= 0;
@@ -196,6 +210,21 @@ BEGIN
                 AND i.hist.fec_f IS NULL;
 
                 hospital_date_interval:= TRUNC(DBMS_RANDOM.VALUE(5,21));
+
+                -- Output
+                SELECT p.pers.nom1, p.pers.ape1
+                INTO nombre, apellido
+                FROM personas p
+                WHERE p.id = random_person;
+
+                SELECT r.nom
+                INTO hospital
+                FROM recintos_salud r
+                WHERE r.id = hospital_id;
+
+                fecha_h:=infection_date + hospital_date_interval;
+                
+                DBMS_OUTPUT.PUT_LINE('La persona ' || nombre || ' ' || apellido || ' fue enviada al hospital ' || hospital || ' el dia ' || fecha_h);
 
                 INSERT INTO historico_tratamiento VALUES (id_hist_tratamiento_seq.nextval, historia(infection_date + hospital_date_interval, null), random_person, hospital_id); 
             END IF; 
@@ -265,6 +294,17 @@ BEGIN
                     UPDATE personas p SET p.pers.fec_mue = hospital_date + hospital_date_interval
                     WHERE id = random_person;
                 END IF; -- If de si fue hospitalizado antes o no
+
+            -- Output
+                SELECT p.pers.nom1, p.pers.ape1
+                INTO nombre, apellido
+                FROM personas p
+                WHERE p.id = random_person;
+
+                fecha_h:=hospital_date + hospital_date_interval;
+                
+                DBMS_OUTPUT.PUT_LINE('La persona ' || nombre || ' ' || apellido || ' murio el dia ' || fecha_h);
+
             END IF; -- Si hay personas hospitalizables
 
             END IF; -- Chance
@@ -327,6 +367,16 @@ BEGIN
                     UPDATE infectados_covid i SET i.estado = 'R', i.hist.fec_f = i.hist.fec_i + hospital_date_interval WHERE id_persona = random_person;
                 END IF; -- If de si fue hospitalizado antes o no
                 END IF; -- Si esta en el hospital
+            
+            -- Output
+                SELECT p.pers.nom1, p.pers.ape1
+                INTO nombre, apellido
+                FROM personas p
+                WHERE p.id = random_person;
+
+                fecha_h:=hospital_date + hospital_date_interval;
+                
+                DBMS_OUTPUT.PUT_LINE('La persona ' || nombre || ' ' || apellido || ' se recupero el dia ' || fecha_h);
             END IF; -- Si es recuperable
         END IF; -- Diferente de NULL
 

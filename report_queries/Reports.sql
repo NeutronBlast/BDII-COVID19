@@ -690,7 +690,8 @@ BEGIN
                         NVL(p.pers.ape2, ' ') AS "Segundo Apellido",
                         p.pers.edad(p.pers.fec_nac)AS "Edad",
                         pa.bandera AS "Pais",
-                        p.pers.genero AS "Genero",
+                        (CASE WHEN p.pers.genero = 'M' THEN 'Masculino'
+                        ELSE 'Femenino' END) AS "Genero",
                         e.nom AS "Estado",
                         concat_patologia (p.id) AS "Patologia que sufre",
                         concat_sintoma (p.id) AS "Sintoma que presenta",
@@ -714,7 +715,8 @@ BEGIN
                         NVL(p.pers.ape2, ' ') AS "Segundo Apellido",
                         p.pers.edad(p.pers.fec_nac)AS "Edad",
                         pa.bandera AS "Pais",
-                        p.pers.genero AS "Genero",
+                       (CASE WHEN p.pers.genero = 'M' THEN 'Masculino'
+                        ELSE 'Femenino' END) AS "Genero",
                         e.nom AS "Estado",
                         concat_patologia (p.id) AS "Patologia que sufre",
                         concat_sintoma (p.id) AS "Sintoma que presenta",
@@ -741,7 +743,8 @@ BEGIN
                         NVL(p.pers.ape2, ' ') AS "Segundo Apellido",
                         p.pers.edad(p.pers.fec_nac)AS "Edad",
                         pa.bandera AS "Pais",
-                        p.pers.genero AS "Genero",
+                        (CASE WHEN p.pers.genero = 'M' THEN 'Masculino'
+                        ELSE 'Femenino' END) AS "Genero",
                         e.nom AS "Estado",
                         concat_patologia (p.id) AS "Patologia que sufre",
                         concat_sintoma (p.id) AS "Sintoma que presenta",
@@ -766,7 +769,8 @@ BEGIN
                         NVL(p.pers.ape2, ' ') AS "Segundo Apellido",
                         p.pers.edad(p.pers.fec_nac)AS "Edad",
                         pa.bandera AS "Pais",
-                        p.pers.genero AS "Genero",
+                        (CASE WHEN p.pers.genero = 'M' THEN 'Masculino'
+                        ELSE 'Femenino' END) AS "Genero",
                         e.nom AS "Estado",
                         concat_patologia (p.id) AS "Patologia que sufre",
                         concat_sintoma (p.id) AS "Sintoma que presenta",
@@ -795,7 +799,8 @@ BEGIN
                         NVL(p.pers.ape2, ' ') AS "Segundo Apellido",
                         p.pers.edad(p.pers.fec_nac)AS "Edad",
                         pa.bandera AS "Pais",
-                        p.pers.genero AS "Genero",
+                        (CASE WHEN p.pers.genero = 'M' THEN 'Masculino'
+                        ELSE 'Femenino' END) AS "Genero",
                         e.nom AS "Estado",
                         concat_patologia (p.id) AS "Patologia que sufre",
                         concat_sintoma (p.id) AS "Sintoma que presenta",
@@ -820,7 +825,8 @@ BEGIN
                         NVL(p.pers.ape2, ' ') AS "Segundo Apellido",
                         p.pers.edad(p.pers.fec_nac)AS "Edad",
                         pa.bandera AS "Pais",
-                        p.pers.genero AS "Genero",
+                        (CASE WHEN p.pers.genero = 'M' THEN 'Masculino'
+                        ELSE 'Femenino' END) AS "Genero",
                         e.nom AS "Estado",
                         concat_patologia (p.id) AS "Patologia que sufre",
                         concat_sintoma (p.id) AS "Sintoma que presenta",
@@ -846,7 +852,8 @@ BEGIN
                     NVL(p.pers.ape2, ' ') AS "Segundo Apellido",
                     p.pers.edad(p.pers.fec_nac)AS "Edad",
                     pa.bandera AS "Pais",
-                    p.pers.genero AS "Genero",
+                    (CASE WHEN p.pers.genero = 'M' THEN 'Masculino'
+                    ELSE 'Femenino' END) AS "Genero",
                     e.nom AS "Estado",
                     concat_patologia (p.id) AS "Patologia que sufre",
                     concat_sintoma (p.id) AS "Sintoma que presenta",
@@ -873,7 +880,8 @@ BEGIN
             NVL(p.pers.ape2, ' ') AS "Segundo Apellido",
             p.pers.edad(p.pers.fec_nac)AS "Edad",
             pa.bandera AS "Pais",
-            p.pers.genero AS "Genero",
+            (CASE WHEN p.pers.genero = 'M' THEN 'Masculino'
+            ELSE 'Femenino' END) AS "Genero",
             e.nom AS "Estado",
             concat_patologia (p.id) AS "Patologia que sufre",
             concat_sintoma (p.id) AS "Sintoma que presenta",

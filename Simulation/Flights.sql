@@ -8,26 +8,22 @@ random_state number;
 random_airline number;
 current_flight number;
 travels number; -- 30% de probabilidad de viajar
-countries number;
-airlines number;
 flight_n number;
 end_of_travel number; -- Fecha de fin para viaje generado
+-- Valores output
+nombre personas.pers.nom1%type;
+apellido personas.pers.ape1%type;
+pais paises.nom%type;
+estado estados.nom%type;
+aerolinea aerolineas.nom%type;
+vuelo historico_viajes.n_vuelo%type;
+fecha_v date;
 BEGIN
 -- Numero de iteraciones
     cont_externo:= 0;
     SELECT TRUNC(fecha_f) - fecha_i
     INTO i
     FROM dual;
-
-    -- Numero de paises que no tienen frontera cerrada
-    SELECT COUNT(*) into countries FROM PAISES p
-    WHERE NOT EXISTS (
-        SELECT f.id FROM historico_cierre_fronteras f WHERE f.id_pais = p.id
-        AND (f.hist.fec_i BETWEEN fecha_i AND fecha_f OR f.hist.fec_f BETWEEN fecha_i AND fecha_f)
-    );
-
-    -- Numero de aerolineas
-    SELECT COUNT(*) into airlines FROM AEROLINEAS;
 
     LOOP
     -- Seleccionar persona al azar que no este viajando durante el intervalo especificado
@@ -94,7 +90,7 @@ BEGIN
                 end_of_travel:= ROUND(DBMS_RANDOM.VALUE(10,30));
                 flight_n:= ROUND(DBMS_RANDOM.VALUE(100, 300));
 
-                INSERT INTO historico_viajes VALUES (id_hist_viajes_seq.nextval, historia((SELECT (SYSDATE + cont_externo) FROM DUAL), (SELECT (SYSDATE + cont_externo + end_of_travel) FROM DUAL)), flight_n, random_airline, (
+                INSERT INTO historico_viajes VALUES (id_hist_viajes_seq.nextval, historia(fecha_i + cont_externo, fecha_f + end_of_travel), flight_n, random_airline, (
                     SELECT e.id FROM personas p
                     JOIN calles c ON c.id = p.id_calle
                     JOIN urbanizaciones u ON u.id = c.id_urb
@@ -106,13 +102,36 @@ BEGIN
                 SELECT h.id
                 INTO current_flight
                 FROM historico_viajes h 
-                WHERE h.hist.fec_i = (SELECT (SYSDATE + cont_externo) FROM DUAL)
-                AND h.hist.fec_f = (SELECT (SYSDATE + cont_externo + end_of_travel) FROM DUAL)
-                AND n_vuelo = flight_n
-                AND id_aero = random_airline;
+                WHERE h.hist.fec_i = fecha_i + cont_externo
+                AND h.hist.fec_f = fecha_f + end_of_travel
+                AND h.n_vuelo = flight_n
+                AND h.id_aero = random_airline;
+
+                -- Output
+                SELECT p.pers.nom1, p.pers.ape1
+                INTO nombre, apellido
+                FROM personas p
+                WHERE p.id = random_person;
+
+                SELECT p.nom, e.nom
+                INTO pais, estado
+                FROM estados e 
+                JOIN paises p ON p.id = e.id_pais
+                WHERE e.id = random_state;
+
+                SELECT h.n_vuelo, a.nom 
+                INTO vuelo, aerolinea
+                FROM historico_viajes h 
+                JOIN aerolineas a ON a.id = h.id_aero
+                WHERE h.id = current_flight;
+
+                fecha_v:=fecha_i + cont_externo;
+
+                DBMS_OUTPUT.PUT_LINE('La persona ' || nombre || ' ' || apellido || ' viajo a ' ||
+                estado || ' - ' || pais || ' en el vuelo Nº ' || vuelo || ' de ' || aerolinea ||
+                ' el dia ' || fecha_v);
 
                 INSERT INTO P_HV VALUES (current_flight, random_person);
-
             END IF;
     END IF;
     
