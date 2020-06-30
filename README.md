@@ -43,4 +43,5 @@
   1. Pais = 6
   2. Pais = 1
 + Grafica
-  1. Pais = 6, Fecha de Inicio = 30 de Mayo de 2020, Fecha de Fin = 15 de Julio de 2020
+  1. Pais = 0, Fecha de Inicio = 30 de Mayo de 2020, Fecha de Fin = 15 de Julio de 2020
+  2. Pais = 1, Fecha de Inicio = 01 de Enero de 2020, Fecha de Fin = 31 de Diciembre de 2020
