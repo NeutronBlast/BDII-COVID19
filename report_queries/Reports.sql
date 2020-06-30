@@ -20,7 +20,7 @@ BEGIN
                             e.nom AS "Estado",
                             concat_patologia (p.id) AS "Patologia que sufre"
                             FROM personas p
-                            LEFT JOIN (
+                            JOIN (
                                 SELECT ic.id_persona, min(ic.estado) as "proxy" 
                                 FROM infectados_covid ic
                                 WHERE ic.estado = 'I'
@@ -46,7 +46,7 @@ BEGIN
                             e.nom AS "Estado",
                             concat_patologia (p.id) AS "Patologia que sufre"
                             FROM personas p
-                            LEFT JOIN (
+                            JOIN (
                                 SELECT ic.id_persona, min(ic.estado) as "proxy" 
                                 FROM infectados_covid ic
                                 WHERE ic.estado = 'I'
@@ -72,7 +72,7 @@ BEGIN
                             e.nom AS "Estado",
                             concat_patologia (p.id) AS "Patologia que sufre"
                             FROM personas p
-                            LEFT JOIN (
+                            JOIN (
                                 SELECT ic.id_persona, min(ic.estado) as "proxy" 
                                 FROM infectados_covid ic
                                 WHERE ic.estado = 'I'
@@ -99,7 +99,7 @@ BEGIN
                             e.nom AS "Estado",
                             concat_patologia (p.id) AS "Patologia que sufre"
                             FROM personas p
-                            LEFT JOIN (
+                            JOIN (
                                 SELECT ic.id_persona, min(ic.estado) as "proxy" 
                                 FROM infectados_covid ic
                                 WHERE ic.estado = 'I'
@@ -126,7 +126,7 @@ BEGIN
                             e.nom AS "Estado",
                             concat_patologia (p.id) AS "Patologia que sufre"
                             FROM personas p
-                            LEFT JOIN (
+                            JOIN (
                                 SELECT ic.id_persona, min(ic.estado) as "proxy" 
                                 FROM infectados_covid ic
                                 WHERE ic.estado = 'I'
@@ -153,7 +153,7 @@ BEGIN
                             e.nom AS "Estado",
                             concat_patologia (p.id) AS "Patologia que sufre"
                             FROM personas p
-                            LEFT JOIN (
+                            JOIN (
                                 SELECT ic.id_persona, min(ic.estado) as "proxy" 
                                 FROM infectados_covid ic
                                 WHERE ic.estado = 'I'
@@ -183,7 +183,7 @@ BEGIN
                             e.nom AS "Estado",
                             concat_patologia (p.id) AS "Patologia que sufre"
                             FROM personas p
-                            LEFT JOIN (
+                            JOIN (
                                 SELECT ic.id_persona, min(ic.estado) as "proxy" 
                                 FROM infectados_covid ic
                                 WHERE ic.estado = 'I'
@@ -210,7 +210,7 @@ BEGIN
                             e.nom AS "Estado",
                             concat_patologia (p.id) AS "Patologia que sufre"
                             FROM personas p
-                            LEFT JOIN (
+                            JOIN (
                                 SELECT ic.id_persona, min(ic.estado) as "proxy" 
                                 FROM infectados_covid ic
                                 WHERE ic.estado = 'I'
@@ -237,7 +237,7 @@ BEGIN
                             e.nom AS "Estado",
                             concat_patologia (p.id) AS "Patologia que sufre"
                             FROM personas p
-                            LEFT JOIN (
+                            JOIN (
                                 SELECT ic.id_persona, min(ic.estado) as "proxy" 
                                 FROM infectados_covid ic
                                 WHERE ic.estado = 'I'
@@ -266,7 +266,7 @@ BEGIN
                             e.nom AS "Estado",
                             concat_patologia (p.id) AS "Patologia que sufre"
                             FROM personas p
-                            LEFT JOIN (
+                            JOIN (
                                 SELECT ic.id_persona, min(ic.estado) as "proxy" 
                                 FROM infectados_covid ic
                                 WHERE ic.estado = 'I'
@@ -293,7 +293,7 @@ BEGIN
                             e.nom AS "Estado",
                             concat_patologia (p.id) AS "Patologia que sufre"
                             FROM personas p
-                            LEFT JOIN (
+                            JOIN (
                                 SELECT ic.id_persona, min(ic.estado) as "proxy" 
                                 FROM infectados_covid ic
                                 WHERE ic.estado = 'I'
@@ -320,7 +320,7 @@ BEGIN
                             e.nom AS "Estado",
                             concat_patologia (p.id) AS "Patologia que sufre"
                             FROM personas p
-                            LEFT JOIN (
+                            JOIN (
                                 SELECT ic.id_persona, min(ic.estado) as "proxy" 
                                 FROM infectados_covid ic
                                 WHERE ic.estado = 'I'
@@ -352,7 +352,7 @@ BEGIN
                             e.nom AS "Estado",
                             concat_patologia (p.id) AS "Patologia que sufre"
                             FROM personas p
-                            LEFT JOIN (
+                            JOIN (
                                 SELECT ic.id_persona, min(ic.estado) as "proxy" 
                                 FROM infectados_covid ic
                                 WHERE ic.estado = 'I'
@@ -379,7 +379,7 @@ BEGIN
                             e.nom AS "Estado",
                             concat_patologia (p.id) AS "Patologia que sufre"
                             FROM personas p
-                            LEFT JOIN (
+                            JOIN (
                                 SELECT ic.id_persona, min(ic.estado) as "proxy" 
                                 FROM infectados_covid ic
                                 WHERE ic.estado = 'I'
@@ -406,7 +406,7 @@ BEGIN
                             e.nom AS "Estado",
                             concat_patologia (p.id) AS "Patologia que sufre"
                             FROM personas p
-                            LEFT JOIN (
+                            JOIN (
                                 SELECT ic.id_persona, min(ic.estado) as "proxy" 
                                 FROM infectados_covid ic
                                 WHERE ic.estado = 'I'
@@ -434,7 +434,7 @@ BEGIN
                             e.nom AS "Estado",
                             concat_patologia (p.id) AS "Patologia que sufre"
                             FROM personas p
-                            LEFT JOIN (
+                            JOIN (
                                 SELECT ic.id_persona, min(ic.estado) as "proxy" 
                                 FROM infectados_covid ic
                                 WHERE ic.estado = 'I'
@@ -461,7 +461,7 @@ BEGIN
                             e.nom AS "Estado",
                             concat_patologia (p.id) AS "Patologia que sufre"
                             FROM personas p
-                            LEFT JOIN (
+                            JOIN (
                                 SELECT ic.id_persona, min(ic.estado) as "proxy" 
                                 FROM infectados_covid ic
                                 WHERE ic.estado = 'I'
@@ -488,7 +488,7 @@ BEGIN
                             e.nom AS "Estado",
                             concat_patologia (p.id) AS "Patologia que sufre"
                             FROM personas p
-                            LEFT JOIN (
+                            JOIN (
                                 SELECT ic.id_persona, min(ic.estado) as "proxy" 
                                 FROM infectados_covid ic
                                 WHERE ic.estado = 'I'
@@ -517,7 +517,7 @@ BEGIN
                         e.nom AS "Estado",
                         concat_patologia (p.id) AS "Patologia que sufre"
                         FROM personas p
-                        LEFT JOIN (
+                        JOIN (
                             SELECT ic.id_persona, min(ic.estado) as "proxy" 
                             FROM infectados_covid ic
                             WHERE ic.estado = 'I'
@@ -544,7 +544,7 @@ BEGIN
                         e.nom AS "Estado",
                         concat_patologia (p.id) AS "Patologia que sufre"
                         FROM personas p
-                        LEFT JOIN (
+                        JOIN (
                             SELECT ic.id_persona, min(ic.estado) as "proxy" 
                             FROM infectados_covid ic
                             WHERE ic.estado = 'I'
@@ -571,7 +571,7 @@ BEGIN
                         e.nom AS "Estado",
                         concat_patologia (p.id) AS "Patologia que sufre"
                         FROM personas p
-                        LEFT JOIN (
+                        JOIN (
                             SELECT ic.id_persona, min(ic.estado) as "proxy" 
                             FROM infectados_covid ic
                             WHERE ic.estado = 'I'
@@ -602,7 +602,7 @@ BEGIN
                 e.nom AS "Estado",
                 concat_patologia (p.id) AS "Patologia que sufre"
                 FROM personas p
-                LEFT JOIN (
+                JOIN (
                     SELECT ic.id_persona, min(ic.estado) as "proxy" 
                     FROM infectados_covid ic
                     WHERE ic.estado = 'I'
@@ -629,7 +629,7 @@ BEGIN
                 e.nom AS "Estado",
                 concat_patologia (p.id) AS "Patologia que sufre"
                 FROM personas p
-                LEFT JOIN (
+                JOIN (
                     SELECT ic.id_persona, min(ic.estado) as "proxy" 
                     FROM infectados_covid ic
                     WHERE ic.estado = 'I'
@@ -656,7 +656,7 @@ BEGIN
                 e.nom AS "Estado",
                 concat_patologia (p.id) AS "Patologia que sufre"
                 FROM personas p
-                LEFT JOIN (
+                JOIN (
                     SELECT ic.id_persona, min(ic.estado) as "proxy" 
                     FROM infectados_covid ic
                     WHERE ic.estado = 'I'
