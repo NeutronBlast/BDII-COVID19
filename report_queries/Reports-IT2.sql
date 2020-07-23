@@ -44,3 +44,26 @@ BEGIN
         ORDER BY v.hist.fec_i;
         END IF;
 END;
+
+-- Report 8
+CREATE OR REPLACE PROCEDURE REPORTE_8 (ORACLE_REF_CURSOR OUT SYS_REFCURSOR)
+IS
+BEGIN 
+OPEN ORACLE_REF_CURSOR FOR  
+    SELECT c.nom || ', ' || u.nom || ', ' || ci.nom || ', ' || e.nom || ', ' || p.nom as "DIRECCION",
+    r.nom as "CLINICA", CONCAT_INSUMO(r.id) as "INSUMOS DISPONIBLES",
+    NVL(r.n_camas-t.ocupado, r.n_camas) as "CAMAS DISPONIBLES",
+    r.datos.numero_infectados(r.id, 'RS') as "ATENDIDOS", r.datos.numero_fallecidos(r.id, 'RS') as "FALLECIDOS",
+    r.datos.numero_recuperados(r.id, 'RS') as "RECUPERADOS"
+    FROM recintos_salud r
+    JOIN calles c ON c.id = r.id_calle
+    JOIN urbanizaciones u ON u.id = c.id_urb
+    JOIN ciudades ci ON ci.id = u.id_ciudad
+    JOIN estados e ON e.id = ci.id_estado
+    JOIN paises p ON p.id = e.id_pais
+    LEFT JOIN (
+        SELECT ht.id_rec_salud, COUNT(*) as ocupado FROM historico_tratamiento ht 
+        WHERE ht.hist.fec_f IS NULL  
+        GROUP BY ht.id_rec_salud
+    )t ON t.id_rec_salud = r.id;
+END;

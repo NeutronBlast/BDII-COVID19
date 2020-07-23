@@ -7,7 +7,7 @@ BEGIN
         SELECT COUNT(*) INTO resultado FROM INFECTADOS_COVID A WHERE A.id_estado=id_valor AND A.estado = 'I';
         return resultado; 
     ELSE IF parametro = 'RS' then
-            SELECT COUNT(*) INTO resultado FROM INFECTADOS_COVID A JOIN historico_tratamiento B ON A.id_hist_trat = B.id  WHERE B.id_rec_salud=id_valor AND A.estado = 'R';
+            SELECT COUNT(*) INTO resultado FROM INFECTADOS_COVID A JOIN historico_tratamiento B ON A.id_hist_trat = B.id  WHERE B.id_rec_salud=id_valor AND A.estado = 'I';
             return resultado;
         ELSE
             RAISE_APPLICATION_ERROR(-20001, 'parametroetro de seleccion no valido');
@@ -22,7 +22,7 @@ BEGIN
         SELECT COUNT(*) INTO resultado FROM INFECTADOS_COVID A WHERE A.id_estado=id_valor AND A.estado = 'M';
         return resultado; 
     ELSE IF parametro = 'RS' then
-            SELECT COUNT(*) INTO resultado FROM INFECTADOS_COVID A JOIN historico_tratamiento B ON A.id_hist_trat = B.id  WHERE B.id_rec_salud=id_valor AND A.estado = 'R';
+            SELECT COUNT(*) INTO resultado FROM INFECTADOS_COVID A JOIN historico_tratamiento B ON A.id_hist_trat = B.id  WHERE B.id_rec_salud=id_valor AND A.estado = 'M';
             return resultado;
         ELSE
             RAISE_APPLICATION_ERROR(-20001, 'parametroetro de seleccion no valido');

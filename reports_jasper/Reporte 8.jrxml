@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reporte 8" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ce4371ac-4a30-4255-a367-643a28e2cf62">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="covid-19"/>
+	<parameter name="ORACLE_REF_CURSOR" class="java.sql.ResultSet"/>
+	<queryString language="plsql">
+		<![CDATA[{call REPORTE_8($P{ORACLE_REF_CURSOR})}]]>
+	</queryString>
+	<field name="DIRECCION" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="DIRECCION"/>
+	</field>
+	<field name="CLINICA" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="CLINICA"/>
+	</field>
+	<field name="INSUMOS DISPONIBLES" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="INSUMOS DISPONIBLES"/>
+	</field>
+	<field name="CAMAS DISPONIBLES" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="CAMAS DISPONIBLES"/>
+	</field>
+	<field name="ATENDIDOS" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="ATENDIDOS"/>
+	</field>
+	<field name="FALLECIDOS" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="FALLECIDOS"/>
+	</field>
+	<field name="RECUPERADOS" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="RECUPERADOS"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="50" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="0" y="10" width="801" height="30" forecolor="#004A53" uuid="9129e4f5-a3e4-46ba-a8e0-09ef2d0f8821"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="20"/>
+				</textElement>
+				<text><![CDATA[ESTADÍSTICAS DE RECINTOS DE SALUD]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement mode="Opaque" x="680" y="10" width="141" height="20" forecolor="#A7CECC" backcolor="#A7CECD" uuid="dfe72a03-f2b7-40dd-8ad0-6706c73a23bf"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="-20" y="10" width="141" height="20" forecolor="#A7CECC" backcolor="#A7CECD" uuid="be8297b1-d40e-4ffb-bb11-943e28f633c6"/>
+			</rectangle>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="42" y="21" width="118" height="30" backcolor="#A7CECD" uuid="fb207f3e-c856-4724-9500-05585e6a8776">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="22b5d8e6-e601-4610-95ec-c7ebf08a34db"/>
+				</reportElement>
+				<box topPadding="1" leftPadding="1" bottomPadding="0" rightPadding="1">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIRECCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="160" y="21" width="114" height="30" backcolor="#A7CECD" uuid="8ab46d6a-5d70-438b-b605-4031d3a9f851">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="08f209db-277b-421b-90a1-3d31cce9bcbb"/>
+				</reportElement>
+				<box topPadding="1" leftPadding="1" bottomPadding="0" rightPadding="1">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CLINICA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="274" y="21" width="114" height="30" backcolor="#A7CECD" uuid="bd7965a3-8dd4-46ba-8376-248364c656e7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8eabbf83-6d67-4822-804c-6e02dff2e849"/>
+				</reportElement>
+				<box topPadding="1" leftPadding="1" bottomPadding="0" rightPadding="1">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[INSUMOS DISPONIBLES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="388" y="21" width="114" height="30" backcolor="#A7CECD" uuid="703b0aa2-979c-4f98-94ba-764f91a25352">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="55ba5a9f-a358-4ce5-8723-633c30b9bf85"/>
+				</reportElement>
+				<box topPadding="1" leftPadding="1" bottomPadding="0" rightPadding="1">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CAMAS DISPONIBLES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="502" y="21" width="84" height="30" backcolor="#A7CECD" uuid="f227af6d-3c74-42aa-9066-d5990f5101e8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b4760bb9-27d8-4c18-ad28-ce1cff067b05"/>
+				</reportElement>
+				<box topPadding="1" leftPadding="1" bottomPadding="0" rightPadding="1">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ATENDIDOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="586" y="21" width="84" height="30" backcolor="#A7CECD" uuid="052313c1-31b1-40d8-9f38-6da7905c184e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="91d00342-f907-41a6-8a58-bfb53eb3de36"/>
+				</reportElement>
+				<box topPadding="1" leftPadding="1" bottomPadding="0" rightPadding="1">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FALLECIDOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="670" y="21" width="84" height="30" backcolor="#A7CECD" uuid="c95342a7-3de6-4116-96e7-0ab0437cf423">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="508e70a0-86ab-42e5-965f-7ffa01b372a2"/>
+				</reportElement>
+				<box topPadding="1" leftPadding="1" bottomPadding="0" rightPadding="1">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[RECUPERADOS]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField>
+				<reportElement x="42" y="-10" width="118" height="30" uuid="876dfd48-7547-4882-8ab4-661d36c3d2ca">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="22b5d8e6-e601-4610-95ec-c7ebf08a34db"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box topPadding="1" leftPadding="1" bottomPadding="0" rightPadding="1">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{DIRECCION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="-10" width="114" height="30" uuid="208823a4-388e-49b1-9a19-3edec39d2f37">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="08f209db-277b-421b-90a1-3d31cce9bcbb"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box topPadding="1" leftPadding="1" bottomPadding="0" rightPadding="1">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{CLINICA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="274" y="-10" width="114" height="30" uuid="f025d069-9d07-453f-bc9e-a53a9716fdf5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8eabbf83-6d67-4822-804c-6e02dff2e849"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box topPadding="1" leftPadding="1" bottomPadding="0" rightPadding="1">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{INSUMOS DISPONIBLES}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="388" y="-10" width="114" height="30" uuid="4ffb8b43-7436-4242-a969-9eda5329ced8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="55ba5a9f-a358-4ce5-8723-633c30b9bf85"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box topPadding="1" leftPadding="1" bottomPadding="0" rightPadding="1">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{CAMAS DISPONIBLES}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="502" y="-10" width="84" height="30" uuid="1f2b36e0-2c6c-4083-931a-2705d74b2d18">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b4760bb9-27d8-4c18-ad28-ce1cff067b05"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box topPadding="1" leftPadding="1" bottomPadding="0" rightPadding="1">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ATENDIDOS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="586" y="-10" width="84" height="30" uuid="eb0f5b36-f4df-4750-8cf0-db66b5c22678">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="91d00342-f907-41a6-8a58-bfb53eb3de36"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box topPadding="1" leftPadding="1" bottomPadding="0" rightPadding="1">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{FALLECIDOS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="670" y="-10" width="84" height="30" uuid="5fbfdf82-522f-48f9-b5e7-f6229ee8c969">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="508e70a0-86ab-42e5-965f-7ffa01b372a2"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box topPadding="1" leftPadding="1" bottomPadding="0" rightPadding="1">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{RECUPERADOS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="-20" y="20" width="840" height="30" forecolor="#004A53" uuid="68c61f6a-c37e-43a6-85c0-3ba7c760648e"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
