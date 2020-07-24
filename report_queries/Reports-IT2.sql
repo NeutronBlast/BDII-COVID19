@@ -44,7 +44,7 @@ BEGIN
         ORDER BY v.hist.fec_i;
         END IF;
 END;
-
+/
 -- Report 8
 CREATE OR REPLACE PROCEDURE REPORTE_8 (ORACLE_REF_CURSOR OUT SYS_REFCURSOR)
 IS
@@ -66,4 +66,36 @@ OPEN ORACLE_REF_CURSOR FOR
         WHERE ht.hist.fec_f IS NULL  
         GROUP BY ht.id_rec_salud
     )t ON t.id_rec_salud = r.id;
+END;
+/
+
+-- Reporte 9
+CREATE OR REPLACE PROCEDURE REPORTE_9 (ORACLE_REF_CURSOR OUT SYS_REFCURSOR, PAIS IN VARCHAR2)
+IS 
+BEGIN
+    IF PAIS IS NOT NULL THEN 
+    OPEN ORACLE_REF_CURSOR FOR 
+    SELECT p.bandera as "PAIS QUE OFRECE LA AYUDA", pr.bandera as "PAIS RECEPTOR",
+    a.hist.fec_i as "FECHA DE DONACION", CONCAT_AYUDA_INSUMO(a.id) as "INSUMOS DONADOS",
+    (SELECT TO_CHAR(10000,'L99G999D99MI',
+    'NLS_NUMERIC_CHARACTERS = '',.''
+    NLS_CURRENCY = ''$'' ') "DINERO"
+        FROM DUAL) as "DINERO"
+    FROM historico_ayuda_humanitaria a 
+    JOIN paises p ON p.id = a.id_pais_1 -- Envia
+    JOIN paises pr ON pr.id = a.id_pais_2 -- Recibe
+    WHERE pr.nom LIKE INITCAP(PAIS); 
+    
+    ELSE 
+    OPEN ORACLE_REF_CURSOR FOR 
+    SELECT p.bandera as "PAIS QUE OFRECE LA AYUDA", pr.bandera as "PAIS RECEPTOR",
+    a.hist.fec_i as "FECHA DE DONACION", CONCAT_AYUDA_INSUMO(a.id) as "INSUMOS DONADOS",
+    (SELECT TO_CHAR(10000,'L99G999D99MI',
+    'NLS_NUMERIC_CHARACTERS = '',.''
+    NLS_CURRENCY = ''$'' ') "DINERO"
+        FROM DUAL) as "DINERO"
+    FROM historico_ayuda_humanitaria a 
+    JOIN paises p ON p.id = a.id_pais_1 -- Envia
+    JOIN paises pr ON pr.id = a.id_pais_2; -- Recibe
+    END IF;
 END;
