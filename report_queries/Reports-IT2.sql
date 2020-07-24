@@ -69,7 +69,7 @@ OPEN ORACLE_REF_CURSOR FOR
 END;
 /
 
--- Reporte 9
+-- Report 9
 CREATE OR REPLACE PROCEDURE REPORTE_9 (ORACLE_REF_CURSOR OUT SYS_REFCURSOR, PAIS IN VARCHAR2)
 IS 
 BEGIN
@@ -97,5 +97,37 @@ BEGIN
     FROM historico_ayuda_humanitaria a 
     JOIN paises p ON p.id = a.id_pais_1 -- Envia
     JOIN paises pr ON pr.id = a.id_pais_2; -- Recibe
+    END IF;
+END;
+/
+
+-- Reporte 10
+CREATE OR REPLACE PROCEDURE REPORTE_10 (ORACLE_REF_CURSOR OUT SYS_REFCURSOR, PAIS IN VARCHAR2)
+IS 
+BEGIN
+    IF PAIS IS NOT NULL THEN 
+    OPEN ORACLE_REF_CURSOR FOR 
+    SELECT p.nom as "PAIS",
+    m.nom as "MODELO",
+    hm.hist.fec_i as "FECHA DE INICIO",
+    ROUND(100-(e.data.numero_recuperados (hm.id_estado,'E')/NVL(NULLIF(e.data.numero_infectados (hm.id_estado,'E'),0),1)-
+    e.data.numero_fallecidos (hm.id_estado,'E')/NVL(NULLIF(e.data.numero_infectados (hm.id_estado,'E'),0),1))*10) || '%' as "PORCENTAJE DE EFECTIVIDAD"
+    FROM historico_modelos hm 
+    JOIN modelos m ON m.id = hm.id_modelo
+    JOIN estados e ON e.id = hm.id_estado
+    JOIN paises p ON p.id = e.id_pais
+    WHERE p.nom LIKE INITCAP(PAIS);
+
+    ELSE 
+    OPEN ORACLE_REF_CURSOR FOR 
+    SELECT p.nom as "PAIS",
+    m.nom as "MODELO",
+    hm.hist.fec_i as "FECHA DE INICIO",
+    ROUND(100-(e.data.numero_recuperados (hm.id_estado,'E')/NVL(NULLIF(e.data.numero_infectados (hm.id_estado,'E'),0),1)-
+    e.data.numero_fallecidos (hm.id_estado,'E')/NVL(NULLIF(e.data.numero_infectados (hm.id_estado,'E'),0),1))*10) || '%' as "PORCENTAJE DE EFECTIVIDAD"
+    FROM historico_modelos hm 
+    JOIN modelos m ON m.id = hm.id_modelo
+    JOIN estados e ON e.id = hm.id_estado
+    JOIN paises p ON p.id = e.id_pais;
     END IF;
 END;
