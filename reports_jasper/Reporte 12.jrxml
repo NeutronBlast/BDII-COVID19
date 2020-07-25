@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reporte 12" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5e385849-dd60-4174-950d-85f1a03e18ce">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="JBDC Adapter "/>
+	<parameter name="ORACLE_REF_CURSOR" class="java.sql.ResultSet"/>
+	<parameter name="PAIS" class="java.lang.String"/>
+	<parameter name="FECHA" class="java.sql.Date"/>
+	<queryString language="plsql">
+		<![CDATA[{call reporte_12($P{ORACLE_REF_CURSOR}, $P{PAIS}, $P{FECHA})}]]>
+	</queryString>
+	<field name="T1" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="T1"/>
+	</field>
+	<field name="T2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="T2"/>
+	</field>
+	<field name="T3" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="T3"/>
+	</field>
+	<field name="País" class="java.awt.Image">
+		<property name="com.jaspersoft.studio.field.label" value="País"/>
+	</field>
+	<field name="Proveedor de internet" class="java.awt.Image">
+		<property name="com.jaspersoft.studio.field.label" value="Proveedor de internet"/>
+	</field>
+	<field name="Fecha" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Fecha"/>
+	</field>
+	<field name="Velocidad promedio de subida (MB)" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="Velocidad promedio de subida (MB)"/>
+	</field>
+	<field name="Velocidad promedio de descarga (MB)" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="Velocidad promedio de descarga (MB)"/>
+	</field>
+	<field name="Horas diarias de interrupcion del servicio" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="Horas diarias de interrupcion del servicio"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="34" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="800" height="24" forecolor="#004A53" uuid="47692ecb-7652-4b08-9281-1ab789c2ef99"/>
+				<textElement textAlignment="Center">
+					<font fontName="Franklin Gothic Heavy" size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" Infraestructura de telecomunicaciones"]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="690" y="5" width="112" height="23" forecolor="#A7CECD" backcolor="#A7CECD" uuid="025dc6a5-aa8a-4e2e-a056-d46efa886ef2"/>
+			</rectangle>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="38" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="137" height="30" backcolor="#A7CECD" uuid="37058e0c-f98e-4d2a-9e76-5389576d98f4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6003d62e-52c7-482d-8190-ad87dd9f29ca"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[País]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="137" y="0" width="133" height="30" backcolor="#A7CECD" uuid="ff5e676b-4f8c-41cf-b7de-69b48020dd5e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f03d60c8-1e0e-4f81-8fb7-22876a109ecc"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Proveedor de internet]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="270" y="0" width="133" height="30" backcolor="#A7CECD" uuid="29a4d64a-1252-434d-b3fe-0b19a769fb88">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e8bbde51-737d-432b-b8ab-892ed8c6daaf"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="403" y="0" width="133" height="30" backcolor="#A7CECD" uuid="d4e6e8a8-23a8-4167-a421-6d3b60eb189f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f7ef9765-a59a-454c-8c62-7efb742c7c31"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Velocidad promedio de subida (MB)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="536" y="0" width="133" height="30" backcolor="#A7CECD" uuid="d3ad5a65-ca7c-4ba2-a8a1-d14ca014f31b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1aaf47de-ea0d-4e21-b991-52520d9e882d"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Velocidad promedio de descarga (MB)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="669" y="0" width="133" height="30" backcolor="#A7CECD" uuid="23931aad-d2a9-4266-b191-ae4a711bd1cf">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f95d14e2-fac1-4caf-84c3-75642defde09"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Horas diarias de interrupcion del servicio]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="66" splitType="Stretch">
+			<image>
+				<reportElement x="50" y="0" width="50" height="50" uuid="28f9a52b-f8f8-4d68-804f-5374524cd843">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6003d62e-52c7-482d-8190-ad87dd9f29ca"/>
+				</reportElement>
+				<imageExpression><![CDATA[$F{País}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="177" y="0" width="53" height="50" uuid="84f799cb-6a66-4175-8fa8-17661d517cfd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f03d60c8-1e0e-4f81-8fb7-22876a109ecc"/>
+				</reportElement>
+				<imageExpression><![CDATA[$F{Proveedor de internet}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="270" y="0" width="133" height="50" uuid="0f2e7aea-34a5-4de2-8354-e4b72b97b3f3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e8bbde51-737d-432b-b8ab-892ed8c6daaf"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="403" y="0" width="133" height="50" uuid="adcf8a18-1e71-423c-a0ee-bd016bf93493">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f7ef9765-a59a-454c-8c62-7efb742c7c31"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Velocidad promedio de subida (MB)}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="536" y="0" width="133" height="50" uuid="92665fff-7a71-4178-a026-17014fe0b845">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1aaf47de-ea0d-4e21-b991-52520d9e882d"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Velocidad promedio de descarga (MB)}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="669" y="0" width="133" height="50" uuid="005c0cfd-d7a8-4d17-b66e-715a0acd63de">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f95d14e2-fac1-4caf-84c3-75642defde09"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Horas diarias de interrupcion del servicio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="50" splitType="Stretch">
+			<textField>
+				<reportElement mode="Transparent" x="-20" y="20" width="840" height="30" forecolor="#004A53" backcolor="#E68585" uuid="c194e237-2ab8-49da-b8e6-3dc839b93c9e"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

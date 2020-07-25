@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reporte 11" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="adfedf3d-5e0a-4543-84b7-cf68ed6f0dfc">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="JBDC Adapter "/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="FECHA" class="java.sql.Date"/>
+	<parameter name="ORACLE_REF_CURSOR" class="java.sql.ResultSet"/>
+	<queryString language="plsql">
+		<![CDATA[{call reporte_11($P{ORACLE_REF_CURSOR}, $P{FECHA})}]]>
+	</queryString>
+	<field name="Cantidad de infectados" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="Cantidad de infectados"/>
+	</field>
+	<field name="Cantidad de fallecidos" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="Cantidad de fallecidos"/>
+	</field>
+	<field name="Cantidad de recuperados" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="Cantidad de recuperados"/>
+	</field>
+	<field name="Porcentaje de infectados" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="Porcentaje de infectados"/>
+	</field>
+	<field name="Porcentaje de fallecidos" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="Porcentaje de fallecidos"/>
+	</field>
+	<field name="Porcentaje de recuperados" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="Porcentaje de recuperados"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="45" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="800" height="24" forecolor="#004A53" uuid="0aa13bde-78cf-4bbe-be7e-05ad275f1b1a"/>
+				<textElement textAlignment="Center">
+					<font fontName="Franklin Gothic Heavy" size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Reporte Mundial"]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="690" y="5" width="112" height="23" forecolor="#A7CECD" backcolor="#A7CECD" uuid="ffcaa628-a60c-4681-ae7c-6e8c8411111c"/>
+			</rectangle>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="137" height="30" backcolor="#A7CECD" uuid="d19d42f5-f300-456a-bd8e-a8e2aa288bfd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1b5b8aa7-4b36-4d45-83b3-a259ac264763"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad de infectados]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="137" y="0" width="133" height="30" backcolor="#A7CECD" uuid="e3dbeb26-87bf-4784-af22-bb27e633b335">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dbe523fc-696c-4abd-b740-3a93505fbd44"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad de fallecidos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="270" y="0" width="133" height="30" backcolor="#A7CECD" uuid="9d1c5007-93e5-4c5e-8517-a215b307b0ab">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0245b52a-8594-4907-8496-aab388c8fd13"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad de recuperados]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="403" y="0" width="133" height="30" backcolor="#A7CECD" uuid="86ecac1f-7cf7-4eb7-b59c-3752d87922f3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="eae7d722-621e-4627-9bc4-77c17bb8f189"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Porcentaje de infectados]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="536" y="0" width="133" height="30" backcolor="#A7CECD" uuid="688b0044-b0f4-40d1-bf62-9d970fb38fbf">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c394b127-599a-40af-b96b-e5912532788b"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Porcentaje de fallecidos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="669" y="0" width="133" height="30" backcolor="#A7CECD" uuid="6a59d0c2-0510-4ebe-8c6a-39b2d147a2f9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6df81b1e-5634-4d68-b5cc-9d98a3dc2b80"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Porcentaje de recuperados]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="137" height="30" uuid="f3f6f54c-fa14-4559-9156-56f7cba64c45">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1b5b8aa7-4b36-4d45-83b3-a259ac264763"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Cantidad de infectados}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="137" y="0" width="133" height="30" uuid="09d431ca-e278-48f8-8d25-a02e416bf007">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dbe523fc-696c-4abd-b740-3a93505fbd44"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Cantidad de fallecidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="270" y="0" width="133" height="30" uuid="f8278590-a533-486a-bc55-e29479ebb391">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0245b52a-8594-4907-8496-aab388c8fd13"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Cantidad de recuperados}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="403" y="0" width="133" height="30" uuid="74cdb601-ec00-4218-ba3f-611d370968e5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="eae7d722-621e-4627-9bc4-77c17bb8f189"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Porcentaje de infectados}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="536" y="0" width="133" height="30" uuid="f10238e0-6c87-412d-a3c7-9dae01961f82">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c394b127-599a-40af-b96b-e5912532788b"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Porcentaje de fallecidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="669" y="0" width="133" height="30" uuid="65c6894a-89c4-4f2c-bd39-9a6f8eb2cd1c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6df81b1e-5634-4d68-b5cc-9d98a3dc2b80"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Porcentaje de recuperados}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
