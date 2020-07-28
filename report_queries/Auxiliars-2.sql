@@ -27,7 +27,7 @@ BEGIN
 
     RETURN (v_concat);
 END;
-
+/
 CREATE OR REPLACE FUNCTION CONCAT_AYUDA_INSUMO (a_id_ayuda NUMBER) RETURN VARCHAR2
 AS
     CURSOR v_cursor IS 
@@ -58,4 +58,66 @@ BEGIN
     END IF;
 
     RETURN (v_concat);
+END;
+/
+
+-- Selecciona el numero de infectados durante el intervalo del modelo en un estado determinado
+
+CREATE OR REPLACE FUNCTION infectados_modelo (m_hm_inicio DATE, m_hm_fin DATE, m_hm_estado NUMBER) RETURN NUMBER 
+IS 
+resultado NUMBER;
+BEGIN
+    SELECT COUNT(*)
+    INTO resultado
+    FROM infectados_covid i
+    JOIN personas p ON p.id = i.id_persona
+    JOIN calles c ON c.id = p.id_calle
+    JOIN urbanizaciones u ON u.id = c.id_urb
+    JOIN ciudades ci ON ci.id = u.id_ciudad
+    JOIN estados e ON e.id = ci.id_estado
+    WHERE i.hist.fec_i >= m_hm_inicio AND (i.hist.fec_f <= m_hm_fin OR i.hist.fec_f IS NULL) AND i.estado = 'I'
+    AND e.id = m_hm_estado;
+
+    RETURN resultado;
+END;
+
+/
+-- Selecciona el numero de fallecidos durante el intervalo del modelo en un estado determinado
+
+CREATE OR REPLACE FUNCTION fallecidos_modelo (m_hm_inicio DATE, m_hm_fin DATE, m_hm_estado NUMBER) RETURN NUMBER 
+IS 
+resultado NUMBER;
+BEGIN
+    SELECT COUNT(*)
+    INTO resultado
+    FROM infectados_covid i
+    JOIN personas p ON p.id = i.id_persona
+    JOIN calles c ON c.id = p.id_calle
+    JOIN urbanizaciones u ON u.id = c.id_urb
+    JOIN ciudades ci ON ci.id = u.id_ciudad
+    JOIN estados e ON e.id = ci.id_estado
+    WHERE i.hist.fec_i >= m_hm_inicio AND (i.hist.fec_f <= m_hm_fin OR i.hist.fec_f IS NULL) AND i.estado = 'M'
+    AND e.id = m_hm_estado;
+
+    RETURN resultado;
+END;
+/
+-- Selecciona el numero de recuperados durante el intervalo del modelo en un estado determinado
+
+CREATE OR REPLACE FUNCTION recuperados_modelo (m_hm_inicio DATE, m_hm_fin DATE, m_hm_estado NUMBER) RETURN NUMBER 
+IS 
+resultado NUMBER;
+BEGIN
+    SELECT COUNT(*)
+    INTO resultado
+    FROM infectados_covid i
+    JOIN personas p ON p.id = i.id_persona
+    JOIN calles c ON c.id = p.id_calle
+    JOIN urbanizaciones u ON u.id = c.id_urb
+    JOIN ciudades ci ON ci.id = u.id_ciudad
+    JOIN estados e ON e.id = ci.id_estado
+    WHERE i.hist.fec_i >= m_hm_inicio AND (i.hist.fec_f <= m_hm_fin OR i.hist.fec_f IS NULL) AND i.estado = 'R'
+    AND e.id = m_hm_estado;
+
+    RETURN resultado;
 END;

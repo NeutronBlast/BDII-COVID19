@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reporte 9" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3b76194c-3e08-48b9-a978-8c0358c7b377">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="covid-19"/>
+	<parameter name="ORACLE_REF_CURSOR" class="java.sql.ResultSet"/>
+	<parameter name="PAIS" class="java.lang.String">
+		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
+	</parameter>
+	<queryString language="plsql">
+		<![CDATA[{call REPORTE_9($P{ORACLE_REF_CURSOR}, $P{PAIS})}]]>
+	</queryString>
+	<field name="PAIS QUE OFRECE LA AYUDA" class="java.awt.Image">
+		<property name="com.jaspersoft.studio.field.label" value="PAIS QUE OFRECE LA AYUDA"/>
+	</field>
+	<field name="PAIS RECEPTOR" class="java.awt.Image">
+		<property name="com.jaspersoft.studio.field.label" value="PAIS RECEPTOR"/>
+	</field>
+	<field name="FECHA DE DONACION" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="FECHA DE DONACION"/>
+	</field>
+	<field name="INSUMOS DONADOS" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="INSUMOS DONADOS"/>
+	</field>
+	<field name="DINERO" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="DINERO"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="50" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="0" y="10" width="800" height="30" forecolor="#004953" uuid="fb507e01-4fe5-490f-b422-b70b691d8b1d"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[AYUDAS HUMANITARIAS RECIBIDAS]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="660" y="10" width="160" height="20" forecolor="#A7CECD" backcolor="#A7CECD" uuid="a8c68080-963a-4866-be64-717e1bf47baf"/>
+			</rectangle>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="50" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="40" y="20" width="152" height="30" uuid="d41da189-b944-4940-80b7-8f23bd5445fa">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="60f88dfe-164c-4d44-97be-9e3183c9fb16"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PAIS QUE OFRECE LA AYUDA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="192" y="20" width="150" height="30" uuid="f6b207e4-6845-4535-8d6c-0087517496c2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ffc231a0-8739-48aa-9f5a-89b7990ab0d8"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PAIS RECEPTOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="322" y="20" width="150" height="30" uuid="233dc58b-0e5c-4062-9e02-90b40232ea02">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="64866537-7834-4db8-a74f-bec9a47c595b"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA DE DONACION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="472" y="20" width="150" height="30" uuid="1182e9f4-ed29-4bbe-87d6-dfbe595db8e7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="88d1e1b1-3fd3-4008-8678-3133c6c3a0bb"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[INSUMOS DONADOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="622" y="20" width="150" height="30" uuid="f5e59a2d-b08e-40db-9037-0cb3821f1e8e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e2b6d3e3-61e0-4636-b741-5e6f3dfb6cfa"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DINERO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="60" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField>
+				<reportElement x="322" y="0" width="150" height="30" uuid="2a322ab1-4b4f-4f4a-bc13-c293108e420c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="64866537-7834-4db8-a74f-bec9a47c595b"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{FECHA DE DONACION})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="472" y="0" width="150" height="30" uuid="ab85f6c9-0e3a-4494-9f82-33592150867e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="88d1e1b1-3fd3-4008-8678-3133c6c3a0bb"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{INSUMOS DONADOS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="612" y="0" width="150" height="30" uuid="84f8c61c-cc4b-455d-937e-3cf919668c6d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e2b6d3e3-61e0-4636-b741-5e6f3dfb6cfa"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{DINERO}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="82" y="0" width="152" height="30" uuid="969f0943-ffe8-4f90-a9ff-435541b31530"/>
+				<imageExpression><![CDATA[$F{PAIS QUE OFRECE LA AYUDA}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="232" y="0" width="150" height="30" uuid="d92990fe-3070-4c95-8232-d56f56c59f27"/>
+				<imageExpression><![CDATA[$F{PAIS RECEPTOR}]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="30" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField>
+				<reportElement x="0" y="0" width="800" height="30" forecolor="#004953" uuid="8aba1e2d-7f71-4a10-aeab-47325c71f397"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

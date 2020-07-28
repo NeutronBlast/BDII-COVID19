@@ -107,27 +107,29 @@ IS
 BEGIN
     IF PAIS IS NOT NULL THEN 
     OPEN ORACLE_REF_CURSOR FOR 
-    SELECT p.nom as "PAIS",
+    SELECT p.bandera as "PAIS",
     m.nom as "MODELO",
     hm.hist.fec_i as "FECHA DE INICIO",
-    ROUND(100-(e.data.numero_recuperados (hm.id_estado,'E')/NVL(NULLIF(e.data.numero_infectados (hm.id_estado,'E'),0),1)-
-    e.data.numero_fallecidos (hm.id_estado,'E')/NVL(NULLIF(e.data.numero_infectados (hm.id_estado,'E'),0),1))*10) || '%' as "PORCENTAJE DE EFECTIVIDAD"
+    ROUND((recuperados_modelo (hm.hist.fec_i, hm.hist.fec_f, e.id)/NVL(NULLIF(infectados_modelo(hm.hist.fec_i, hm.hist.fec_f, e.id)+recuperados_modelo(hm.hist.fec_i, hm.hist.fec_f, e.id)+fallecidos_modelo(hm.hist.fec_i, hm.hist.fec_f, e.id),0),1)-
+    fallecidos_modelo(hm.hist.fec_i, hm.hist.fec_f, e.id)/NVL(NULLIF(infectados_modelo(hm.hist.fec_i, hm.hist.fec_f, e.id)+recuperados_modelo(hm.hist.fec_i, hm.hist.fec_f, e.id)+fallecidos_modelo(hm.hist.fec_i, hm.hist.fec_f, e.id),0),1))*100) || '%' as "PORCENTAJE DE EFECTIVIDAD"
     FROM historico_modelos hm 
     JOIN modelos m ON m.id = hm.id_modelo
     JOIN estados e ON e.id = hm.id_estado
     JOIN paises p ON p.id = e.id_pais
-    WHERE p.nom LIKE INITCAP(PAIS);
+    WHERE p.nom LIKE INITCAP(PAIS)
+    ORDER BY hm.hist.fec_i;
 
     ELSE 
     OPEN ORACLE_REF_CURSOR FOR 
-    SELECT p.nom as "PAIS",
+    SELECT p.bandera as "PAIS",
     m.nom as "MODELO",
     hm.hist.fec_i as "FECHA DE INICIO",
-    ROUND(100-(e.data.numero_recuperados (hm.id_estado,'E')/NVL(NULLIF(e.data.numero_infectados (hm.id_estado,'E'),0),1)-
-    e.data.numero_fallecidos (hm.id_estado,'E')/NVL(NULLIF(e.data.numero_infectados (hm.id_estado,'E'),0),1))*10) || '%' as "PORCENTAJE DE EFECTIVIDAD"
+    ROUND((recuperados_modelo (hm.hist.fec_i, hm.hist.fec_f, e.id)/NVL(NULLIF(infectados_modelo(hm.hist.fec_i, hm.hist.fec_f, e.id)+recuperados_modelo(hm.hist.fec_i, hm.hist.fec_f, e.id)+fallecidos_modelo(hm.hist.fec_i, hm.hist.fec_f, e.id),0),1)-
+    fallecidos_modelo(hm.hist.fec_i, hm.hist.fec_f, e.id)/NVL(NULLIF(infectados_modelo(hm.hist.fec_i, hm.hist.fec_f, e.id)+recuperados_modelo(hm.hist.fec_i, hm.hist.fec_f, e.id)+fallecidos_modelo(hm.hist.fec_i, hm.hist.fec_f, e.id),0),1))*100) || '%' as "PORCENTAJE DE EFECTIVIDAD"
     FROM historico_modelos hm 
     JOIN modelos m ON m.id = hm.id_modelo
     JOIN estados e ON e.id = hm.id_estado
-    JOIN paises p ON p.id = e.id_pais;
+    JOIN paises p ON p.id = e.id_pais
+    ORDER BY hm.hist.fec_i;
     END IF;
 END;
