@@ -121,3 +121,25 @@ BEGIN
 
     RETURN resultado;
 END;
+/
+--aux POBLACION MUNDIAL
+CREATE OR REPLACE FUNCTION TOTAL_POBLACION RETURN NUMBER
+AS
+    CURSOR v_cursor IS
+        SELECT e.data.poblacion FROM estados e;
+
+    v_acumulado NUMBER;
+    v_poblacion NUMBER;
+    
+BEGIN 
+    OPEN v_cursor;
+    FETCH v_cursor INTO v_poblacion;
+    v_acumulado := 0;
+    WHILE v_cursor%FOUND
+    LOOP
+        v_acumulado := v_acumulado + v_poblacion;
+        FETCH v_cursor INTO v_poblacion;
+    END LOOP;
+    CLOSE v_cursor;
+    return (v_acumulado);
+END;

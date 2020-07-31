@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reporte 12" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5e385849-dd60-4174-950d-85f1a03e18ce">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="JBDC Adapter "/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="covid-19"/>
 	<parameter name="ORACLE_REF_CURSOR" class="java.sql.ResultSet"/>
-	<parameter name="PAIS" class="java.lang.String"/>
-	<parameter name="FECHA" class="java.sql.Date"/>
+	<parameter name="PAIS" class="java.lang.String">
+		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FECHA" class="java.sql.Date">
+		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
+	</parameter>
 	<queryString language="plsql">
 		<![CDATA[{call reporte_12($P{ORACLE_REF_CURSOR}, $P{PAIS}, $P{FECHA})}]]>
 	</queryString>
@@ -48,7 +52,7 @@
 				<textFieldExpression><![CDATA[" Infraestructura de telecomunicaciones"]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement x="690" y="5" width="112" height="23" forecolor="#A7CECD" backcolor="#A7CECD" uuid="025dc6a5-aa8a-4e2e-a056-d46efa886ef2"/>
+				<reportElement x="690" y="5" width="130" height="23" forecolor="#A7CECD" backcolor="#A7CECD" uuid="025dc6a5-aa8a-4e2e-a056-d46efa886ef2"/>
 			</rectangle>
 		</band>
 	</title>
@@ -155,9 +159,9 @@
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="50" splitType="Stretch">
+		<band height="60" splitType="Stretch">
 			<textField>
-				<reportElement mode="Transparent" x="-20" y="20" width="840" height="30" forecolor="#004A53" backcolor="#E68585" uuid="c194e237-2ab8-49da-b8e6-3dc839b93c9e"/>
+				<reportElement mode="Transparent" x="-20" y="30" width="840" height="30" forecolor="#004A53" backcolor="#E68585" uuid="c194e237-2ab8-49da-b8e6-3dc839b93c9e"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
