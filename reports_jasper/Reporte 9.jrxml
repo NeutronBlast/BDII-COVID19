@@ -2,7 +2,7 @@
 <!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reporte 9" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3b76194c-3e08-48b9-a978-8c0358c7b377">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="covid-19"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="JBDC Adapter "/>
 	<parameter name="ORACLE_REF_CURSOR" class="java.sql.ResultSet"/>
 	<parameter name="PAIS" class="java.lang.String">
 		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
