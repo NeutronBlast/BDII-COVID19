@@ -431,7 +431,7 @@
     <created_date>2020/08/02 15:19:36.521</created_date>
     <modified_user>-</modified_user>
     <modified_date>2020/08/02 15:19:36.521</modified_date>
-    <key_for_session_key/>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -441,10 +441,10 @@
     <server>localhost</server>
     <type>ORACLE</type>
     <access>Native</access>
-    <database>LOCAL</database>
+    <database>/secondarycovid</database>
     <port>1521</port>
-    <username>leo</username>
-    <password>Encrypted 2be98afc86aa78188a248fc218ecbff8b</password>
+    <username>NeutronBlast</username>
+    <password>Encrypted 2be98afc86af79390b910ad79dfc3ff82</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -493,7 +493,7 @@
   </connection>
   <connection>
     <name>remote</name>
-    <server>190.198.48.131</server>
+    <server>186.94.80.78</server>
     <type>ORACLE</type>
     <access>Native</access>
     <database>PRACTICAS</database>
@@ -554,6 +554,56 @@
     </hop>
   </order>
   <step>
+    <name>Execute SQL script</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>LOCAL</connection>
+    <execute_each_row>Y</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>Y</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>insert into Persona_y_estado (fechas_inicio_fin, fk_persona, fk_estado) values (fechas_inicio_fin(TO_DATE('?', 'mm/dd/yyyy'), TO_DATE('?', 'mm/dd/yyyy')), (TO_NUMBER(?)),(TO_NUMBER(?)))</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+      <argument>
+        <name>FECHA_I</name>
+      </argument>
+      <argument>
+        <name>FECHA_F</name>
+      </argument>
+      <argument>
+        <name>FK_PERSONA</name>
+      </argument>
+      <argument>
+        <name>FK_ESTADO</name>
+      </argument>
+    </arguments>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>608</xloc>
+      <yloc>432</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Table input</name>
     <type>TableInput</type>
     <description/>
@@ -565,9 +615,8 @@
       <schema_name/>
     </partitioning>
     <connection>remote</connection>
-    <sql>SELECT (TO_CHAR( pe.fechas_inicio_fin.fecha_inicio, 'mm/dd/yyyy' )) as Fecha_i, (TO_CHAR(pe.fechas_inicio_fin.fecha_fin,'mm/dd/yyyy')) as Fecha_f, pe.fk_persona, pe.fk_estado FROM PERSONA_Y_ESTADO pe
-</sql>
-    <limit>10</limit>
+    <sql>SELECT (TO_CHAR( pe.fechas_inicio_fin.fecha_inicio, 'mm/dd/yyyy' )) as Fecha_i, (TO_CHAR(pe.fechas_inicio_fin.fecha_fin,'mm/dd/yyyy')) as Fecha_f, pe.fk_persona, pe.fk_estado FROM PERSONA_Y_ESTADO pe</sql>
+    <limit>10000</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
     <variables_active>N</variables_active>
@@ -677,56 +726,6 @@
     </remotesteps>
     <GUI>
       <xloc>416</xloc>
-      <yloc>432</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Execute SQL script</name>
-    <type>ExecSQL</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>LOCAL</connection>
-    <execute_each_row>Y</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>Y</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>insert into Persona_y_estado (fechas_inicio_fin, fk_persona, fk_estado) values (fechas_inicio_fin(TO_DATE('?', 'mm/dd/yyyy'), TO_DATE('?', 'mm/dd/yyyy')), (TO_NUMBER(?)),(TO_NUMBER(?)))</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-      <argument>
-        <name>FECHA_I</name>
-      </argument>
-      <argument>
-        <name>FECHA_F</name>
-      </argument>
-      <argument>
-        <name>FK_PERSONA</name>
-      </argument>
-      <argument>
-        <name>FK_ESTADO</name>
-      </argument>
-    </arguments>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>608</xloc>
       <yloc>432</yloc>
       <draw>Y</draw>
     </GUI>
