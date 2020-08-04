@@ -47,7 +47,7 @@ begin
 	end if;
 end;
 
-
+/
 Create or replace procedure Agregar_patologias (id_persona number) is
 	sint number;
 	type numarray IS VARRAY(100) OF number;
@@ -80,7 +80,7 @@ begin
 	End loop;
 end;
 
-
+/
 Create or replace function Contar_infectados_actuales (id_lugar number) return number is
 	infectados number;
 begin
@@ -96,7 +96,7 @@ begin
 	return infectados;
 end;
 
-
+/
 Create or replace function Porcentaje_infectados_actuales (id_lugar number) return number is
 	infectados number;
 	porcentaje number;
@@ -111,7 +111,7 @@ begin
 	return porcentaje;
 end;
 
-
+/
 Create or replace function Obtener_modelo (id_lugar number, fecha_actual date) return number is
 	modelo number;
 begin
@@ -127,7 +127,7 @@ begin
 	return modelo;
 end;
 
-
+/
 Create or replace procedure Cambiar_modelo (id_lugar number, fecha_actual date) is
 	modelo number;
 	porcentaje number;
@@ -169,7 +169,7 @@ begin
 		end if;
 	end if;
 end;
-
+/
 
 Create or replace procedure Crear_historico_internet (id_lugar number, fecha_actual date) is
 	subidaaux number;
@@ -213,7 +213,7 @@ begin
 	values (subidaaux, descargaaux, horasaux, fechaaux, fkprov);
 	dbms_output.put_line('Hist�rico de internet creado para el pa�s de id ' || id_lugar || ' y el proveedor de id ' || id_lugar || '.');
 end;
-
+/
 
 Create or replace Function ubicacion_actual_persona (id_persona number, fecha_actual date) return number is
 	ciudad_resi number;
@@ -250,7 +250,7 @@ begin
 	return ciudad_vuelo;
 end;
 
-
+/
 Create or replace Function verificar_vuelo_persona (id_persona number, fecha_actual date) return number is
 	ciudad_res number;
 begin
@@ -264,7 +264,7 @@ begin
 	return 1; 
 end;
 
-
+/
 Create or replace procedure Asignar_pasajeros (vuelo_salida number, vuelo_llegada number, ciudad_salida number, ciudad_llegada number, fecha_actual date) is
 	cont number;
 	min_ciudad number;
@@ -324,7 +324,7 @@ begin
 		end if;
 	End loop;
 end;
-
+/
 
 Create or replace procedure Generar_vuelos (fecha_actual date) is
 	cant_vuelos number;
@@ -380,7 +380,7 @@ begin
 		end if;
 	End loop;
 end;
-
+/
 
 Create or replace function Calcular_edad (id_persona number, fecha_actual date) return number is
 	edad number;
@@ -393,7 +393,7 @@ begin
 	edad:=trunc((fecha_actual - fnac)/365);
 	return edad;
 end;
-
+/
 CREATE OR REPLACE FUNCTION personaInfectada(id_persona number, fecha_actual date) RETURN number
 IS
     auxEstado number;
@@ -415,7 +415,7 @@ BEGIN
     end if;
     RETURN 0;
 END;
-
+/
 CREATE OR REPLACE FUNCTION personaHospitalizada(id_persona number, fecha_actual date) RETURN number
 IS
     auxInfectado number;
@@ -435,7 +435,7 @@ BEGIN
     RETURN 0;
 END;
 
-
+/
 Create or replace procedure Finalizar_infeccion (id_persona number, fecha_actual date) is
 	id_nan number;
 begin
@@ -446,7 +446,7 @@ begin
 	Update Persona_y_estado pest SET pest.fechas_inicio_fin.fecha_fin = (fecha_actual-1) where pest.id = id_nan;
 end;
 
-
+/
 Create or replace procedure Matar_persona (id_persona number, fecha_actual date) is
 hospita number;
 centro number;
@@ -467,7 +467,7 @@ begin
 	end if;
 end;
 
-
+/
 Create or replace procedure Recuperar_persona (id_persona number, fecha_actual date) is
 	centro number;
 	hospita number;
@@ -487,7 +487,7 @@ begin
 		Update centro_de_salud cs set cs.camas_disponibles = cs.camas_disponibles + 1 where cs.id = centro;
 	end if;
 end;
-
+/
 
 Create or replace Function Calcular_probabilidad_muerte (id_persona number, fecha_actual date) return number is
 	probfinal number;
@@ -512,7 +512,7 @@ begin
 	end if;
 	return probfinal;
 end;
-
+/
 Create or replace Function Calcular_dias_infeccion (id_persona number, fecha_actual date) return number is
 	fecha_ini date;
 	dias number;
@@ -525,7 +525,7 @@ begin
 	return dias;
 end;
 
-
+/
 Create or replace procedure Decidir_muerte_recuperacion (id_persona number, fecha_actual date) is
 	prob number;
 	res number;
@@ -542,7 +542,7 @@ begin
 		end if;
 	end if;
 end;
-
+/
 Create or replace function calcular_gente_contacto (id_pais number) return number is
 	cantidad number;
 	poblacion number;
@@ -554,7 +554,7 @@ begin
 	cantidad:= trunc(poblacion/100) +1;
 	return cantidad;
 end;
-
+/
 Create or replace function personaSana (id_persona number) return number is
 	val number;
 begin
@@ -565,7 +565,7 @@ begin
 	return 0;
 end;
 
-
+/
 Create or replace Procedure Infeccion (id_persona number, fecha_actual date) is
 	ciudad_actual number;
 	pais_actual number;
@@ -612,8 +612,7 @@ begin
 		end loop;
 	end if;
 end; 
-
-
+/
 
 Create or replace procedure Diario_CentroS (id_centroS number, fecha_actual date) is
     camas_ocupadas number;
@@ -714,7 +713,7 @@ dbms_output.put_line('----------------------------------------------------------
             where centroIns.fk_centrodeSalud = id_centroS;
     end if;
 end;
-
+/
 CREATE OR REPLACE PROCEDURE ingresarEnClinica(id_persona number, fecha_actual date) 
 IS
     auxDias number;
@@ -759,7 +758,7 @@ BEGIN
     end if;
 END;
 
-
+/
 
 Create or replace procedure Simular (inicio_periodo date, fin_periodo date) is
 valor number;
@@ -834,7 +833,7 @@ dbms_output.put_line('----------------------------------------------------------
 		End loop;
 	END LOOP;
 end;
-
+/
 exec Simular (TO_DATE('08/01/2020', 'mm/dd/yyyy'), TO_DATE('09/15/2020', 'mm/dd/yyyy'));
 
 
