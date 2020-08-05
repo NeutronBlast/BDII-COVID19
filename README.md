@@ -45,3 +45,17 @@
 + Grafica
   1. Pais = 0, Fecha de Inicio = 30 de Mayo de 2020, Fecha de Fin = 15 de Julio de 2020
   2. Pais = 1, Fecha de Inicio = 01 de Enero de 2020, Fecha de Fin = 31 de Diciembre de 2020
++ Viajes
+  1. Pais = ALEMANIA, Fecha de Inicio = 01 de Enero de 2020, Fecha de Fin = 31 de Diciembre de 2020
++ Hospitales
++ Ayuda humanitaria
+  1. Pais = VENEZUELA
++ Efectividad de modelos
+  1. Pais = ESTADOS UNIDOS
+  2. Pais = ALEMANIA
++ Reporte mundial
+  1. Fecha = 01 de Enero de 2020
++ Uso de internet
+  1. No poner parametros
++ Cierre de fronteras
+  1. No poner parametros
